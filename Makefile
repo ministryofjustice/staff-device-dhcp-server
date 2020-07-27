@@ -7,7 +7,7 @@ stop_development_environment:
 run_development_environment: stop_development_environment build
 	docker build -t docker_dhcp_config ./dhcp-config
 	docker-compose up -d db
-	./wait-for-it.sh
+	./wait_for_db.sh
 	docker-compose up dhcp-config
 	docker-compose up -d dhcp
 
