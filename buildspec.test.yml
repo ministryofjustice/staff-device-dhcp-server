@@ -1,0 +1,31 @@
+version: 0.2
+
+env:
+  variables:
+    TF_IN_AUTOMATION: true
+    TF_INPUT: 0
+    AWS_REGION: eu-west-2
+  parameter-store:
+    ROLE_ARN: /codebuild/pttp-ci-infrastructure-core-pipeline/development/assume_role # tests hardcoded to only run in development
+
+phases:
+  install:
+    commands:
+      - echo nope
+
+  build:
+    commands:
+      # - cd test
+      # - go mod download
+      # - gotestsum --format testname --junitfile unit-tests.xml -- -timeout 30m
+      - echo test
+
+# reports:
+#   terratestReports:
+#     files:
+#       - unit-tests.xml
+#     base-directory: test
+
+# cache:
+#   paths:
+#     - '/go/pkg/**/*'
