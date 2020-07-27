@@ -1,0 +1,18 @@
+version: 0.2
+
+#env:
+#  variables:
+#    TF_IN_AUTOMATION: true
+#    TF_INPUT: 0
+#    TF_VAR_owner_email: staf-device-dns-dhcp@justice.gov.uk
+#  parameter-store:
+#    TF_VAR_assume_role: "/codebuild/pttp-ci-infrastructure-core-pipeline/$ENV/assume_role"
+
+phases:
+  install:
+    commands:
+      - echo nope
+
+  build:
+    commands:
+      make build
