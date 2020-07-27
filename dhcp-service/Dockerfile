@@ -11,10 +11,9 @@ RUN apt-get update && apt-get install -y isc-kea-*
 COPY ./config.json /etc/kea/config.json
 RUN  mkdir /var/run/kea
 
-COPY ./scripts/wait-for-it.sh wait-for-it.sh
-
 EXPOSE 67
-EXPOSE 68
+# TODO: delete this?
+EXPOSE 68 
 
-ENTRYPOINT ["./wait-for-it.sh", "db:3306", "--", "kea-dhcp4"]
+ENTRYPOINT ["kea-dhcp4"]
 CMD ["-c", "/etc/kea/config.json"]

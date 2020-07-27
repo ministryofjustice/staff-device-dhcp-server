@@ -9,7 +9,5 @@ RUN curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-1-6/cfg/setup/config.deb
 RUN apt-get update && apt-get install -y isc-kea-* \
     default-mysql-client
 
-COPY ./scripts/wait-for-it.sh wait-for-it.sh
-
-ENTRYPOINT ["./wait-for-it.sh", "db:3306", "--", "kea-admin"]
+ENTRYPOINT ["kea-admin"]
 CMD ["db-init", "mysql", "-u", "kea", "-p", "kea", "-n", "kea", "-h", "db"]
