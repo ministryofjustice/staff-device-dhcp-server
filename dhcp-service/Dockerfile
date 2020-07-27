@@ -9,11 +9,11 @@ RUN curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-1-6/cfg/setup/config.deb
 RUN apt-get update && apt-get install -y isc-kea-*
 
 COPY ./config.json /etc/kea/config.json
+COPY ./start_service.sh ./start_service.sh
 RUN  mkdir /var/run/kea
 
 EXPOSE 67
 # TODO: delete this?
 EXPOSE 68 
 
-ENTRYPOINT ["kea-dhcp4"]
-CMD ["-c", "/etc/kea/config.json"]
+ENTRYPOINT ["./start_service.sh"]

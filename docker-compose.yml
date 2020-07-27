@@ -18,7 +18,7 @@ services:
       - db_data:/var/lib/mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: kea
+      MYSQL_ROOT_PASSWORD: password
       MYSQL_USER: kea
       MYSQL_PASSWORD: kea
       MYSQL_DATABASE: kea
