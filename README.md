@@ -8,6 +8,14 @@ This images is pushed up to [Amazon ECR](https://aws.amazon.com/ecr/).
 
 To get started with development you will need both [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) installed on your machine.
 
+### Using Docker Compose
+
+Docker Compose is being used for development purposes only. The Docker Compose file creates both the Kea DHCP service image and a database for it to reference during local development.
+
+### Deploying to production
+
+The Docker image built in the folder `dhcp-service` builds the Docker image which is pushed to production.
+
 ## ISC Kea versions
 
 At the time of writing, the stable release for ISC Kea is [version 1.6](https://cloudsmith.io/~isc/repos/kea-1-6/packages/).
