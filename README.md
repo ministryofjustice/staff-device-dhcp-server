@@ -19,23 +19,27 @@ See the target `run_development_environment` in the [Makefile](./Makefile)
 
 Deployments are automated in the CI pipeline. See [buildspec.yml](./buildspec.yml)
 
-## ISC Kea versions
+## Testing
+
+- Run `ifconfig` to find the name for the docker-compose network interface.
+- Run  
+ `sudo nmap --script broadcast-dhcp-discover -e <NETWORK_INTERFACE>`
+  - The dhcp server should respond with an offer. EG:
+  
+  ```bash
+    Starting Nmap 7.80 ( https://nmap.org ) at 2020-07-28 14:53 BST
+    Pre-scan script results:
+    | broadcast-dhcp-discover: 
+    |   Response 1 of 1: 
+    |     IP Offered: 192.0.2.10
+    |     DHCP Message Type: DHCPOFFER
+    |     Subnet Mask: 255.255.255.0
+    |     IP Address Lease Time: 1h06m40s
+    |_    Server Identifier: 172.29.0.4
+    WARNING: No targets were specified, so 0 hosts scanned.
+    Nmap done: 0 IP addresses (0 hosts up) scanned in 0.53 seconds
+  ```
+
+## ISC Kea version
 
 At the time of writing, the stable release for ISC Kea is [version 1.6](https://cloudsmith.io/~isc/repos/kea-1-6/packages/).
-
-There is a [1.7 release](https://cloudsmith.io/~isc/repos/kea-1-7/packages/), but it is a development release which is not ready for use in production applications.
-
-For the reasons above, we have elected to use Kea version 1.6.
-
-## TODO
-
-- Add a note about the following warning messages when making for dev (ignore them):
-  - `Warning: apt-key output should not be parsed (stdout is not a terminal)`
-  - `debconf: delaying package configuration, since apt-utils is not installed`
-- Add a note on testing locally using nmap
-- Add note on killing docker images with `docker-compose down -v` when you are done
-
-## NMAP
-
-- Run `ifconfig`, choose each name from to bottom
-- If it gives you `br-c8ec119ba6dc`, run: `sudo nmap --script broadcast-dhcp-discover -e br-c8ec119ba6dc`
