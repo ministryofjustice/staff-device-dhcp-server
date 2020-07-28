@@ -1,5 +1,7 @@
 FROM debian:buster-slim
 
+USER root
+
 RUN apt-get update && apt-get install -y curl \
     debian-keyring \
     debian-archive-keyring \
@@ -8,6 +10,8 @@ RUN curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-1-6/cfg/gpg/gpg.0607E262
 RUN curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-1-6/cfg/setup/config.deb.txt?distro=debian&codename=buster' > /etc/apt/sources.list.d/isc-kea-1-6.list
 RUN apt-get update && apt-get install -y isc-kea-*
 
+WORKDIR /home
+RUN chown root:root /home
 COPY ./config.json /etc/kea/config.json
 COPY ./start_service.sh ./start_service.sh
 RUN  mkdir /var/run/kea
