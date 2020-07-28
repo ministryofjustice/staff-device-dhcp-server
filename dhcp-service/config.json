@@ -7,7 +7,7 @@
 {
   // Kea is told to listen on ethX interface only.
   "interfaces-config": {
-    "interfaces": [ "eth0" ]
+    "interfaces": [ "<INTERFACE>" ]
 
   },
 
@@ -57,11 +57,11 @@
   // from this database.
   "hosts-database": {
     "type": "mysql",
-    "name": "kea",
-    "user": "kea",
-    "password": "kea",
-    "host": "db",
-    "port": 3306
+    "name": "<DB_NAME>",
+    "user": "<DB_USER>",
+    "password": "<DB_PASS>",
+    "host": "<DB_HOST>",
+    "port": <DB_PORT>
   },
 
   // Define a subnet with a single pool of dynamic addresses. Addresses from
@@ -73,7 +73,7 @@
     {
       "pools": [ { "pool":  "192.0.2.10 - 192.0.2.200" } ],
       "subnet": "192.0.2.0/24",
-      "interface": "eth0",
+      "interface": "<INTERFACE>",
       "id": 1
     }
   ],
