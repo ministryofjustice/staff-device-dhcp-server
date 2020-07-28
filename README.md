@@ -11,15 +11,13 @@ To get started with development you will need:
 - [Docker](https://www.docker.com/)
 - [Docker Compose](https://docs.docker.com/compose/)
 
-### Using Docker Compose
+### Running locally
 
-Docker Compose is being used for development purposes only. The Docker Compose file creates both the Kea DHCP service image and a database for it to reference during local development.
-
-TODO: add a note on `run_development_environment`
+See the target `run_development_environment` in the [Makefile](./Makefile)
 
 ### Deploying to production
 
-The Docker image built in the folder `dhcp-service` builds the Docker image which is pushed to production.
+Deployments are automated in the CI pipeline. See [buildspec.yml](./buildspec.yml)
 
 ## ISC Kea versions
 
