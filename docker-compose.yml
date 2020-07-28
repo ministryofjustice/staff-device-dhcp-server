@@ -9,6 +9,13 @@ services:
     depends_on:
       - db
       - dhcp-config
+    environment:
+      INTERFACE: eth0
+      DB_NAME: kea
+      DB_USER: kea
+      DB_PASS: kea
+      DB_HOST: db
+      DB_PORT: 3306
     ports:
       - 67:67
       - 68:68
