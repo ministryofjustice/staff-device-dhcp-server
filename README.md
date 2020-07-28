@@ -6,7 +6,10 @@ This images is pushed up to [Amazon ECR](https://aws.amazon.com/ecr/).
 
 ## Getting started
 
-To get started with development you will need both [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) installed on your machine.
+To get started with development you will need:
+
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
 
 ### Using Docker Compose
 
