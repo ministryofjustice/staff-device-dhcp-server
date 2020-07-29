@@ -1,16 +1,12 @@
 version: 0.2
 
-#env:
-#  variables:
-#    TF_IN_AUTOMATION: true
-#    TF_INPUT: 0
-#    TF_VAR_owner_email: staf-device-dns-dhcp@justice.gov.uk
  parameter-store:
    DB_NAME: "/codebuild/dhcp/$ENV/db/name"
    DB_USER: "/codebuild/dhcp/$ENV/db/user"
    DB_PASS: "/codebuild/dhcp/$ENV/db/password"
    DB_HOST: "/codebuild/dhcp/$ENV/db/hostname"
    DB_PORT: 3306
+   REGISTRY_URL: "/codebuild/dhcp/$ENV/ecr/endpoint"
 
 phases:
   install:
