@@ -1,12 +1,13 @@
 version: 0.2
 
- parameter-store:
-   DB_NAME: "/codebuild/dhcp/$ENV/db/name"
-   DB_USER: "/codebuild/dhcp/$ENV/db/user"
-   DB_PASS: "/codebuild/dhcp/$ENV/db/password"
-   DB_HOST: "/codebuild/dhcp/$ENV/db/hostname"
-   DB_PORT: 3306
-   REGISTRY_URL: "/codebuild/dhcp/$ENV/ecr/endpoint"
+env:
+  parameter-store:
+    DB_NAME: "/codebuild/dhcp/$ENV/db/name"
+    DB_USER: "/codebuild/dhcp/$ENV/db/user"
+    DB_PASS: "/codebuild/dhcp/$ENV/db/password"
+    DB_HOST: "/codebuild/dhcp/$ENV/db/hostname"
+    DB_PORT: 3306
+    REGISTRY_URL: "/codebuild/dhcp/$ENV/ecr/endpoint"
 
 phases:
   install:
