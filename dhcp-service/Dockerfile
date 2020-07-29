@@ -20,6 +20,4 @@ EXPOSE 67
 # TODO: delete this?
 EXPOSE 68
 
-RUN echo hi hi hi
-
 ENTRYPOINT ["./start_service.sh"]
