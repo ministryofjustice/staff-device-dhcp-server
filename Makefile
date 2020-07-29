@@ -11,7 +11,7 @@ run_development_environment: stop_development_environment
 	docker-compose up --build -d dhcp
 
 deploy: build
-	aws ecr get-login-password | docker login --username AWS --password-stdin ${REGISTRY_URL} --registry-ids ${TARGET_AWS_ACCOUNT_ID}
+	aws ecr get-login-password | docker login --username AWS --password-stdin ${REGISTRY_URL}
 	docker tag docker_dhcp:latest ${REGISTRY_URL}/staff-device-${ENV}-dhcp-docker-dhcp:latest
 	docker push ${REGISTRY_URL}/staff-device-${ENV}-dhcp-docker-dhcp:latest
 

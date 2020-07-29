@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+set -e
+
+REPO_NAME="068084030754.dkr.ecr.eu-west-2.amazonaws.com/staff-device-andy-dhcp-docker-dhcp"
+REPO_URL="068084030754.dkr.ecr.eu-west-2.amazonaws.com"
+
+cd dhcp-service
+docker build -t "staff-device-andy-dhcp-docker-dhcp" .
+docker tag "staff-device-andy-dhcp-docker-dhcp:latest" "${REPO_NAME}:latest"
+aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin ${REPO_URL}
+docker push "${REPO_NAME}:latest"
