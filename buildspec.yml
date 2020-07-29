@@ -5,8 +5,12 @@ version: 0.2
 #    TF_IN_AUTOMATION: true
 #    TF_INPUT: 0
 #    TF_VAR_owner_email: staf-device-dns-dhcp@justice.gov.uk
-#  parameter-store:
-#    TF_VAR_assume_role: "/codebuild/pttp-ci-infrastructure-core-pipeline/$ENV/assume_role"
+ parameter-store:
+   DB_NAME: "/codebuild/dhcp/$ENV/db/name"
+   DB_USER: "/codebuild/dhcp/$ENV/db/user"
+   DB_PASS: "/codebuild/dhcp/$ENV/db/password"
+   DB_HOST: "/codebuild/dhcp/$ENV/db/hostname"
+   DB_PORT: 3306
 
 phases:
   install:
