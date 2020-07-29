@@ -16,8 +16,12 @@
   // PostgreSQL, Cassandra, and the in-memory database, Memfile.
   // We'll use memfile  because it doesn't require any prior set up.
   "lease-database": {
-    "type": "memfile",
-    "lfc-interval": 3600
+    "type": "mysql",
+    "name": "<DB_NAME>",
+    "user": "<DB_USER>",
+    "password": "<DB_PASS>",
+    "host": "<DB_HOST>",
+    "port": 3306
   },
 
   // Addresses will be assigned with a lifetime of 4000 seconds.
@@ -61,7 +65,7 @@
     "user": "<DB_USER>",
     "password": "<DB_PASS>",
     "host": "<DB_HOST>",
-    "port": <DB_PORT>
+    "port": 3306
   },
 
   // Define a subnet with a single pool of dynamic addresses. Addresses from
