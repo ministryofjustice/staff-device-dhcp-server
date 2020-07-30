@@ -6,7 +6,7 @@ if [ -n "$CONFIG_URL" ]; then
       echo "Fetching new config from ${CONFIG_URL}"
       wget -nv $CONFIG_URL -O /etc/kea/config.json
   else
-    echo "Using default config. New config not found"
+    echo "Using default config. Config at ${CONFIG_URL} not found"
   fi
 else
   echo "Using default config. No CONFIG_URL provided"
