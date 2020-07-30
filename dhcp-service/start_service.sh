@@ -1,15 +1,15 @@
 #! /bin/sh
 
-if [ -z "$CONFIG_URL" ]; then
-  echo "Using default config. No CONFIG_URL provided"
-else
-  wget --quiet --spider $CONFIG_URL
+if [ -n "$CONFIG_URL" ]; then
+    wget --quiet --spider $CONFIG_URL
   if [ $? -eq 0 ] ; then
       echo "Fetching new config from ${CONFIG_URL}"
       wget -nv $CONFIG_URL -O /etc/kea/config.json
   else
     echo "Using default config. New config not found"
   fi
+else
+  echo "Using default config. No CONFIG_URL provided"
 fi
 
 sed -i "s/<INTERFACE>/$INTERFACE/g" /etc/kea/config.json
