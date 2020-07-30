@@ -1,14 +1,9 @@
 version: "3"
 services:
-  dhcp-config:
-    build: ./dhcp-config
-    depends_on:
-      - db
   dhcp:
     build: ./dhcp-service
     depends_on:
       - db
-      - dhcp-config
     environment:
       INTERFACE: eth0
       DB_NAME: kea
