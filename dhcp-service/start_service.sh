@@ -1,5 +1,9 @@
 #! /bin/sh
 
+echo "Before fetching config file"
+wget https://staff-device-andy-dhcp-config-bucket.s3.eu-west-2.amazonaws.com/config.json -P /etc/kea
+echo "After fetching config file"
+
 sed -i "s/<INTERFACE>/$INTERFACE/g" /etc/kea/config.json
 sed -i "s/<DB_NAME>/$DB_NAME/g" /etc/kea/config.json
 sed -i "s/<DB_USER>/$DB_USER/g" /etc/kea/config.json
