@@ -18,7 +18,7 @@ services:
       DB_PASS: kea
       DB_HOST: db
       DB_PORT: 3306
-      KEA_CONFIG_URL: "dhcp_config/config.json"
+      KEA_CONFIG_URL: "http://dhcp_config:80/config.json"
     ports:
       - 67:67
       - 68:68
