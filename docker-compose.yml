@@ -1,8 +1,15 @@
 version: "3"
 services:
+  dhcp_config:
+    image: nginx:alpine
+    volumes:
+      - ${PWD}/dhcp-service/config.json:/usr/share/nginx/html/config.json
+    ports:
+      - 80:80
   dhcp:
     build: ./dhcp-service
     depends_on:
+      - dhcp_config
       - db
     environment:
       INTERFACE: eth0
@@ -11,6 +18,7 @@ services:
       DB_PASS: kea
       DB_HOST: db
       DB_PORT: 3306
+      KEA_CONFIG_URL: "dhcp_config/config.json"
     ports:
       - 67:67
       - 68:68
