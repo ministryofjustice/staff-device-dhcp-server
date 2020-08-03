@@ -19,6 +19,7 @@ RUN  mkdir /var/run/kea
 EXPOSE 67
 # TODO: delete this?
 EXPOSE 68
+EXPOSE 80
 
 RUN service nginx start
 
