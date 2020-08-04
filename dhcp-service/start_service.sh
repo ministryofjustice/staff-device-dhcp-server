@@ -1,20 +1,6 @@
 #! /bin/sh
 
-if [ -n "$KEA_CONFIG_URL" ]; then
-  echo "Checking for config at ${KEA_CONFIG_URL}"
-  wget --quiet --spider --timeout=60 $KEA_CONFIG_URL
-
-  if [ $? -eq 0 ] ; then
-      echo "Found config. Fetching from ${KEA_CONFIG_URL}"
-      wget -nv --timeout=60 $KEA_CONFIG_URL -O /etc/kea/config.json
-  else
-    echo "Config at ${KEA_CONFIG_URL} not found. Exiting."
-    exit 1
-  fi
-else
-  echo "No KEA_CONFIG_URL provided. Exiting"
-  exit 1
-fi
+aws s3 cp s3://${KEA_CONFIG_BUCKET_NAME}/config.json /etc/kea/config.json
 
 sed -i "s/<INTERFACE>/$INTERFACE/g" /etc/kea/config.json
 sed -i "s/<DB_NAME>/$DB_NAME/g" /etc/kea/config.json
