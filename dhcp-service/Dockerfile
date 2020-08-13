@@ -23,4 +23,4 @@ EXPOSE 80
 
 RUN service nginx start
 
-ENTRYPOINT ["./start_service.sh"]
+CMD ["./start_service.sh"]
