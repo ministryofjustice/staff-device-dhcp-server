@@ -5,7 +5,6 @@ stop_development_environment:
 	docker-compose down -v
 
 run_development_environment: stop_development_environment
-	docker-compose up -d dhcp_config
 	docker-compose up -d db
 	./wait_for_db.sh
 	docker-compose up --build -d dhcp
