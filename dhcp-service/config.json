@@ -8,7 +8,11 @@
   // Kea is told to listen on ethX interface only.
   "interfaces-config": {
     "interfaces": [ "<INTERFACE>" ]
+  },
 
+  "control-socket": {
+      "socket-type": "unix",
+      "socket-name": "/tmp/kea-dhcp4-ctrl.sock"
   },
 
   // We need to specify the the database used to store leases. As of

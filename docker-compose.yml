@@ -15,6 +15,7 @@ services:
     ports:
       - 67:67
       - 68:68
+      - 8080:8080
     volumes:
     - $HOME/.aws/credentials:/root/.aws/credentials:ro
   db:

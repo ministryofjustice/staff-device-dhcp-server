@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y isc-kea-* default-mysql-client awscli
 
 WORKDIR /home
 RUN chown root:root /home
+COPY ./kea-ctrl-agent.conf /etc/kea/kea-ctrl-agent.conf
 COPY ./start_service.sh ./start_service.sh
 RUN  mkdir /var/run/kea
 
