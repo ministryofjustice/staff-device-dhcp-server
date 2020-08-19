@@ -75,8 +75,8 @@
   // within the database.
   "subnet4": [
     {
-      "pools": [ { "pool":  "192.0.2.10 - 192.0.2.200" } ],
-      "subnet": "192.0.2.0/24",
+      "pools": [ { "pool":  "172.1.0.10 - 172.1.0.100" } ],
+      "subnet": "172.1.0.0/24",
       "interface": "<INTERFACE>",
       "id": 1
     }
@@ -93,7 +93,7 @@
           "output": "stdout"
         }
       ],
-      "severity": "INFO"
+      "severity": "DEBUG"
     }
   ]
 }
