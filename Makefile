@@ -19,8 +19,11 @@ start-db:
 stop:
 	$(DOCKER_COMPOSE) down -v
 
-run: stop_development_environment start-db
+run: start-db
 	$(DOCKER_COMPOSE) up --build dhcp
+
+test: start-db
+	$(DOCKER_COMPOSE) run --rm dhcp-test bash
 
 shell: start-db
 	$(DOCKER_COMPOSE) run --rm dhcp bash
