@@ -7,8 +7,7 @@
 {
   // Kea is told to listen on ethX interface only.
   "interfaces-config": {
-    "interfaces": [ "<INTERFACE>" ]
-
+    "interfaces": [ "*" ]
   },
 
   // We need to specify the the database used to store leases. As of
@@ -77,7 +76,6 @@
     {
       "pools": [ { "pool":  "172.1.0.10 - 172.1.0.100" } ],
       "subnet": "172.1.0.0/24",
-      "interface": "<INTERFACE>",
       "id": 1
     }
   ],
