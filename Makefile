@@ -20,12 +20,12 @@ stop:
 	$(DOCKER_COMPOSE) down -v
 
 run: start-db
-	$(DOCKER_COMPOSE) up --build dhcp
+	$(DOCKER_COMPOSE) up -d dhcp
 
-test: start-db
-	$(DOCKER_COMPOSE) run --rm dhcp-test bash
+test: run
+	$(DOCKER_COMPOSE) run --rm dhcp-test bash ./dhcp_test.sh
 
 shell: start-db
-	$(DOCKER_COMPOSE) run --rm dhcp bash
+	$(DOCKER_COMPOSE) run --rm dhcp-test bash  
 
 .PHONY: build stop_development_environment run_development_environment deploy

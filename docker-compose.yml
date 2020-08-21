@@ -19,7 +19,6 @@ services:
 
   dhcp-test:
     build: ./dhcp-service
-    command: bash -c "sleep 10 && perfdhcp -n 1 172.1.0.3"
     depends_on:
       - dhcp
     ports:
