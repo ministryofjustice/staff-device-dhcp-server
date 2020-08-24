@@ -13,13 +13,13 @@ To get started with development you will need:
 
 ### Running locally
 
-See the target `run_development_environment` in the [Makefile](./Makefile)
+See the target `run` in the [Makefile](./Makefile)
 
 ### Deploying to production
 
 Deployments are automated in the CI pipeline. See [buildspec.yml](./buildspec.yml)
 
-## Testing
+## Manual Testing
 
 - Run `ifconfig` to find the name for the docker-compose network interface.
 - Run  
