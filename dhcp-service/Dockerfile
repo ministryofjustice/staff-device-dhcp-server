@@ -14,7 +14,6 @@ RUN apt-get update && apt-get install -y isc-kea-* default-mysql-client awscli n
 WORKDIR /home
 RUN chown root:root /home
 COPY ./start_service.sh ./start_service.sh
-COPY ./dhcp_test.sh ./dhcp_test.sh
 RUN  mkdir /var/run/kea
 
 EXPOSE 67/udp

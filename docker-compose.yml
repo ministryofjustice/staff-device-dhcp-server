@@ -20,9 +20,12 @@ services:
   dhcp-test:
     build: ./dhcp-service
     depends_on:
+      - db
       - dhcp
     ports:
       - 68:68/udp
+    volumes:
+      - ./dhcp-service:/home
 
   db:
     image: mysql:5.7
