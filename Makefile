@@ -26,6 +26,6 @@ test: run
 	$(DOCKER_COMPOSE) run --rm dhcp-test bash ./dhcp_test.sh
 
 shell: start-db
-	$(DOCKER_COMPOSE) run --rm dhcp-test bash  
+	$(DOCKER_COMPOSE) run --rm dhcp bash  
 
 .PHONY: build stop_development_environment run_development_environment deploy
