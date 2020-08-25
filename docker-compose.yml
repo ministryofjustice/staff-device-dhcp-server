@@ -12,6 +12,7 @@ services:
       DB_HOST: db
       DB_PORT: 3306
       KEA_CONFIG_BUCKET_NAME: "staff-device-andy-dhcp-config-bucket"
+      LOCAL_DEVELOPMENT: "true"
     ports:
       - 67:67/udp
     volumes:
