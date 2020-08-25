@@ -1,7 +1,12 @@
-#! /bin/sh
+#! /bin/bash
+
+if [[ $ENVIRONMENT == "development" ]]; then
+    cp ./test_config.json /etc/kea/config.json
+else
+    aws s3 cp s3://${KEA_CONFIG_BUCKET_NAME}/config.json /etc/kea/config.json
+fi
 
 aws s3 cp s3://${KEA_CONFIG_BUCKET_NAME}/config.json /etc/kea/config.json
-
 sed -i "s/<INTERFACE>/$INTERFACE/g" /etc/kea/config.json
 sed -i "s/<DB_NAME>/$DB_NAME/g" /etc/kea/config.json
 sed -i "s/<DB_USER>/$DB_USER/g" /etc/kea/config.json
