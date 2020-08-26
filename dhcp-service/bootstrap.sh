@@ -1,7 +1,7 @@
 #!/bin/bash
 # -m for job control within a bash script (used to foreground server after testing)
 # -e for exiting script on any error
-set -me
+set -m
 
 run_acceptance_test() {
   perfdhcp -l lo $(hostname -i) -n 20 -r 2 -D 20% -R 10 > ./test_result
