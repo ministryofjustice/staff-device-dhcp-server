@@ -15,17 +15,4 @@ phases:
 
   build:
     commands:
-      # - cd test
-      # - go mod download
-      # - gotestsum --format testname --junitfile unit-tests.xml -- -timeout 30m
-      - echo test
-
-# reports:
-#   terratestReports:
-#     files:
-#       - unit-tests.xml
-#     base-directory: test
-
-# cache:
-#   paths:
-#     - '/go/pkg/**/*'
+      - make test
