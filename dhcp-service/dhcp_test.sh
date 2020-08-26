@@ -19,13 +19,12 @@ perfdhcp -r 10 \
          -R $number_of_clients \
          -d 2 \
          -W 10000 \
-         -x aeistT \
          172.1.0.3
 
 echo "Checking leases created..."
 count=$(mysql --user=kea --password=kea --host=db --database=kea --silent --silent --skip-column-names --execute "SELECT count(*) FROM lease4;")
 
-if (( $count == $number_of_clients )); then 
+if (( $count == $number_of_clients )); then
     echo "Succeeded creating $count leases"
     exit 0
 elif (( $count > 0 )); then
