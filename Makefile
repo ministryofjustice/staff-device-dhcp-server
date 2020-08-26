@@ -23,9 +23,11 @@ run: start-db
 	$(DOCKER_COMPOSE) up -d dhcp
 
 test: run build-dev
+	docker-compose ps
+	docker ps
 	$(DOCKER_COMPOSE) run --rm dhcp-test bash ./dhcp_test.sh
 
 shell: start-db
-	$(DOCKER_COMPOSE) run --rm dhcp bash  
+	$(DOCKER_COMPOSE) run --rm dhcp bash
 
 .PHONY: build stop_development_environment run_development_environment deploy
