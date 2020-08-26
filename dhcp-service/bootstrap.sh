@@ -31,7 +31,6 @@ configure_database_credentials() {
 init_schema_if_not_loaded() {
   db_version=$(kea-admin db-version mysql -u ${DB_USER} -p ${DB_PASS} -n ${DB_NAME} -h ${DB_HOST})
   if [ -z "$db_version" ]; then
-  echo " we are initting the db"
     $(kea-admin db-init mysql -u ${DB_USER} -p ${DB_PASS} -n ${DB_NAME} -h ${DB_HOST} &> /dev/null)
   fi
 }

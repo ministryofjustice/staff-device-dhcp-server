@@ -1,7 +1,6 @@
 #!/bin/bash
+# -e for error output
 set -e
-# echo "Sleeping to wait for kea..."
-# sleep 1
 
 echo "Deleting database leases..."
 mysql --user=kea \
