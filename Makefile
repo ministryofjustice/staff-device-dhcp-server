@@ -23,12 +23,10 @@ run: start-db
 	$(DOCKER_COMPOSE) up -d dhcp
 
 test: run build-dev
-	docker-compose ps
-	docker ps
-	sleep 10
+	./wait_for_dhcp_server.sh
 	$(DOCKER_COMPOSE) run --rm dhcp-test bash ./dhcp_test.sh
 
 shell: start-db
 	$(DOCKER_COMPOSE) run --rm dhcp bash
 
-.PHONY: build stop_development_environment run_development_environment deploy
+.PHONY: build deploy test shell stop start-db build-dev

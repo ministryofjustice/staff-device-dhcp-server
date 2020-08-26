@@ -49,11 +49,11 @@ ensure_healthy_server() {
 }
 
 main() {
-  start_nginx
   fetch_kea_config
   configure_database_credentials
   init_schema_if_not_loaded
   boot_server
+  start_nginx
   if ! [ "$LOCAL_DEVELOPMENT" == "true" ]; then
     run_acceptance_test
     ensure_healthy_server
