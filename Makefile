@@ -22,7 +22,7 @@ stop:
 run: start-db
 	$(DOCKER_COMPOSE) up -d dhcp
 
-test: run
+test: run build-dev
 	$(DOCKER_COMPOSE) run --rm dhcp-test bash ./dhcp_test.sh
 
 shell: start-db
