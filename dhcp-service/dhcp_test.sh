@@ -1,6 +1,4 @@
 #!/bin/bash
-# -e for error output
-set -ex
 
 echo "Deleting database leases..."
 mysql --user=kea \
