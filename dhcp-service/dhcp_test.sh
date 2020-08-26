@@ -19,6 +19,7 @@ perfdhcp -r 10 \
          -R $number_of_clients \
          -d 2 \
          -W 10000 \
+         -xei \
          172.1.0.3
 
 echo "Checking leases created..."
