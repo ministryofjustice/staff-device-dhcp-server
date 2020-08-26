@@ -1,7 +1,7 @@
 #!/bin/bash
 # -m for job control within a bash script (used to foreground server after testing)
 # -e for exiting script on any error
-set -mex
+set -me
 
 run_acceptance_test() {
   perfdhcp -l lo $(hostname -i) -n 20 -r 2 -D 20% -R 10 > ./test_result
@@ -25,9 +25,11 @@ configure_database_credentials() {
 }
 
 init_schema_if_not_loaded() {
-  db_version=$(kea-admin db-version mysql -u ${DB_USER} -p ${DB_PASS} -n ${DB_NAME} -h ${DB_HOST}) 
-  echo $db_version
-  $(kea-admin db-init mysql -u ${DB_USER} -p ${DB_PASS} -n ${DB_NAME} -h ${DB_HOST} &> /dev/null) 
+  db_version=$(kea-admin db-version mysql -u ${DB_USER} -p ${DB_PASS} -n ${DB_NAME} -h ${DB_HOST})
+  if [ -z "$db_version" ]; then
+  echo " we are initting the db"
+    $(kea-admin db-init mysql -u ${DB_USER} -p ${DB_PASS} -n ${DB_NAME} -h ${DB_HOST} &> /dev/null)
+  fi
 }
 
 boot_server() {
@@ -51,7 +53,7 @@ main() {
   if ! [ "$LOCAL_DEVELOPMENT" == "true" ]; then
     run_acceptance_test
     ensure_healthy_server
-  fi 
+  fi
   fg %1 #KEA is running as a daemon, bring it back as the essential task of the container now that testing is finished
 }
 
