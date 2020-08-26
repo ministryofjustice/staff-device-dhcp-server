@@ -16,8 +16,6 @@ services:
       - 67:67/udp
     volumes:
     - $HOME/.aws/credentials:/root/.aws/credentials:ro
-    env_file:
-      - ./.env
 
   dhcp-test:
     build: ./dhcp-service
