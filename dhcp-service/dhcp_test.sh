@@ -19,7 +19,7 @@ perfdhcp -r 10 \
          -R $number_of_clients \
          -d 2 \
          -W 10000 \
-         172.1.0.3 > /dev/null 2>&1 # Will exit if too many packets dropped
+         172.1.0.3
 
 echo "Checking leases created..."
 count=$(mysql --user=kea --password=kea --host=db --database=kea --silent --silent --skip-column-names --execute "SELECT count(*) FROM lease4;")
