@@ -15,13 +15,6 @@ To get started with development you will need:
 
 See the target `run` in the [Makefile](./Makefile)
 
-### `.env`
-In order to run this app locally you will need to create a `.env` file in the root of this project and add these variables to it.
-
-```
-ENVIRONMENT=development
-```
-
 ### Deploying to production
 
 Deployments are automated in the CI pipeline. See [buildspec.yml](./buildspec.yml)
