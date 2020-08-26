@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y isc-kea-* default-mysql-client awscli
 
 WORKDIR /home
 RUN chown root:root /home
-COPY ./start_service.sh ./start_service.sh
+COPY ./bootstrap.sh ./bootstrap.sh
 COPY ./config.json ./test_config.json
 RUN  mkdir /var/run/kea
 
@@ -24,4 +24,4 @@ EXPOSE 80
 
 RUN service nginx start
 
-CMD ["./start_service.sh"]
+CMD ["./bootstrap.sh"]

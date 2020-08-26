@@ -1,4 +1,5 @@
-#! /bin/bash
+#!/bin/bash
+set -e
 # echo "Sleeping to wait for kea..."
 # sleep 1
 
