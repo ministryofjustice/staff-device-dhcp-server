@@ -22,6 +22,4 @@ EXPOSE 67/udp
 EXPOSE 68/udp
 EXPOSE 80
 
-RUN service nginx start
-
 CMD ["./bootstrap.sh"]

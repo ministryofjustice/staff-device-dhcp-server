@@ -3,6 +3,10 @@
 # -e for exiting script on any error
 set -m
 
+start_nginx() {
+  service nginx start
+}
+
 run_acceptance_test() {
   perfdhcp -l lo $(hostname -i) -n 20 -r 2 -D 20% -R 10 > ./test_result
 }
@@ -46,6 +50,7 @@ ensure_healthy_server() {
 }
 
 main() {
+  start_nginx
   fetch_kea_config
   configure_database_credentials
   init_schema_if_not_loaded
