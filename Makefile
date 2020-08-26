@@ -25,6 +25,7 @@ run: start-db
 test: run build-dev
 	docker-compose ps
 	docker ps
+	sleep 10
 	$(DOCKER_COMPOSE) run --rm dhcp-test bash ./dhcp_test.sh
 
 shell: start-db
