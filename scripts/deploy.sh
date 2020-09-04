@@ -2,6 +2,7 @@
 
 set -e
 
+env
 outputs=$1 | jq -r .ecs
 
 DHCP_SERVER_CLUSTER_NAME=`echo $outputs | jq .dhcp_cluster_name`

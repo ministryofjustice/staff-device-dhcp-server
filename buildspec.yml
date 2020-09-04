@@ -9,11 +9,7 @@ env:
     DHCP_DNS_TERRAFORM_OUTPUTS: "/terraform_dns_dhcp/$ENV/outputs"
 
 phases:
-  install:
-    commands:
-      - echo nope
-
   build:
     commands:
       - make publish
-      - make deploy "$DHCP_DNS_TERRAFORM_OUTPUTS"
+      - make deploy
