@@ -2,14 +2,14 @@
 
 set -e
 
-outputs=`${DHCP_DNS_TERRAFORM_OUTPUTS} | jq .dhcp | jq -r .ecs`
+output=$( jq -r '.dhcp.ecs' <<< "${DHCP_DNS_TERRAFORM_OUTPUTS}" )
 
-dhcp_server_cluster_name=`echo $outputs | jq .cluster_name`
-dhcp_server_service_name=`echo $outputs | jq .service_name`
-dhcp_server_task_definition_name=`echo $outputs | jq .task_definition_name`
+cluster_name=$( jq '.cluster_name' <<< "${output}" )
+service_name=$( jq '.service_name' <<< "${output}" )
+task_definition_name=$( jq '.task_definition_name' <<< "${output}" )
 
 aws ecs update-service \
-  --cluster $dhcp_server_cluster_name \
-  --service $dhcp_server_service_name \
-  --task-definition $dhcp_server_task_definition_name \
+  --cluster $cluster_name \
+  --service $service_name \
+  --task-definition $task_definition_name \
   --force-new-deployment
