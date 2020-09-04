@@ -7,6 +7,7 @@ env:
     REGISTRY_URL: "/codebuild/dhcp/$ENV/ecr/endpoint"
     TARGET_AWS_ACCOUNT_ID: "/codebuild/$ENV/account_id"
     DHCP_DNS_TERRAFORM_OUTPUTS: "/terraform_dns_dhcp/$ENV/outputs"
+    ROLE_ARN: "/codebuild/pttp-ci-infrastructure-core-pipeline/$ENV/assume_role"
 
 phases:
   build:
