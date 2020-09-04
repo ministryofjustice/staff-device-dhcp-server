@@ -16,4 +16,4 @@ phases:
   build:
     commands:
       - make publish
-      - make deploy
+      - make deploy "$DHCP_DNS_TERRAFORM_OUTPUTS"
