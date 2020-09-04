@@ -13,9 +13,7 @@ output=$( jq -r '.dhcp.ecs' <<< "${DHCP_DNS_TERRAFORM_OUTPUTS}" )
 cluster_name=$( jq -r '.cluster_name' <<< "${output}" )
 service_name=$( jq -r '.service_name' <<< "${output}" )
 
-echo $service_name
-
-# aws ecs update-service \
-#   --cluster $cluster_name \
-#   --service $service_name \
-#   --force-new-deployment
+aws ecs update-service \
+  --cluster $cluster_name \
+  --service $service_name \
+  --force-new-deployment
