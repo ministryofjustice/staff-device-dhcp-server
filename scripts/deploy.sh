@@ -2,7 +2,7 @@
 
 set -e
 
-outputs=${DHCP_DNS_TERRAFORM_OUTPUTS} | jq -r .dhcp | jq -r .ecs
+outputs=`${DHCP_DNS_TERRAFORM_OUTPUTS} | jq .dhcp | jq -r .ecs`
 
 dhcp_server_cluster_name=`echo $outputs | jq .cluster_name`
 dhcp_server_service_name=`echo $outputs | jq .service_name`
