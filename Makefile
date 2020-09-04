@@ -10,6 +10,7 @@ publish: build
 	docker push ${REGISTRY_URL}/staff-device-${ENV}-dhcp-docker:latest
 
 deploy:
+	echo ${DHCP_DNS_TERRAFORM_OUTPUTS}
 	./scripts/deploy.sh
 
 build-dev:
