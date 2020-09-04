@@ -28,3 +28,5 @@ main() {
   assume_deploy_role
   deploy
 }
+
+main
