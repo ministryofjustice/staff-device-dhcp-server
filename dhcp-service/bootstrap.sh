@@ -1,7 +1,7 @@
 #!/bin/bash
 # -m for job control within a bash script (used to foreground server after testing)
 # TODO: Add -e flag for erroring. This will cause the kea-admin command to error if the database exists.
-set -em
+set -m
 
 start_nginx() {
   service nginx start
@@ -30,9 +30,8 @@ configure_database_credentials() {
 
 init_schema_if_not_loaded() {
   db_version=$(kea-admin db-version mysql -u ${DB_USER} -p ${DB_PASS} -n ${DB_NAME} -h ${DB_HOST})
-  echo "$db_version"
   if [ -z "$db_version" ]; then
-    $(kea-admin db-init mysql -u ${DB_USER} -p ${DB_PASS} -n ${DB_NAME} -h ${DB_HOST})
+    $(kea-admin db-init mysql -u ${DB_USER} -p ${DB_PASS} -n ${DB_NAME} -h ${DB_HOST} &> /dev/null)
   fi
 }
 
