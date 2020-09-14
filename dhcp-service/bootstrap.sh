@@ -1,7 +1,7 @@
 #!/bin/bash
 # -m for job control within a bash script (used to foreground server after testing)
 # TODO: Add -e flag for erroring. This will cause the kea-admin command to error if the database exists.
-set -m
+set -em
 
 start_nginx() {
   service nginx start
