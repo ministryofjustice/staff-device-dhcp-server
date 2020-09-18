@@ -3,10 +3,6 @@
 # TODO: Add -e flag for erroring. This will cause the kea-admin command to error if the database exists.
 set -m
 
-start_nginx() {
-  service nginx start
-}
-
 run_acceptance_test() {
   perfdhcp -l lo $(hostname -i) -n 20 -r 2 -D 20% -R 10 > ./test_result
 }
@@ -53,7 +49,7 @@ main() {
   configure_database_credentials
   init_schema_if_not_loaded
   boot_server
-  start_nginx
+  nginx
   if ! [ "$LOCAL_DEVELOPMENT" == "true" ]; then
     run_acceptance_test
     ensure_healthy_server

@@ -1,24 +1,17 @@
-FROM debian:buster-slim
+FROM alpine:3.11
 
-USER root
+RUN  apk add bash curl nginx && \
+    curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-1-8/cfg/setup/bash.alpine.sh' |  bash && \
+    apk upgrade && apk add python3 mysql mysql-client isc-kea-admin isc-kea-perfdhcp isc-kea-dhcp4 && \
+    pip3 install awscli && pip3 install --upgrade pip && mkdir -p /run/nginx
 
-RUN apt-get update && apt-get install -y curl \
-    debian-keyring \
-    debian-archive-keyring \
-    apt-transport-https \
-    nginx
-RUN curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-1-6/cfg/gpg/gpg.0607E2621F1564A6.key' | apt-key add -
-RUN curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-1-6/cfg/setup/config.deb.txt?distro=debian&codename=buster' > /etc/apt/sources.list.d/isc-kea-1-6.list
-RUN apt-get update && apt-get install -y isc-kea-* default-mysql-client awscli
 
 WORKDIR /home
 RUN chown root:root /home
 COPY ./bootstrap.sh ./bootstrap.sh
 COPY ./config.json ./test_config.json
-RUN  mkdir /var/run/kea
 
 EXPOSE 67/udp
-# TODO: delete this?
 EXPOSE 68/udp
 EXPOSE 80
 

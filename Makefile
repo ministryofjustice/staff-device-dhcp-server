@@ -30,6 +30,6 @@ test: run build-dev
 	$(DOCKER_COMPOSE) run --rm dhcp-test bash ./dhcp_test.sh
 
 shell: start-db
-	$(DOCKER_COMPOSE) run --rm dhcp bash
+	$(DOCKER_COMPOSE) run --rm dhcp sh
 
 .PHONY: build publish test shell stop start-db build-dev deploy
