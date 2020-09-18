@@ -1,8 +1,8 @@
 FROM alpine:3.11
 
-RUN  apk add bash curl nginx && \
+RUN  apk add bash curl nginx python3 mysql mysql-client && \
     curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-1-8/cfg/setup/bash.alpine.sh' |  bash && \
-    apk upgrade && apk add python3 mysql mysql-client isc-kea-admin isc-kea-perfdhcp isc-kea-dhcp4 && \
+    apk upgrade && apk add isc-kea-admin isc-kea-perfdhcp isc-kea-dhcp4 && \
     pip3 install awscli && pip3 install --upgrade pip && mkdir -p /run/nginx
 
 
