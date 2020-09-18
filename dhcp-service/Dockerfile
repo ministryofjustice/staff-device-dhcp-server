@@ -15,7 +15,7 @@ RUN apk add bash curl nginx mysql mysql-client && \
     aws/install && \
     rm -rf awscliv2.zip aws /usr/local/aws-cli/v2/*/dist/aws_completer /usr/local/aws-cli/v2/*/dist/awscli/data/ac.index /usr/local/aws-cli/v2/*/dist/awscli/examples && \
     rm glibc-${GLIBC_VER}.apk && \
-    rm glibc-bin-${GLIBC_VER}.apk &&\
+    rm glibc-bin-${GLIBC_VER}.apk && \
     rm -rf /var/cache/apk/*
 
 
