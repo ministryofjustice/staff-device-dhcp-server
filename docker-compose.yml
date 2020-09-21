@@ -25,7 +25,7 @@ services:
     ports:
       - 68:68/udp
     volumes:
-      - ./dhcp-service
+      - ./dhcp-service/dhcp_test.sh:/dhcp_test.sh
 
   db:
     image: mysql:5.7

@@ -21,7 +21,6 @@ RUN apk add bash curl nginx mysql mysql-client && \
 
 COPY ./bootstrap.sh ./bootstrap.sh
 COPY ./config.json ./test_config.json
-COPY ./dhcp_test.sh ./dhcp_test.sh
 
 EXPOSE 67/udp
 EXPOSE 68/udp
