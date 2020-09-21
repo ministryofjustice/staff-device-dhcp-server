@@ -25,7 +25,7 @@ services:
     ports:
       - 68:68/udp
     volumes:
-      - ./dhcp-service:/home
+      - ./dhcp-service
 
   db:
     image: mysql:5.7

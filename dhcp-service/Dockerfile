@@ -16,12 +16,12 @@ RUN apk add bash curl nginx mysql mysql-client && \
     rm -rf awscliv2.zip aws /usr/local/aws-cli/v2/*/dist/aws_completer /usr/local/aws-cli/v2/*/dist/awscli/data/ac.index /usr/local/aws-cli/v2/*/dist/awscli/examples && \
     rm glibc-${GLIBC_VER}.apk && \
     rm glibc-bin-${GLIBC_VER}.apk && \
-    rm -rf /var/cache/apk/* && chown root:root /home
+    rm -rf /var/cache/apk/* && \
+    cp -r usr/share/kea/kea/scripts/ usr/share/kea/
 
-
-WORKDIR /home
 COPY ./bootstrap.sh ./bootstrap.sh
 COPY ./config.json ./test_config.json
+COPY ./dhcp_test.sh ./dhcp_test.sh
 
 EXPOSE 67/udp
 EXPOSE 68/udp
