@@ -17,10 +17,11 @@ RUN apk add bash curl nginx mysql mysql-client && \
     rm glibc-${GLIBC_VER}.apk && \
     rm glibc-bin-${GLIBC_VER}.apk && \
     rm -rf /var/cache/apk/* && \
-    cp -r usr/share/kea/kea/scripts/ usr/share/kea/
+    cp -r usr/share/kea/kea/scripts/ usr/share/kea/ 
 
 COPY ./bootstrap.sh ./bootstrap.sh
 COPY ./config.json ./test_config.json
+COPY ./interfaces /etc/network/interfaces
 
 EXPOSE 67/udp
 EXPOSE 68/udp

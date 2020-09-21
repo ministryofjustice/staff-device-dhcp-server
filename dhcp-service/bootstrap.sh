@@ -39,10 +39,10 @@ boot_server() {
 ensure_healthy_server() {
   received_packets=`cat ./test_result | grep "received packets: 0"`
 
-  if ! [[ -z $received_packets ]]; then
-    aws sns publish --topic-arn $CRITICAL_NOTIFICATIONS_ARN --message "DHCP server failed to boot" --region eu-west-2
-    exit 1
-  fi
+  # if ! [[ -z $received_packets ]]; then
+  #   aws sns publish --topic-arn $CRITICAL_NOTIFICATIONS_ARN --message "DHCP server failed to boot" --region eu-west-2
+  #   exit 1
+  # fi
 }
 
 main() {
@@ -51,10 +51,10 @@ main() {
   init_schema_if_not_loaded
   boot_server
   nginx
-  if ! [ "$LOCAL_DEVELOPMENT" == "true" ]; then
+  # if ! [ "$LOCAL_DEVELOPMENT" == "true" ]; then
     run_acceptance_test
     ensure_healthy_server
-  fi
+  # fi
   fg %1 #KEA is running as a daemon, bring it back as the essential task of the container now that testing is finished
 }
 
