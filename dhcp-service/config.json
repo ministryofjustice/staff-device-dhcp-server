@@ -9,7 +9,8 @@
       "interfaces": [
         "*"
       ],
-      "dhcp-socket-type": "udp"
+      "dhcp-socket-type": "udp",
+      "outbound-interface": "use-routing"
     },
     // We need to specify the the database used to store leases. As of
     // September 2016, four database backends are supported: MySQL,
