@@ -1,24 +1,29 @@
-FROM debian:buster-slim
+FROM alpine:3.11
 
-USER root
+ENV GLIBC_VER=2.31-r0
 
-RUN apt-get update && apt-get install -y curl \
-    debian-keyring \
-    debian-archive-keyring \
-    apt-transport-https \
-    nginx
-RUN curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-1-6/cfg/gpg/gpg.0607E2621F1564A6.key' | apt-key add -
-RUN curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-1-6/cfg/setup/config.deb.txt?distro=debian&codename=buster' > /etc/apt/sources.list.d/isc-kea-1-6.list
-RUN apt-get update && apt-get install -y isc-kea-* default-mysql-client awscli
+RUN apk add bash curl nginx mysql mysql-client && \
+    curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-1-8/cfg/setup/bash.alpine.sh' |  bash && \
+    apk upgrade && apk add isc-kea-admin isc-kea-perfdhcp isc-kea-dhcp4 && \
+    mkdir -p /run/nginx && \
+    curl -sL https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o /etc/apk/keys/sgerrand.rsa.pub && \
+    curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-${GLIBC_VER}.apk && \
+    curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-bin-${GLIBC_VER}.apk && \
+    apk add --no-cache glibc-${GLIBC_VER}.apk glibc-bin-${GLIBC_VER}.apk && \
+    curl -sL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip && \
+    unzip awscliv2.zip && \
+    aws/install && \
+    rm -rf awscliv2.zip aws /usr/local/aws-cli/v2/*/dist/aws_completer /usr/local/aws-cli/v2/*/dist/awscli/data/ac.index /usr/local/aws-cli/v2/*/dist/awscli/examples && \
+    rm glibc-${GLIBC_VER}.apk && \
+    rm glibc-bin-${GLIBC_VER}.apk && \
+    rm -rf /var/cache/apk/* && chown root:root /home
+
 
 WORKDIR /home
-RUN chown root:root /home
 COPY ./bootstrap.sh ./bootstrap.sh
 COPY ./config.json ./test_config.json
-RUN  mkdir /var/run/kea
 
 EXPOSE 67/udp
-# TODO: delete this?
 EXPOSE 68/udp
 EXPOSE 80
 
