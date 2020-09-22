@@ -33,6 +33,7 @@ init_schema_if_not_loaded() {
 }
 
 ensure_database_permissions() {
+  echo "running grants on lease db"
   mysql -u ${DB_USER} -p${DB_PASS} -n ${DB_NAME} -h ${DB_HOST} -e "GRANT ALL ON ${DB_NAME}.* TO '${DB_USER}'@'${DB_HOST}';" #https://kea.readthedocs.io/en/kea-1.6.3/arm/admin.html
 }
 
