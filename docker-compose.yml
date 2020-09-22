@@ -28,7 +28,7 @@ services:
       - ./dhcp-service/dhcp_test.sh:/dhcp_test.sh
 
   db:
-    image: mysql:5.7
+    image: mysql:8.0.20
     volumes:
       - db_data:/var/lib/mysql
     restart: always
