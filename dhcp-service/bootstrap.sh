@@ -29,7 +29,6 @@ init_schema_if_not_loaded() {
   if [ -z "$db_version" ]; then
     $(kea-admin db-init mysql -u ${DB_USER} -p ${DB_PASS} -n ${DB_NAME} -h ${DB_HOST} &> /dev/null)
   fi
-  kea-admin db-upgrade mysql -u $DB_USER -p $DB_PASS -n $DB_NAME -h $DB_HOST
 }
 
 ensure_database_permissions() {
