@@ -32,6 +32,10 @@ init_schema_if_not_loaded() {
   kea-admin db-upgrade mysql -u $DB_USER -p $DB_PASS -n $DB_NAME -h $DB_HOST
 }
 
+ensure_database_permissions() {
+  mysql -u ${DB_USER} -p${DB_PASS} -n ${DB_NAME} -h ${DB_HOST} -e "GRANT ALL ON ${DB_NAME}.* TO '${DB_USER}'@'${DB_HOST}';" #https://kea.readthedocs.io/en/kea-1.6.3/arm/admin.html
+}
+
 boot_server() {
   kea-dhcp4 -c /etc/kea/config.json &
 }
@@ -48,6 +52,7 @@ ensure_healthy_server() {
 main() {
   fetch_kea_config
   configure_database_credentials
+  ensure_database_permissions
   init_schema_if_not_loaded
   boot_server
   nginx
