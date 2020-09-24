@@ -55,7 +55,6 @@ main() {
   ensure_database_permissions
   init_schema_if_not_loaded
   boot_server
-  nginx
   if ! [ "$LOCAL_DEVELOPMENT" == "true" ]; then
     run_acceptance_test
     ensure_healthy_server
