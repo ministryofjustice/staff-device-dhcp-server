@@ -2,9 +2,10 @@ FROM alpine:3.11
 
 ENV GLIBC_VER=2.31-r0
 
-RUN apk add bash curl mysql mysql-client && \
+RUN apk add bash curl nginx mysql mysql-client && \
     curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-1-8/cfg/setup/bash.alpine.sh' |  bash && \
     apk upgrade && apk add isc-kea-admin isc-kea-perfdhcp isc-kea-dhcp4 && \
+    mkdir -p /run/nginx && \
     curl -sL https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o /etc/apk/keys/sgerrand.rsa.pub && \
     curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-${GLIBC_VER}.apk && \
     curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-bin-${GLIBC_VER}.apk && \
