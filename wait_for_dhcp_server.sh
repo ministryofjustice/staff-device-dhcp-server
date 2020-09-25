@@ -2,7 +2,7 @@
 printf "Waiting for KEA DHCP server"
 
 count=0
-until docker-compose exec -T dhcp curl localhost &> /dev/null
+until docker-compose exec -T dhcp ls /tmp/kea_started 2> /dev/null
 do
   printf "."
   sleep 1
