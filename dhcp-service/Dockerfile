@@ -25,6 +25,5 @@ COPY ./control-agent-config.json /etc/kea/control-agent-config.json
 
 EXPOSE 67/udp
 EXPOSE 68/udp
-EXPOSE 8000
 
 CMD ["./bootstrap.sh"]
