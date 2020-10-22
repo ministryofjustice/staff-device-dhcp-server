@@ -14,7 +14,6 @@ services:
       LOCAL_DEVELOPMENT: "true"
     ports:
       - 67:67/udp
-      - 8000:8000
     volumes:
     - $HOME/.aws/credentials:/root/.aws/credentials:ro
 
