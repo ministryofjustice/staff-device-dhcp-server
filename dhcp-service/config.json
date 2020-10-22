@@ -64,12 +64,6 @@
       "host": "<DB_HOST>",
       "port": 3306
     },
-    // This is the control socket for the kea control agent. This must
-    // match the sockets used in the control-agent-config.json
-    "control-socket": {
-        "socket-type": "unix",
-        "socket-name": "/tmp/dhcp4-socket"
-    },
     // Define a subnet with a single pool of dynamic addresses. Addresses from
     // this pool will be assigned to clients which don't have reservations in the
     // database. Subnet identifier is equal to 1. If this subnet is selected for
