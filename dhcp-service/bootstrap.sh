@@ -36,10 +36,6 @@ ensure_database_permissions() {
   mysql -u ${DB_USER} -p${DB_PASS} -n ${DB_NAME} -h ${DB_HOST} -e "GRANT ALL ON ${DB_NAME}.* TO '${DB_USER}'@'${DB_HOST}';" #https://kea.readthedocs.io/en/kea-1.6.3/arm/admin.html
 }
 
-boot_control_agent() {
-  kea-ctrl-agent -c /etc/kea/control-agent-config.json &
-}
-
 boot_server() {
   kea-dhcp4 -c /etc/kea/config.json &
 }
@@ -58,7 +54,6 @@ main() {
   configure_database_credentials
   ensure_database_permissions
   init_schema_if_not_loaded
-  boot_control_agent
   boot_server
   if ! [ "$LOCAL_DEVELOPMENT" == "true" ]; then
     run_acceptance_test

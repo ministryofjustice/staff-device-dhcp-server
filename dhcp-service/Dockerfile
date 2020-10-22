@@ -21,7 +21,6 @@ RUN apk add bash curl mysql mysql-client && \
 
 COPY ./bootstrap.sh ./bootstrap.sh
 COPY ./config.json ./test_config.json
-COPY ./control-agent-config.json /etc/kea/control-agent-config.json
 
 EXPOSE 67/udp
 EXPOSE 68/udp
