@@ -4,7 +4,8 @@ ENV GLIBC_VER=2.31-r0
 
 RUN apk add bash curl mysql mysql-client && \
     curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-1-8/cfg/setup/bash.alpine.sh' |  bash && \
-    apk upgrade && apk add isc-kea-admin isc-kea-perfdhcp isc-kea-dhcp4 && \
+    apk upgrade && \
+    apk add isc-kea-admin isc-kea-perfdhcp isc-kea-dhcp4 isc-kea-ctrl-agent isc-kea-hook-lease-cmds && \
     curl -sL https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o /etc/apk/keys/sgerrand.rsa.pub && \
     curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-${GLIBC_VER}.apk && \
     curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-bin-${GLIBC_VER}.apk && \
@@ -20,8 +21,10 @@ RUN apk add bash curl mysql mysql-client && \
 
 COPY ./bootstrap.sh ./bootstrap.sh
 COPY ./config.json ./test_config.json
+COPY ./control-agent-config.json /etc/kea/control-agent-config.json
 
 EXPOSE 67/udp
 EXPOSE 68/udp
+EXPOSE 8000
 
 CMD ["./bootstrap.sh"]
