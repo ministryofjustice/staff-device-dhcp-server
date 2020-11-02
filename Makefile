@@ -32,4 +32,7 @@ test: run build-dev
 shell: start-db
 	$(DOCKER_COMPOSE) run --rm dhcp sh
 
+implode:
+	$(DOCKER_COMPOSE) rm
+
 .PHONY: build publish test shell stop start-db build-dev deploy
