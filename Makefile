@@ -32,6 +32,9 @@ test: run build-dev
 shell: start-db
 	$(DOCKER_COMPOSE) run --rm dhcp sh
 
+shell-test: start-db
+	$(DOCKER_COMPOSE) run --rm dhcp-test sh
+
 implode:
 	$(DOCKER_COMPOSE) rm
 
