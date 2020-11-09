@@ -46,7 +46,7 @@ boot_server() {
 
 export_server_stats() {
   while true; do
-    curl --header "Content-Type: application/json" --request POST --data '{"service":["dhcp4"],"command":"statistic-get-all"}' localhost:8000
+    curl --silent --header "Content-Type: application/json" --request POST --data '{"service":["dhcp4"],"command":"statistic-get-all"}' localhost:8000
 
     sleep 10
   done
