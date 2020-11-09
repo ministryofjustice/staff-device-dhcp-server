@@ -3,11 +3,13 @@ DOCKER_COMPOSE = docker-compose -f docker-compose.yml
 build:
 	docker build -t docker_dhcp ./dhcp-service
 
-publish: build
+push:
 	echo ${REGISTRY_URL}
 	aws ecr get-login-password | docker login --username AWS --password-stdin ${REGISTRY_URL}
 	docker tag docker_dhcp:latest ${REGISTRY_URL}/staff-device-${ENV}-dhcp-docker:latest
 	docker push ${REGISTRY_URL}/staff-device-${ENV}-dhcp-docker:latest
+
+publish: build push
 
 deploy:
 	./scripts/deploy.sh
