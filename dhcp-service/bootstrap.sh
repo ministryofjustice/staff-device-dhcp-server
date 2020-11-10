@@ -45,7 +45,7 @@ boot_server() {
 }
 
 export_server_stats() {
-  while true; do curl --silent --header "Content-Type: application/json" --request POST --data '{"service":["dhcp4"],"command":"statistic-get-all"}' localhost:8000; sleep 10; done &
+  while true; do ruby ./metrics/push_metrics.rb; sleep 60; done &
 }
 
 ensure_healthy_server() {
