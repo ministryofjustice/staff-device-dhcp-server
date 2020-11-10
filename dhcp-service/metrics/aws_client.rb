@@ -2,6 +2,7 @@ require 'aws-sdk-cloudwatch'
 
 class AwsClient
   REGION="eu-west-2"
+  MAX_METRICS_PER_CLOUDWATCH_API_CALL=20
 
   def initialize(client: Aws::CloudWatch::Client.new(region: REGION), aws_config: {})
     @client = client
@@ -19,7 +20,7 @@ class AwsClient
   private
 
   def sliced(metrics)
-    metrics.each_slice(20).to_a
+    metrics.each_slice(MAX_METRICS_PER_CLOUDWATCH_API_CALL).to_a
   end
 
   attr_reader :client
