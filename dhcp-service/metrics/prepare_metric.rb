@@ -8,11 +8,9 @@ class PrepareMetric
   def execute(kea_stats:)
     raise "Kea stats are empty" if kea_stats.empty?
 
-    metrics = generate_cloudwatch_metrics(kea_stats)
-
-    client.put_metric_data(metrics)
-
-    metrics
+    client.put_metric_data(
+      generate_cloudwatch_metrics(kea_stats)
+    )
   end
 
   private

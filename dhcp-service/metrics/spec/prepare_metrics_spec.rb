@@ -7,11 +7,11 @@ describe PrepareMetric do
   let(:kea_stats) { [] }
 
   it 'raises an error if the kea stats is empty' do
-    expect { described_class.new(client: client).execute(kea_stats: kea_stats) }.to  raise_error('Kea stats are empty')
+    expect { described_class.new(client: client).execute(kea_stats: kea_stats) }.to raise_error('Kea stats are empty')
   end
 
-  it 'converts kea stats to cloudwatch metrics' do
-    kea_stats = JSON.parse(File.read("./metrics/spec/payload.json"))
+  it 'converts kea stats to cloudwatch metrics and calls the client to publish them' do
+    kea_stats = JSON.parse(File.read("./metrics/spec/kea_api_stats_response.json"))
     result = described_class.new(client: client).execute(kea_stats: kea_stats)
 
     expected_result = [
@@ -219,14 +219,6 @@ describe PrepareMetric do
       }
     ]
 
-    expect(result).to eq(expected_result)
-  end
-
-  it 'calls the client with the correct arguments' do
-    client = spy
-    kea_stats = [ { "arguments" => [] } ]
-    described_class.new(client: client).execute(kea_stats: kea_stats)
-
-    expect(client).to have_received(:put_metric_data).with([])
+    expect(client).to have_received(:put_metric_data).with(expected_result)
   end
 end
