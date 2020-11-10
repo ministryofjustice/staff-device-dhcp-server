@@ -37,6 +37,9 @@ shell: start-db
 shell-test: start-db
 	$(DOCKER_COMPOSE) run --rm dhcp-test sh
 
+logs:
+	$(DOCKER_COMPOSE) logs
+
 implode:
 	$(DOCKER_COMPOSE) rm
 
