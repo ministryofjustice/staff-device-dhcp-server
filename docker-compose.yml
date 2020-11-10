@@ -16,7 +16,8 @@ services:
       - 67:67/udp
       - 8000:8000
     volumes:
-    - $HOME/.aws/credentials:/root/.aws/credentials:ro
+      - $HOME/.aws/credentials:/root/.aws/credentials:ro
+      - ./dhcp-service/stats/:/stats
 
   dhcp-test:
     build: ./dhcp-service
@@ -27,6 +28,7 @@ services:
       - 68:68/udp
     volumes:
       - ./dhcp-service/dhcp_test.sh:/dhcp_test.sh
+      - ./dhcp-service/stats/:/stats
 
   db:
     image: mysql:5.7
