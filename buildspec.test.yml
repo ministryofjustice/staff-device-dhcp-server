@@ -16,3 +16,4 @@ phases:
   build:
     commands:
       - make test
+      - make test-metrics
