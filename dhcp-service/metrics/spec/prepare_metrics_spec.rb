@@ -11,7 +11,7 @@ describe PrepareMetric do
   end
 
   it 'converts kea stats to cloudwatch metrics' do
-    kea_stats = JSON.parse(File.read("./stats/spec/payload.json"))
+    kea_stats = JSON.parse(File.read("./metrics/spec/payload.json"))
     result = described_class.new(client: client).execute(kea_stats: kea_stats)
 
     expected_result = [

@@ -15,7 +15,7 @@ deploy:
 	./scripts/deploy.sh
 
 build-dev:
-	$(DOCKER_COMPOSE) build
+	$(DOCKER_COMPOSE) build --build-arg LOCAL_DEVELOPMENT="true"
 
 start-db:
 	$(DOCKER_COMPOSE) up -d db
@@ -29,7 +29,7 @@ run: start-db
 
 test-metrics: run build-dev
 	./wait_for_dhcp_server.sh
-	$(DOCKER_COMPOSE) run --rm dhcp-test rspec ./stats/spec
+	$(DOCKER_COMPOSE) run --rm dhcp-test rspec ./metrics/spec
 
 test: run build-dev
 	./wait_for_dhcp_server.sh

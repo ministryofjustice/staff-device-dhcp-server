@@ -1,6 +1,7 @@
 FROM alpine:3.11
 
 ENV GLIBC_VER=2.31-r0
+ARG LOCAL_DEVELOPMENT
 
 RUN apk add bash curl mysql mysql-client && \
     curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-1-8/cfg/setup/bash.alpine.sh' |  bash && \
@@ -18,7 +19,7 @@ RUN apk add bash curl mysql mysql-client && \
     rm glibc-bin-${GLIBC_VER}.apk && \
     rm -rf /var/cache/apk/* && \
     cp -r usr/share/kea/kea/scripts/ usr/share/kea/ && \
-    gem install rspec aws-sdk-cloudwatch
+    gem install aws-sdk-cloudwatch
 
 COPY ./bootstrap.sh ./bootstrap.sh
 COPY ./config.json ./test_config.json
@@ -28,5 +29,9 @@ COPY ./control-agent-config.json /etc/kea/control-agent-config.json
 EXPOSE 67/udp
 EXPOSE 68/udp
 EXPOSE 8000
+
+RUN if [ ${LOCAL_DEVELOPMENT} == 'true' ]; then \
+  gem install rspec; \
+  fi
 
 CMD ["./bootstrap.sh"]
