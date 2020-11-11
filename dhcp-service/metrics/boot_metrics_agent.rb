@@ -13,5 +13,6 @@ kea_stats = JSON.parse(http.request(req).body)
 
 while true do
   PublishMetrics.new(client: AwsClient.new).execute(kea_stats: kea_stats)
+  p "publishing metrics: #{kea_stats}"
   sleep 60
 end
