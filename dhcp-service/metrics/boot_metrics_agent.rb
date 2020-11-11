@@ -15,5 +15,5 @@ while true do
   PublishMetrics.new(client: AwsClient.new).execute(kea_stats: kea_stats)
   p "publishing metrics: #{kea_stats}"
 
-  sleep 30
+  sleep 10
 end
