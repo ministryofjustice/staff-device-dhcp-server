@@ -44,8 +44,8 @@ boot_server() {
   kea-dhcp4 -c /etc/kea/config.json &
 }
 
-export_server_stats() {
-  while true; do ruby ./metrics/push_metrics.rb; sleep 60; done &
+boot_metrics_agent() {
+  ruby ./metrics/push_metrics.rb
 }
 
 ensure_healthy_server() {
@@ -69,7 +69,7 @@ main() {
     ensure_healthy_server
   fi
   touch /tmp/kea_started
-  export_server_stats
+  boot_metrics_agent
   fg %1 #KEA is running as a daemon, bring it back as the essential task of the container now that testing is finished
 }
 

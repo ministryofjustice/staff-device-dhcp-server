@@ -11,4 +11,7 @@ req.body = { command: "statistic-get-all", service: ["dhcp4"] }.to_json
 http = Net::HTTP.new(uri.host, uri.port)
 kea_stats = JSON.parse(http.request(req).body)
 
-prepare_metric = PrepareMetric.new(client: AwsClient.new).execute(kea_stats: kea_stats)
+while true do
+  PrepareMetric.new(client: AwsClient.new).execute(kea_stats: kea_stats)
+  sleep 60
+end
