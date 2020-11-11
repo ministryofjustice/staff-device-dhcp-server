@@ -27,8 +27,6 @@ class PublishMetrics
     metric = {}
     metric_name = row[0]
     values = row[1]
-    date = values[0][1]
-    time = DateTime.parse(date).to_time.to_i
     value = values[0][0]
 
     if subnet_metric?(metric_name)
@@ -42,7 +40,7 @@ class PublishMetrics
     end
 
     metric[:metric_name] = metric_name
-    metric[:timestamp] = time
+    metric[:timestamp] = DateTime.now.to_time.to_i
     metric[:value] = value
 
     metric
