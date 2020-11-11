@@ -1,6 +1,6 @@
 require 'time'
 
-class PrepareMetric
+class PublishMetrics
   def initialize(client:)
     @client = client
   end

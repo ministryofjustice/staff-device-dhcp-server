@@ -45,7 +45,7 @@ boot_server() {
 }
 
 boot_metrics_agent() {
-  ruby ./metrics/push_metrics.rb
+  ruby ./metrics/boot_metrics_agent.rb
 }
 
 ensure_healthy_server() {

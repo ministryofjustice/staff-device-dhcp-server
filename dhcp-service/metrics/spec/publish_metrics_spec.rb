@@ -1,8 +1,8 @@
 require 'rspec'
 require 'json'
-require_relative '../prepare_metric'
+require_relative '../publish_metrics'
 
-describe PrepareMetric do
+describe PublishMetrics do
   let(:client) { spy }
   let(:kea_stats) { [] }
 

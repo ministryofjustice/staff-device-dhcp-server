@@ -1,8 +1,7 @@
 FROM alpine:3.11
 
 ENV GLIBC_VER=2.31-r0
-ARG LOCAL_DEVELOPMENT
-ARG BUNDLE_CONFIG="without 'test' no-cache 'true'"
+ARG EXTRA_BUNDLE_CONFIG="without 'test'"
 
 RUN apk add bash curl mysql mysql-client && \
     curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-1-8/cfg/setup/bash.alpine.sh' |  bash && \
@@ -28,8 +27,8 @@ COPY ./metrics ./metrics
 COPY ./control-agent-config.json /etc/kea/control-agent-config.json
 
 RUN cd metrics && \
-  bundle config set ${BUNDLE_CONFIG} && \
-  bundle install ${BUNDLE_INSTALL_FLAGS}
+  bundle config set no-cache 'true' ${EXTRA_BUNDLE_CONFIG} && \
+  bundle install
 
 EXPOSE 67/udp
 EXPOSE 68/udp

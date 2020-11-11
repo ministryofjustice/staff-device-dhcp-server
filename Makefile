@@ -15,7 +15,7 @@ deploy:
 	./scripts/deploy.sh
 
 build-dev:
-	$(DOCKER_COMPOSE) build --build-arg LOCAL_DEVELOPMENT="true"
+	$(DOCKER_COMPOSE) build
 
 start-db:
 	$(DOCKER_COMPOSE) up -d db

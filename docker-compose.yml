@@ -23,7 +23,7 @@ services:
     build:
       context: ./dhcp-service
       args:
-        BUNDLE_CONFIG: ""
+        EXTRA_BUNDLE_CONFIG: ""
     depends_on:
       - db
       - dhcp
