@@ -20,7 +20,10 @@ services:
       - ./dhcp-service/stats/:/stats
 
   dhcp-test:
-    build: ./dhcp-service
+    build:
+      context: ./dhcp-service
+      args:
+        BUNDLE_CONFIG: ""
     depends_on:
       - db
       - dhcp
