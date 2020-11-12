@@ -59,6 +59,19 @@ To ensure that an invalid task does not get into the production ecs cluster, a b
 
 At the time of writing, the stable release for ISC Kea is [version 1.6](https://cloudsmith.io/~isc/repos/kea-1-6/packages/).
 
+## Monitoring
+
+Metrics for the KEA Servers are displayed in the IMA Grafana dashboard.
+The JSON that makes up the dashboard is stored in this repo, when updates are made, the JSON needs to be saved and tracked with version control.
+
+The metrics categories are:
+
+  - AWS Service metrics
+  - KEA Network metrics
+  - KEA Subnet metrics
+
+![Grafana Dashboard](./documentation/images/dashboard.png)
+
 ## Considerations
 
 KEA currently does not support connecting to the database over SSL. See [kea#15](https://github.com/isc-projects/kea/pull/15)
