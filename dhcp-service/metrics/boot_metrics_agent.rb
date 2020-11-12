@@ -12,6 +12,7 @@ while true do
   http = Net::HTTP.new(uri.host, uri.port)
   kea_stats = JSON.parse(http.request(req).body)
 
+  p "KEA stats: #{kea_stats}"
   PublishMetrics.new(client: AwsClient.new).execute(kea_stats: kea_stats)
   sleep 10
 end
