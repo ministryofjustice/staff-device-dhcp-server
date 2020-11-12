@@ -10,7 +10,7 @@ class AwsClient
 
   def put_metric_data(metrics)
     sliced(metrics).each do |metrics_slice|
-      p "publishing metrics: #{metrics_slice}"
+      p "publishing metrics: #{metrics_slice.to_json}"
 
       client.put_metric_data(
         namespace: "Kea-DHCP-Server",
