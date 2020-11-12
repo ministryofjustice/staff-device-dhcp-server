@@ -61,7 +61,7 @@ At the time of writing, the stable release for ISC Kea is [version 1.6](https://
 
 ## Monitoring
 
-Metrics for the KEA Servers are displayed in the IMA Grafana dashboard.
+Metrics for the KEA Servers are displayed in the [IMA Grafana dashboard](https://github.com/ministryofjustice/staff-infrastructure-monitoring).
 The JSON that makes up the dashboard is stored in this repo, when updates are made, the JSON needs to be saved and tracked with version control.
 
 The metrics categories are:
