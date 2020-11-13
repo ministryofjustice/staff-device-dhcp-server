@@ -7,8 +7,8 @@ require_relative '../publish_metrics'
 describe PublishMetrics do
   let(:client) { spy }
   let(:kea_stats) { [] }
-  let(:time) { DateTime.now.to_time }
-  let(:timestamp) { time.to_i }
+  let!(:time) { DateTime.now.to_time }
+  let!(:timestamp) { time.to_i }
 
   before do
     Timecop.freeze(time)

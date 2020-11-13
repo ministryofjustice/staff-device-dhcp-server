@@ -29,7 +29,7 @@ class PublishMetrics
     values = row[1]
     value = values[0][0]
     date = values[0][1]
-    time = DateTime.parse(date).to_time.to_i
+    time = DateTime.now.to_time.to_i
 
     if subnet_metric?(metric_name)
       metric_name = metric_name.split(".")[1]
@@ -39,7 +39,7 @@ class PublishMetrics
           value: row[0][/\d+/]
         }
       ]
-      metric[:timestamp] = DateTime.now.to_time.to_i
+      metric[:timestamp] = time
     end
 
     metric[:metric_name] = metric_name
