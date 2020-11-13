@@ -46,6 +46,7 @@ boot_server() {
 
 boot_metrics_agent() {
   ruby ./metrics/boot_metrics_agent.rb
+  echo ${ECS_CONTAINER_METADATA_FILE}
 }
 
 ensure_healthy_server() {
