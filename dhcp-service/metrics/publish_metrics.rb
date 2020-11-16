@@ -62,7 +62,7 @@ class PublishMetrics
       total_addresses = v.find { |m| m[:metric_name] == 'total-addresses' }[:value]
       assigned_addresses = v.find { |m| m[:metric_name] == 'assigned-addresses' }[:value] || 0
 
-      percent_used = assigned_addresses == 0 ? 0 : ((assigned_addresses.ceil.to_f / total_addresses.ceil.to_f) * 100).to_i
+      percent_used = assigned_addresses == 0 ? 0 : ((assigned_addresses.to_f / total_addresses.to_f) * 100).round
 
       pp "total_addresses = #{total_addresses}
       assigned_addresses = #{assigned_addresses}

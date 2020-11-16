@@ -242,7 +242,7 @@ describe PublishMetrics do
       }, {
         metric_name: "lease-percent-used",
         timestamp: timestamp,
-        value: 9,
+        value: 10,
         dimensions:
         [
           {
@@ -253,7 +253,7 @@ describe PublishMetrics do
       }, {
         metric_name: "lease-percent-used",
         timestamp: timestamp,
-        value: 1,
+        value: 2,
         dimensions:
         [
           {
