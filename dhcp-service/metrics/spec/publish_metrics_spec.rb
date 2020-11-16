@@ -165,6 +165,17 @@ describe PublishMetrics do
       }, {
         metric_name: "assigned-addresses",
         timestamp: timestamp,
+        value: 25,
+        dimensions:
+        [
+          {
+            name: "Subnet",
+            value: "1018"
+          }
+        ]
+      }, {
+        metric_name: "assigned-addresses",
+        timestamp: timestamp,
         value: 10,
         dimensions:
         [
@@ -221,6 +232,28 @@ describe PublishMetrics do
         metric_name: "total-addresses",
         timestamp: timestamp,
         value: 512,
+        dimensions:
+        [
+          {
+            name: "Subnet",
+            value: "1"
+          }
+        ]
+      }, {
+        metric_name: "lease-percent-used",
+        timestamp: timestamp,
+        value: 9,
+        dimensions:
+        [
+          {
+            name: "Subnet",
+            value: "1018"
+          }
+        ]
+      }, {
+        metric_name: "lease-percent-used",
+        timestamp: timestamp,
+        value: 1,
         dimensions:
         [
           {
