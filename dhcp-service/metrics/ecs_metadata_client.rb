@@ -18,7 +18,7 @@ class EcsMetadataClient
 
   def payload(parsed_response)
     {
-      task_id: parsed_response.fetch("DockerId")
+      task_id: parsed_response.fetch("DockerId")[0..6]
     }
   end
 

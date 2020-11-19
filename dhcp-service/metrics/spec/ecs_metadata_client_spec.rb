@@ -12,7 +12,7 @@ describe EcsMetadataClient do
 
   it "fetches the task_id from the container metadata" do
     expected_result = {
-      task_id: '6d52d2abc39fb7212c9a0a23135d6a2997f22a7f9475106d8e8bbc95ef3e4c88'
+      task_id: '6d52d2a'
     }
 
     expect(described_class.new(endpoint: ENV["ECS_CONTAINER_METADATA_URI"]).execute).to eq(expected_result)
