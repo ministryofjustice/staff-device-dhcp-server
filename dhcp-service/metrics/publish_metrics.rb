@@ -1,8 +1,9 @@
 require 'time'
 
 class PublishMetrics
-  def initialize(client:)
+  def initialize(client:, aws_metadata_client:)
     @client = client
+    @aws_metadata_client = aws_metadata_client
   end
 
   def execute(kea_stats:)
@@ -34,15 +35,20 @@ class PublishMetrics
     date = values[0][1]
     time = DateTime.now.to_time.to_i
 
+    metric[:dimensions] = [
+      {
+        name: "TaskID",
+        value: task_id
+      }
+    ]
+
     if subnet_metric?(metric_name)
       metric_name = metric_name.split(".")[1]
 
-      metric[:dimensions] = [
-        {
+      metric[:dimensions] << {
           name: "Subnet",
           value: row[0][/\d+/]
         }
-      ]
       metric[:timestamp] = time
     end
 
@@ -71,16 +77,26 @@ class PublishMetrics
 
       metrics << {
         metric_name: 'lease-percent-used',
-        dimensions: [{
+        dimensions: [
+        {
+          name: 'TaskID',
+          value: task_id,
+        },
+        {
           name: 'Subnet',
           value: k,
-        }],
+        }
+      ],
         value: percent_used,
         timestamp: v[0][:timestamp]
       }
     end
 
     metrics
+  end
+
+  def task_id
+    @task_id ||= aws_metadata_client.execute.fetch(:task_id)
   end
 
   IGNORED_METRICS = [
@@ -92,5 +108,5 @@ class PublishMetrics
     'reclaimed-declined-addresses',
     'reclaimed-leases'
   ]
-  attr_reader :client
+  attr_reader :client, :aws_metadata_client
 end
