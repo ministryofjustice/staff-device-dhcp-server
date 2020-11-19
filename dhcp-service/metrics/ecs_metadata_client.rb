@@ -6,7 +6,10 @@ class EcsMetadataClient
   end
 
   def execute
-    result = Net::HTTP.get(endpoint, '/v2/metadata')
+    escaped_endpoint = URI.escape(endpoint)
+    uri = URI.parse(escaped_endpoint)
+
+    result = Net::HTTP.get(uri)
 
     payload(JSON.parse(result))
   end
@@ -14,13 +17,8 @@ class EcsMetadataClient
   private
 
   def payload(parsed_response)
-    containers_response = parsed_response.fetch("Containers")
-    container = containers_response.find do |container_response|
-      container_response.fetch("Name") == "dhcp-server"
-    end
-
     {
-      task_id: container.fetch("DockerId")
+      task_id: parsed_response.fetch("DockerId")
     }
   end
 
