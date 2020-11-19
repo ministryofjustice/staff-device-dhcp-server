@@ -1,16 +1,19 @@
 require 'time'
 
 class PublishMetrics
-  def initialize(client:)
+  def initialize(client:, ecs_metadata_client:)
     @client = client
+    @ecs_metadata_client = ecs_metadata_client
   end
 
   def execute(kea_stats:)
     raise "Kea stats are empty" if kea_stats.empty?
 
     client.put_metric_data(
-      with_percent_used(
-        generate_cloudwatch_metrics(kea_stats)
+      with_task_id(
+        with_percent_used(
+          generate_cloudwatch_metrics(kea_stats)
+        )
       )
     )
   end
@@ -34,15 +37,15 @@ class PublishMetrics
     date = values[0][1]
     time = DateTime.now.to_time.to_i
 
+    metric[:dimensions] = []
+
     if subnet_metric?(metric_name)
       metric_name = metric_name.split(".")[1]
 
-      metric[:dimensions] = [
-        {
+      metric[:dimensions] << {
           name: "Subnet",
           value: row[0][/\d+/]
         }
-      ]
       metric[:timestamp] = time
     end
 
@@ -71,16 +74,33 @@ class PublishMetrics
 
       metrics << {
         metric_name: 'lease-percent-used',
-        dimensions: [{
+        dimensions: [
+        {
           name: 'Subnet',
           value: k,
-        }],
+        }
+      ],
         value: percent_used,
         timestamp: v[0][:timestamp]
       }
     end
 
     metrics
+  end
+
+  def task_id
+    @task_id ||= ecs_metadata_client.execute.fetch(:task_id)
+  end
+
+  def with_task_id(metrics)
+    metrics.map do |metric|
+      metric[:dimensions] << {
+        name: "TaskID",
+        value: task_id
+      }
+
+      metric
+    end
   end
 
   IGNORED_METRICS = [
@@ -92,5 +112,5 @@ class PublishMetrics
     'reclaimed-declined-addresses',
     'reclaimed-leases'
   ]
-  attr_reader :client
+  attr_reader :client, :ecs_metadata_client
 end
