@@ -410,36 +410,6 @@ describe PublishMetrics do
             value: "abc123",
           }
         ]
-      }, {
-        metric_name: "lease-percent-used",
-        timestamp: timestamp,
-        value: 10,
-        dimensions:
-        [
-          {
-            name: "Subnet",
-            value: "1018"
-          },
-          {
-            name: "TaskID",
-            value: "abc123",
-          }
-        ]
-      }, {
-        metric_name: "lease-percent-used",
-        timestamp: timestamp,
-        value: 2,
-        dimensions:
-        [
-          {
-            name: "Subnet",
-            value: "1"
-          },
-          {
-            name: "TaskID",
-            value: "abc123",
-          }
-        ]
       }
     ]
 

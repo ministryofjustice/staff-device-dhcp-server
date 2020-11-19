@@ -11,9 +11,7 @@ class PublishMetrics
 
     client.put_metric_data(
       with_task_id(
-        with_percent_used(
-          generate_cloudwatch_metrics(kea_stats)
-        )
+        generate_cloudwatch_metrics(kea_stats)
       )
     )
   end
@@ -54,38 +52,6 @@ class PublishMetrics
     metric[:value] = value
 
     metric
-  end
-
-  def with_percent_used(metrics)
-    percent_used_subnet_metrics = metrics.select do |metric|
-      metric[:metric_name] == 'total-addresses' or metric[:metric_name] == 'assigned-addresses'
-    end.group_by { |metric| metric[:dimensions].select { |d| d[:name] == 'Subnet' }.first[:value] }
-
-    percent_used_subnet_metrics.each do |k,v|
-      total_addresses = v.find { |m| m[:metric_name] == 'total-addresses' }[:value]
-      assigned_addresses = v.find { |m| m[:metric_name] == 'assigned-addresses' }[:value] || 0
-
-      percent_used = assigned_addresses == 0 ? 0 : ((assigned_addresses.to_f / total_addresses.to_f) * 100).round
-
-      pp "total_addresses = #{total_addresses}
-      assigned_addresses = #{assigned_addresses}
-      percent_used = #{percent_used}
-      subnet = #{k}"
-
-      metrics << {
-        metric_name: 'lease-percent-used',
-        dimensions: [
-        {
-          name: 'Subnet',
-          value: k,
-        }
-      ],
-        value: percent_used,
-        timestamp: v[0][:timestamp]
-      }
-    end
-
-    metrics
   end
 
   def task_id
