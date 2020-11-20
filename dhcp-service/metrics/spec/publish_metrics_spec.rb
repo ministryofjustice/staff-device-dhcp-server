@@ -486,14 +486,28 @@ describe PublishMetrics do
           }
         ]
       },{
-      :dimensions=>[{:name=>"Subnet", :value=>"1"}],
-        :metric_name=>"lease-percent-used",
-        :timestamp=>timestamp,
-        :value=>43},
-      {:dimensions=>[{:name=>"Subnet", :value=>"1018"}],
-        :metric_name=>"lease-percent-used",
-        :timestamp=>timestamp,
-        :value=>50}]
+      dimensions: [
+        {
+          name: "Subnet",
+          value: "1"
+        }
+        ],
+        metric_name: "lease-percent-used",
+        timestamp: timestamp,
+        value: 43
+      },
+      {
+        dimensions: [
+          {
+            name: "Subnet",
+            value:"1018"
+          }
+        ],
+        metric_name: "lease-percent-used",
+        timestamp: timestamp,
+        value: 50
+        }
+      ]
 
     expect(client).to have_received(:put_metric_data).with(expected_result)
   end
