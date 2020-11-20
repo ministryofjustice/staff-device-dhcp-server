@@ -6,19 +6,14 @@ class EcsMetadataClient
   end
 
   def execute
-    escaped_endpoint = URI.escape(endpoint)
-    uri = URI.parse(escaped_endpoint)
-
-    result = Net::HTTP.get(uri)
-
-    payload(JSON.parse(result))
+    payload(JSON.parse(Net::HTTP.get(URI.parse(URI.escape(endpoint)))))
   end
 
   private
 
   def payload(parsed_response)
     {
-      task_id: parsed_response.fetch("DockerId")[0..6]
+      task_id: parsed_response.fetch("DockerId")[0,7]
     }
   end
 
