@@ -71,7 +71,7 @@ main() {
   fi
   touch /tmp/kea_started
   boot_metrics_agent
-  fg %1 #KEA is running as a daemon, bring it back as the essential task of the container now that testing is finished
+  fg %2 #KEA is running as a daemon, bring it back as the essential task of the container now that testing is finished
 }
 
 main
