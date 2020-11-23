@@ -19,10 +19,10 @@ deploy:
 	./scripts/deploy.sh
 
 build-dev:
-	$(DOCKER_COMPOSE) build --build-arg SHARED_SERVICES_ACCOUNT_ID
+	$(DOCKER_COMPOSE) build
 
 start-db: check-container-registry-account-id
-	$(DOCKER_COMPOSE) up db
+	$(DOCKER_COMPOSE) up -d db
 	./wait_for_db.sh
 
 stop:

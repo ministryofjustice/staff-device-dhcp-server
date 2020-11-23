@@ -1,7 +1,10 @@
 version: "3"
 services:
   dhcp:
-    build: ./dhcp-service
+    build: 
+      context: ./dhcp-service
+      args:
+        SHARED_SERVICES_ACCOUNT_ID: "${SHARED_SERVICES_ACCOUNT_ID}"
     depends_on:
       - db
     environment:
@@ -19,7 +22,10 @@ services:
     - $HOME/.aws/credentials:/root/.aws/credentials:ro
 
   dhcp-test:
-    build: ./dhcp-service
+    build: 
+      context: ./dhcp-service
+      args:
+        SHARED_SERVICES_ACCOUNT_ID: "${SHARED_SERVICES_ACCOUNT_ID}"
     depends_on:
       - db
       - dhcp
