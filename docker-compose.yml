@@ -29,7 +29,7 @@ services:
       - ./dhcp-service/dhcp_test.sh:/dhcp_test.sh
 
   db:
-    image: mysql:5.7
+    image: "${SHARED_SERVICES_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com/dhcp-mysql:latest"
     volumes:
       - db_data:/var/lib/mysql
     restart: always

@@ -1,7 +1,13 @@
 DOCKER_COMPOSE = docker-compose -f docker-compose.yml
 
-build:
-	docker build -t docker_dhcp ./dhcp-service
+authenticate-docker:
+	./scripts/authenticate_docker
+
+check-container-registry-account-id:
+	./scripts/check_container_registry_account_id
+
+build: check-container-registry-account-id
+	docker build -t docker_dhcp ./dhcp-service --build-arg SHARED_SERVICES_ACCOUNT_ID
 
 publish: build
 	echo ${REGISTRY_URL}
@@ -13,10 +19,10 @@ deploy:
 	./scripts/deploy.sh
 
 build-dev:
-	$(DOCKER_COMPOSE) build
+	$(DOCKER_COMPOSE) build --build-arg SHARED_SERVICES_ACCOUNT_ID
 
-start-db:
-	$(DOCKER_COMPOSE) up -d db
+start-db: check-container-registry-account-id
+	$(DOCKER_COMPOSE) up db
 	./wait_for_db.sh
 
 stop:

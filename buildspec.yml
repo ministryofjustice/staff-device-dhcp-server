@@ -8,9 +8,12 @@ env:
     TARGET_AWS_ACCOUNT_ID: "/codebuild/$ENV/account_id"
     DHCP_DNS_TERRAFORM_OUTPUTS: "/terraform_dns_dhcp/$ENV/outputs"
     ROLE_ARN: "/codebuild/pttp-ci-infrastructure-core-pipeline/$ENV/assume_role"
+    SHARED_SERVICES_ACCOUNT_ID: /codebuild/staff_device_shared_services_account_id
+
 
 phases:
   build:
     commands:
+      - make authenticate-docker
       - make publish
       - make deploy
