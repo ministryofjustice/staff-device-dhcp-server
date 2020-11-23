@@ -1,11 +1,12 @@
 require 'time'
 
 class PublishMetrics
-  def initialize(client:, ecs_metadata_client:, kea_lease_usage:)
+  def initialize(client:, ecs_metadata_client:, kea_lease_usage:, subnet_id_to_range_mapping:)
     @client = client
     @ecs_metadata_client = ecs_metadata_client
     @kea_lease_usage = kea_lease_usage
     @time = DateTime.now.to_time.to_i
+    @subnet_id_to_range_mapping = subnet_id_to_range_mapping
   end
 
   def execute(kea_stats:)
@@ -36,7 +37,7 @@ class PublishMetrics
 
     if subnet_metric?(metric_name)
       metric_name = metric_name.split(".")[1]
-      metric[:dimensions] << { name: "Subnet", value: row[0][/\d+/] }
+      metric[:dimensions] << { name: "Subnet", value: subnet_id_to_range(row[0][/\d+/].to_i) }
       metric[:timestamp] = @time
     end
 
@@ -45,6 +46,14 @@ class PublishMetrics
     metric[:value] = value
 
     metric
+  end
+
+  def subnet_id_to_range_map
+    @subnet_id_to_range_map ||= subnet_id_to_range_mapping.execute
+  end
+
+  def subnet_id_to_range(subnet_id)
+    subnet_id_to_range_map.find { |mapping| subnet_id == mapping[:id] }[:subnet]
   end
 
   def task_id
@@ -71,12 +80,12 @@ class PublishMetrics
         metric_name: "lease-percent-used",
         timestamp: @time,
         value: kea_metric.fetch(:usage_percentage),
-        dimensions: [ { name: "Subnet", value: kea_metric.fetch(:subnet_id).to_s } ]
+        dimensions: [ { name: "Subnet", value: subnet_id_to_range(kea_metric.fetch(:subnet_id).to_i) } ]
       }
     end
 
     metrics
   end
 
-  attr_reader :client, :ecs_metadata_client, :kea_lease_usage
+  attr_reader :client, :ecs_metadata_client, :kea_lease_usage, :subnet_id_to_range_mapping
 end

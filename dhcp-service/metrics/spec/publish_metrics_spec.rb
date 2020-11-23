@@ -28,6 +28,18 @@ describe PublishMetrics do
       ])
   end
 
+  let(:subnet_id_to_range_mapping) do
+    double(execute: [
+        {
+          id: 1018,
+          subnet: "127.0.0.1/16"
+        }, {
+          id: 1,
+          subnet: "10.0.0.1/16"
+        }
+      ])
+  end
+
   before do
     Timecop.freeze(time)
   end
@@ -41,7 +53,8 @@ describe PublishMetrics do
       described_class.new(
         client: client,
         ecs_metadata_client: ecs_metadata_client,
-        kea_lease_usage: kea_lease_usage
+        kea_lease_usage: kea_lease_usage,
+        subnet_id_to_range_mapping: subnet_id_to_range_mapping
       ).execute(kea_stats: kea_stats)
     }.to raise_error('Kea stats are empty')
   end
@@ -52,7 +65,8 @@ describe PublishMetrics do
     result = described_class.new(
       client: client,
       ecs_metadata_client: ecs_metadata_client,
-      kea_lease_usage: kea_lease_usage
+      kea_lease_usage: kea_lease_usage,
+      subnet_id_to_range_mapping: subnet_id_to_range_mapping
     ).execute(kea_stats: kea_stats)
 
     expected_result = [
@@ -264,7 +278,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1018"
+            value: "127.0.0.1/16"
           },
           {
             name: "TaskID",
@@ -279,7 +293,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1018"
+            value: "127.0.0.1/16"
           },
           {
             name: "TaskID",
@@ -294,7 +308,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1018"
+            value: "127.0.0.1/16"
           },
           {
             name: "TaskID",
@@ -309,7 +323,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1018"
+            value: "127.0.0.1/16"
           },
           {
             name: "TaskID",
@@ -324,7 +338,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1018"
+            value: "127.0.0.1/16"
           },
           {
             name: "TaskID",
@@ -339,7 +353,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1018"
+            value: "127.0.0.1/16"
           },
           {
             name: "TaskID",
@@ -354,7 +368,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1"
+            value: "10.0.0.1/16"
           },
           {
             name: "TaskID",
@@ -369,7 +383,7 @@ describe PublishMetrics do
           [
             {
               name: "Subnet",
-              value: "1"
+              value: "10.0.0.1/16"
             },
             {
               name: "TaskID",
@@ -384,7 +398,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1"
+            value: "10.0.0.1/16"
           },
           {
             name: "TaskID",
@@ -399,7 +413,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1"
+            value: "10.0.0.1/16"
           },
           {
             name: "TaskID",
@@ -414,7 +428,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1"
+            value: "10.0.0.1/16"
           },
           {
             name: "TaskID",
@@ -429,7 +443,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1"
+            value: "10.0.0.1/16"
           },
           {
             name: "TaskID",
@@ -444,7 +458,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1"
+            value: "10.0.0.1/16"
           }
         ]
       }, {
@@ -455,7 +469,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1018"
+            value: "127.0.0.1/16"
           }
         ]
       }
@@ -471,7 +485,8 @@ describe PublishMetrics do
     result = described_class.new(
       client: client,
       ecs_metadata_client: ecs_metadata_client,
-      kea_lease_usage: kea_lease_usage
+      kea_lease_usage: kea_lease_usage,
+      subnet_id_to_range_mapping: subnet_id_to_range_mapping
     ).execute(kea_stats: kea_stats)
 
     expected_result = [
@@ -489,7 +504,7 @@ describe PublishMetrics do
       dimensions: [
         {
           name: "Subnet",
-          value: "1"
+          value: "10.0.0.1/16"
         }
         ],
         metric_name: "lease-percent-used",
@@ -500,7 +515,7 @@ describe PublishMetrics do
         dimensions: [
           {
             name: "Subnet",
-            value:"1018"
+            value:"127.0.0.1/16"
           }
         ],
         metric_name: "lease-percent-used",
