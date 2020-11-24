@@ -11,11 +11,6 @@ describe KeaClient do
       with(
         body: "{\"command\":\"statistic-get-all\",\"service\":[\"dhcp4\"]}"
       ).to_return(status: 200, body: "{}", headers: {})
-
-    stub_request(:post, "http://localhost:8000/").
-      with(
-        body: "{\"command\":\"config-get\",\"service\":[\"dhcp4\"]}"
-    ).to_return(status: 200, body: "{}", headers: {})
   end
 
   it "gets leases" do
@@ -24,9 +19,5 @@ describe KeaClient do
 
   it "gets statistics" do
     described_class.new.get_statistics
-  end
-
-  it "gets configuration" do
-    described_class.new.get_config
   end
 end

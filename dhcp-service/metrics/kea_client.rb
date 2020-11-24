@@ -15,9 +15,4 @@ class KeaClient
     @req.body = { command: "statistic-get-all", service: ["dhcp4"] }.to_json
     JSON.parse(@http.request(@req).body)
   end
-
-  def get_config
-    @req.body = { command: "config-get", service: ["dhcp4"] }.to_json
-    JSON.parse(@http.request(@req).body)
-  end
 end
