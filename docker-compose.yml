@@ -1,7 +1,10 @@
 version: "3"
 services:
   dhcp:
-    build: ./dhcp-service
+    build: 
+      context: ./dhcp-service
+      args:
+        SHARED_SERVICES_ACCOUNT_ID: "${SHARED_SERVICES_ACCOUNT_ID}"
     depends_on:
       - db
     environment:
@@ -20,9 +23,10 @@ services:
       - ./dhcp-service/metrics/:/metrics
 
   dhcp-test:
-    build:
+    build: 
       context: ./dhcp-service
       args:
+        SHARED_SERVICES_ACCOUNT_ID: "${SHARED_SERVICES_ACCOUNT_ID}"
         EXTRA_BUNDLE_CONFIG: ""
     depends_on:
       - db
@@ -34,7 +38,7 @@ services:
       - ./dhcp-service/metrics/:/metrics
 
   db:
-    image: mysql:5.7
+    image: "${SHARED_SERVICES_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com/dhcp-mysql:latest"
     volumes:
       - db_data:/var/lib/mysql
     restart: always

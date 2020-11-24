@@ -1,4 +1,5 @@
-FROM alpine:3.11
+ARG SHARED_SERVICES_ACCOUNT_ID
+FROM ${SHARED_SERVICES_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com/dhcp:latest
 
 ENV GLIBC_VER=2.31-r0
 ARG EXTRA_BUNDLE_CONFIG="without 'test'"
