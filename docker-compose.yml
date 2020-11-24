@@ -19,13 +19,15 @@ services:
       - 67:67/udp
       - 8000:8000
     volumes:
-    - $HOME/.aws/credentials:/root/.aws/credentials:ro
+      - $HOME/.aws/credentials:/root/.aws/credentials:ro
+      - ./dhcp-service/metrics/:/metrics
 
   dhcp-test:
     build: 
       context: ./dhcp-service
       args:
         SHARED_SERVICES_ACCOUNT_ID: "${SHARED_SERVICES_ACCOUNT_ID}"
+        EXTRA_BUNDLE_CONFIG: ""
     depends_on:
       - db
       - dhcp
@@ -33,6 +35,7 @@ services:
       - 68:68/udp
     volumes:
       - ./dhcp-service/dhcp_test.sh:/dhcp_test.sh
+      - ./dhcp-service/metrics/:/metrics
 
   db:
     image: "${SHARED_SERVICES_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com/dhcp-mysql:latest"

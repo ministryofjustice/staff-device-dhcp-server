@@ -9,11 +9,13 @@ check-container-registry-account-id:
 build: check-container-registry-account-id
 	docker build -t docker_dhcp ./dhcp-service --build-arg SHARED_SERVICES_ACCOUNT_ID
 
-publish: build
+push:
 	echo ${REGISTRY_URL}
 	aws ecr get-login-password | docker login --username AWS --password-stdin ${REGISTRY_URL}
 	docker tag docker_dhcp:latest ${REGISTRY_URL}/staff-device-${ENV}-dhcp-docker:latest
 	docker push ${REGISTRY_URL}/staff-device-${ENV}-dhcp-docker:latest
+
+publish: build push
 
 deploy:
 	./scripts/deploy.sh
@@ -33,9 +35,19 @@ run: start-db
 
 test: run build-dev
 	./wait_for_dhcp_server.sh
+	$(DOCKER_COMPOSE) run --rm dhcp-test rspec ./metrics/spec
 	$(DOCKER_COMPOSE) run --rm dhcp-test bash ./dhcp_test.sh
 
 shell: start-db
 	$(DOCKER_COMPOSE) run --rm dhcp sh
+
+shell-test: start-db
+	$(DOCKER_COMPOSE) run --rm dhcp-test sh
+
+logs:
+	$(DOCKER_COMPOSE) logs
+
+implode:
+	$(DOCKER_COMPOSE) rm
 
 .PHONY: build publish test shell stop start-db build-dev deploy

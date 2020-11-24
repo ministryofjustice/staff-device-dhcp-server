@@ -1,0 +1,31 @@
+{
+  "DockerId":"6d52d2abc39fb7212c9a0a23135d6a2997f22a7f9475106d8e8bbc95ef3e4c88",
+  "Name":"dhcp-server",
+  "DockerName":"ecs-staff-device-em-dhcp-server-task-45-dhcp-server-ba90ddcc93d1a3eccd01",
+  "Image":"068084030754.dkr.ecr.eu-west-2.amazonaws.com/staff-device-em-dhcp-docker",
+  "ImageID":"sha256:6e3abd2cc5ca119862c15d53b0c88eb38ad88d972b2b64f318ea45fe67cd1e82",
+  "Labels":{
+     "com.amazonaws.ecs.cluster":"arn:aws:ecs:eu-west-2:068084030754:cluster/staff-device-em-dhcp-cluster",
+     "com.amazonaws.ecs.container-name":"dhcp-server",
+     "com.amazonaws.ecs.task-arn":"arn:aws:ecs:eu-west-2:068084030754:task/staff-device-em-dhcp-cluster/b3c15cd473f744d4b6a63cbdab00dcab",
+     "com.amazonaws.ecs.task-definition-family":"staff-device-em-dhcp-server-task",
+     "com.amazonaws.ecs.task-definition-version":"45"
+  },
+  "DesiredStatus":"RUNNING",
+  "KnownStatus":"RUNNING",
+  "Limits":{
+     "CPU":0,
+     "Memory":0
+  },
+  "CreatedAt":"2020-11-19T14:26:25.974739026Z",
+  "StartedAt":"2020-11-19T14:26:26.566167607Z",
+  "Type":"NORMAL",
+  "Networks":[
+     {
+        "NetworkMode":"awsvpc",
+        "IPv4Addresses":[
+           "10.180.82.194"
+        ]
+     }
+  ]
+}

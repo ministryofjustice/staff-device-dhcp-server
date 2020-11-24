@@ -1,0 +1,802 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 97,
+  "links": [],
+  "panels": [
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "dns_dhcp-production",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 8,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.2.0",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "",
+          "matchExact": false,
+          "metricName": "pkt4-offer-received",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "A",
+          "region": "default",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "",
+          "matchExact": false,
+          "metricName": "pkt4-offer-sent",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "B",
+          "region": "default",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "",
+          "matchExact": false,
+          "metricName": "pkt4-ack-received",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "C",
+          "region": "default",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "",
+          "matchExact": false,
+          "metricName": "pkt4-ack-sent",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "D",
+          "region": "default",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "",
+          "matchExact": true,
+          "metricName": "pkt4-decline-received",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "E",
+          "region": "default",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "",
+          "matchExact": true,
+          "metricName": "pkt4-discover-received",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "F",
+          "region": "default",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "",
+          "matchExact": false,
+          "metricName": "pkt4-sent",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "G",
+          "region": "default",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "",
+          "matchExact": false,
+          "metricName": "pkt4-inform-received",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "H",
+          "region": "default",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "",
+          "matchExact": false,
+          "metricName": "pkt4-nak-received",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "I",
+          "region": "default",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "",
+          "matchExact": false,
+          "metricName": "pkt4-nak-received",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "J",
+          "region": "default",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "",
+          "matchExact": false,
+          "metricName": "pkt4-parse-failed",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "K",
+          "region": "default",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "",
+          "matchExact": false,
+          "metricName": "pkt4-receive-drop",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "L",
+          "region": "default",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "",
+          "matchExact": true,
+          "metricName": "pkt4-received",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "M",
+          "region": "default",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "",
+          "matchExact": true,
+          "metricName": "pkt4-release-received",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "N",
+          "region": "default",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "",
+          "matchExact": true,
+          "metricName": "pkt4-request-received",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "O",
+          "region": "default",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "",
+          "matchExact": true,
+          "metricName": "pkt4-unknown-received",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "P",
+          "region": "default",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "",
+          "matchExact": true,
+          "metricName": "reclaimed-declined-addresses",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "Q",
+          "region": "default",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "",
+          "matchExact": true,
+          "metricName": "reclaimed-leases",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "R",
+          "region": "default",
+          "statistics": [
+            "Average"
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Requests",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "dns_dhcp-production",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "hiddenSeries": false,
+      "id": 6,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.2.0",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "assigned_addresses",
+          "matchExact": false,
+          "metricName": "total-addresses",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "A",
+          "region": "eu-west-2",
+          "statistics": [
+            "Maximum"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "",
+          "matchExact": false,
+          "metricName": "assigned-addresses",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "B",
+          "region": "default",
+          "statistics": [
+            "Maximum"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "",
+          "matchExact": false,
+          "metricName": "cumulative-assigned-addresses",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "C",
+          "region": "default",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "",
+          "matchExact": false,
+          "metricName": "declined-addresses",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "D",
+          "region": "default",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "",
+          "matchExact": false,
+          "metricName": "reclaimed-declined-addresses",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "E",
+          "region": "default",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {},
+          "expression": "",
+          "id": "",
+          "matchExact": false,
+          "metricName": "reclaimed-leases",
+          "namespace": "Kea-DHCP-Server",
+          "period": "",
+          "refId": "F",
+          "region": "default",
+          "statistics": [
+            "Average"
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "DHCP Subnet Pools",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "dns_dhcp-production",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 16
+      },
+      "hiddenSeries": false,
+      "id": 2,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.2.0",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "dimensions": {
+            "ClusterName": "staff-device-production-dhcp-cluster"
+          },
+          "expression": "",
+          "id": "cpu_utilization",
+          "matchExact": false,
+          "metricName": "CPUUtilization",
+          "namespace": "ECS/ContainerInsights",
+          "period": "",
+          "refId": "A",
+          "region": "eu-west-2",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {
+            "ClusterName": "staff-device-production-dhcp-cluster"
+          },
+          "expression": "",
+          "id": "network_tx_bytes",
+          "matchExact": false,
+          "metricName": "NetworkTxBytes",
+          "namespace": "ECS/ContainerInsights",
+          "period": "",
+          "refId": "B",
+          "region": "eu-west-2",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {
+            "ClusterName": "staff-device-production-dhcp-cluster"
+          },
+          "expression": "",
+          "id": "",
+          "matchExact": false,
+          "metricName": "TaskSetCount",
+          "namespace": "ECS/ContainerInsights",
+          "period": "",
+          "refId": "C",
+          "region": "eu-west-2",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {
+            "ClusterName": "staff-device-production-dhcp-cluster"
+          },
+          "expression": "",
+          "id": "",
+          "matchExact": false,
+          "metricName": "StorageWriteBytes",
+          "namespace": "ECS/ContainerInsights",
+          "period": "",
+          "refId": "D",
+          "region": "eu-west-2",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {
+            "ClusterName": "staff-device-production-dhcp-cluster"
+          },
+          "expression": "",
+          "id": "",
+          "matchExact": false,
+          "metricName": "MemoryUtilized",
+          "namespace": "ECS/ContainerInsights",
+          "period": "",
+          "refId": "E",
+          "region": "eu-west-2",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {
+            "ClusterName": "staff-device-production-dhcp-cluster"
+          },
+          "expression": "",
+          "id": "",
+          "matchExact": false,
+          "metricName": "DeploymentCount",
+          "namespace": "ECS/ContainerInsights",
+          "period": "",
+          "refId": "F",
+          "region": "eu-west-2",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {
+            "ClusterName": "staff-device-production-dhcp-cluster"
+          },
+          "expression": "",
+          "id": "",
+          "matchExact": false,
+          "metricName": "DesiredTaskCount",
+          "namespace": "ECS/ContainerInsights",
+          "period": "",
+          "refId": "G",
+          "region": "eu-west-2",
+          "statistics": [
+            "Average"
+          ]
+        },
+        {
+          "alias": "",
+          "dimensions": {
+            "ClusterName": "staff-device-production-dhcp-cluster"
+          },
+          "expression": "",
+          "id": "",
+          "matchExact": false,
+          "metricName": "NetworkRxBytes",
+          "namespace": "ECS/ContainerInsights",
+          "period": "",
+          "refId": "H",
+          "region": "eu-west-2",
+          "statistics": [
+            "Average"
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Cluster Resources",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 26,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "KEA DHCP Server",
+  "uid": "vGJY_hhMk",
+  "version": 52
+}

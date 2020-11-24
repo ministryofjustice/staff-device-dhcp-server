@@ -44,6 +44,11 @@ boot_server() {
   kea-dhcp4 -c /etc/kea/config.json &
 }
 
+boot_metrics_agent() {
+  ruby ./metrics/boot_metrics_agent.rb
+  echo ${ECS_CONTAINER_METADATA_FILE}
+}
+
 ensure_healthy_server() {
   received_packets=`cat ./test_result | grep "received packets: 0"`
 
@@ -65,7 +70,8 @@ main() {
     ensure_healthy_server
   fi
   touch /tmp/kea_started
-  fg %1 #KEA is running as a daemon, bring it back as the essential task of the container now that testing is finished
+  boot_metrics_agent
+  fg %2 #KEA is running as a daemon, bring it back as the essential task of the container now that testing is finished
 }
 
 main

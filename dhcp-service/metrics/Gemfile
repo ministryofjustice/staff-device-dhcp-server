@@ -1,0 +1,12 @@
+# frozen_string_literal: true
+
+source "http://rubygems.org"
+ruby File.read(".ruby-version").chomp
+
+gem "aws-sdk-cloudwatch", "~>1.46"
+
+group :test do
+  gem "rspec"
+  gem "timecop"
+  gem "webmock"
+end
