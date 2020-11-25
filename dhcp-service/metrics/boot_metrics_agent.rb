@@ -12,7 +12,6 @@ while true do
   ecs_metadata_client = EcsMetadataClient.new(endpoint: ENV.fetch("ECS_CONTAINER_METADATA_URI"))
   kea_lease_usage = KeaLeaseUsage.new(kea_client: KeaClient.new)
 
-  p "KEA stats: #{kea_stats}"
   PublishMetrics.new(
     client: AwsClient.new,
      ecs_metadata_client: ecs_metadata_client,
