@@ -53,7 +53,8 @@ ensure_healthy_server() {
   received_packets=`cat ./test_result | grep "received packets: 0"`
 
   if ! [[ -z $received_packets ]]; then
-    aws sns publish --topic-arn $CRITICAL_NOTIFICATIONS_ARN --message "DHCP server failed to boot" --region eu-west-2
+    echo "Container did not pass local perfdhcp healthcheck"
+    cat ./test_result
     exit 1
   fi
 }
