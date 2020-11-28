@@ -9,13 +9,21 @@ check-container-registry-account-id:
 build: check-container-registry-account-id
 	docker build -t docker_dhcp ./dhcp-service --build-arg SHARED_SERVICES_ACCOUNT_ID
 
+build-nginx:
+	docker build -t nginx ./nginx
+
+push-nginx:
+	aws ecr get-login-password | docker login --username AWS --password-stdin ${REGISTRY_URL}
+	docker tag nginx:latest ${REGISTRY_URL}/staff-device-${ENV}-dhcp-docker-nginx:latest
+	docker push ${REGISTRY_URL}/staff-device-${ENV}-dhcp-docker-nginx:latest
+
 push:
 	echo ${REGISTRY_URL}
 	aws ecr get-login-password | docker login --username AWS --password-stdin ${REGISTRY_URL}
 	docker tag docker_dhcp:latest ${REGISTRY_URL}/staff-device-${ENV}-dhcp-docker:latest
 	docker push ${REGISTRY_URL}/staff-device-${ENV}-dhcp-docker:latest
 
-publish: build push
+publish: build push build-nginx push-nginx
 
 deploy:
 	./scripts/deploy.sh
