@@ -43,7 +43,6 @@ run: start-db
 
 test: run build-dev
 	./wait_for_dhcp_server.sh
-	$(DOCKER_COMPOSE) run --rm dhcp-test rspec ./metrics/spec
 	$(DOCKER_COMPOSE) run --rm dhcp-test bash ./dhcp_test.sh
 
 shell: start-db
