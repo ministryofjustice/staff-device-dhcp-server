@@ -45,6 +45,7 @@ boot_server() {
 }
 
 boot_metrics_agent() {
+  echo "skipping metrics"
   # ruby ./metrics/boot_metrics_agent.rb
 }
 
