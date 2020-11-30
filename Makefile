@@ -10,7 +10,7 @@ build: check-container-registry-account-id
 	docker build -t docker_dhcp ./dhcp-service --build-arg SHARED_SERVICES_ACCOUNT_ID
 
 build-nginx:
-	docker build -t nginx ./nginx
+	docker build -t nginx ./nginx --build-arg SHARED_SERVICES_ACCOUNT_ID
 
 push-nginx:
 	aws ecr get-login-password | docker login --username AWS --password-stdin ${REGISTRY_URL}
