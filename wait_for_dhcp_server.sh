@@ -10,8 +10,8 @@ do
 
   if [ $count -ge 10 ]; then
     echo "Failed to start server"
+    docker-compose logs
     exit 1
   fi
 done
-docker-compose logs
 printf "\n"
