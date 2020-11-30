@@ -13,4 +13,5 @@ do
     exit 1
   fi
 done
+docker-compose logs
 printf "\n"
