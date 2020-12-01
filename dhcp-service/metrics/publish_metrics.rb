@@ -1,9 +1,8 @@
 require 'time'
 
 class PublishMetrics
-  def initialize(client:, ecs_metadata_client:, kea_lease_usage:)
+  def initialize(client:, kea_lease_usage:)
     @client = client
-    @ecs_metadata_client = ecs_metadata_client
     @kea_lease_usage = kea_lease_usage
     @time = DateTime.now.to_time.to_i
   end
@@ -12,7 +11,7 @@ class PublishMetrics
     raise "Kea stats are empty" if kea_stats.empty?
 
     client.put_metric_data(
-      with_percent_used(with_task_id(generate_cloudwatch_metrics(kea_stats))))
+      with_percent_used(generate_cloudwatch_metrics(kea_stats)))
   end
 
   private
@@ -47,18 +46,6 @@ class PublishMetrics
     metric
   end
 
-  def task_id
-    @task_id ||= ecs_metadata_client.execute.fetch(:task_id)
-  end
-
-  def with_task_id(metrics)
-    metrics.map do |metric|
-      metric[:dimensions] << { name: "TaskID", value: task_id }
-
-      metric
-    end
-  end
-
   def with_percent_used(metrics)
     percent_used_subnet_metrics = metrics.select do |metric|
       metric[:metric_name] == 'total-addresses'
@@ -78,5 +65,5 @@ class PublishMetrics
     metrics
   end
 
-  attr_reader :client, :ecs_metadata_client, :kea_lease_usage
+  attr_reader :client, :kea_lease_usage
 end
