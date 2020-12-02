@@ -107,6 +107,13 @@
       {
         "library": "/usr/lib/kea/hooks/libdhcp_stat_cmds.so"
       }
-    ]
+    ],
+    // Multi threaded config for a mysql backend
+    // https://kea.readthedocs.io/en/kea-1.8.0/arm/dhcp4-srv.html#multi-threading-settings-in-different-backends
+    "multi-threading": {
+       "enable-multi-threading": true,
+       "thread-pool-size": 12,
+       "packet-queue-size": 792
+    }
   }
 }
