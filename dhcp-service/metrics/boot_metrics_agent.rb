@@ -3,7 +3,6 @@ require "net/http"
 require "json"
 require_relative "publish_metrics"
 require_relative "aws_client"
-require_relative "ecs_metadata_client"
 require_relative "kea_client"
 require_relative "kea_lease_usage"
 
