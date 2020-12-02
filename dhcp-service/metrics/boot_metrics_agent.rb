@@ -9,12 +9,10 @@ require_relative "kea_lease_usage"
 
 while true do
   kea_stats = KeaClient.new.get_statistics
-  ecs_metadata_client = EcsMetadataClient.new(endpoint: ENV.fetch("ECS_CONTAINER_METADATA_URI"))
   kea_lease_usage = KeaLeaseUsage.new(kea_client: KeaClient.new)
 
   PublishMetrics.new(
     client: AwsClient.new,
-     ecs_metadata_client: ecs_metadata_client,
      kea_lease_usage: kea_lease_usage,
     ).execute(kea_stats: kea_stats)
   sleep 10

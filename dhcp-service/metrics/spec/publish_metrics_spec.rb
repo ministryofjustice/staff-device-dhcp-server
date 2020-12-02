@@ -9,7 +9,6 @@ describe PublishMetrics do
   let(:kea_stats) { [] }
   let!(:time) { DateTime.now.to_time }
   let!(:timestamp) { time.to_i }
-  let(:ecs_metadata_client) { double(execute: { task_id: "abc123" }) }
   let(:kea_lease_usage) do
     double(execute: [
       {
@@ -40,7 +39,6 @@ describe PublishMetrics do
     expect {
       described_class.new(
         client: client,
-        ecs_metadata_client: ecs_metadata_client,
         kea_lease_usage: kea_lease_usage
       ).execute(kea_stats: kea_stats)
     }.to raise_error('Kea stats are empty')
@@ -51,7 +49,6 @@ describe PublishMetrics do
 
     result = described_class.new(
       client: client,
-      ecs_metadata_client: ecs_metadata_client,
       kea_lease_usage: kea_lease_usage
     ).execute(kea_stats: kea_stats)
 
@@ -60,202 +57,102 @@ describe PublishMetrics do
         metric_name: "cumulative-assigned-addresses",
         timestamp: timestamp,
         value: 0,
-        dimensions: [
-          {
-            name: "TaskID",
-            value: "abc123",
-          }
-        ]
+        dimensions: []
       }, {
         metric_name: "declined-addresses",
         timestamp: timestamp,
         value: 0,
-        dimensions: [
-          {
-            name: "TaskID",
-            value: "abc123",
-          }
-        ]
+        dimensions: []
       }, {
         metric_name: "pkt4-ack-received",
         timestamp: timestamp,
         value: 0,
-        dimensions: [
-          {
-            name: "TaskID",
-            value: "abc123",
-          }
-        ]
+        dimensions: []
       }, {
         metric_name: "pkt4-ack-sent",
         timestamp: timestamp,
         value: 18,
-        dimensions: [
-          {
-            name: "TaskID",
-            value: "abc123",
-          }
-        ]
+        dimensions: []
       }, {
         metric_name: "pkt4-decline-received",
         timestamp: timestamp,
         value: 0,
-        dimensions: [
-          {
-            name: "TaskID",
-            value: "abc123",
-          }
-        ]
+        dimensions: []
       }, {
         metric_name: "pkt4-discover-received",
         timestamp: timestamp,
         value: 19,
-        dimensions: [
-          {
-            name: "TaskID",
-            value: "abc123",
-          }
-        ]
+        dimensions: []
       }, {
         metric_name: "pkt4-inform-received",
         timestamp: timestamp,
         value: 0,
-        dimensions: [
-          {
-            name: "TaskID",
-            value: "abc123",
-          }
-        ]
+        dimensions: []
       }, {
         metric_name: "pkt4-nak-received",
         timestamp: timestamp,
         value: 0,
-        dimensions: [
-          {
-            name: "TaskID",
-            value: "abc123",
-          }
-        ]
+        dimensions: []
       }, {
         metric_name: "pkt4-nak-sent",
         timestamp: timestamp,
         value: 0,
-        dimensions: [
-          {
-            name: "TaskID",
-            value: "abc123",
-          }
-        ]
+        dimensions: []
       }, {
         metric_name: "pkt4-offer-received",
         timestamp: timestamp,
         value: 0,
-        dimensions: [
-          {
-            name: "TaskID",
-            value: "abc123",
-          }
-        ]
+        dimensions: []
       }, {
         metric_name: "pkt4-offer-sent",
         timestamp: timestamp,
         value: 19,
-        dimensions: [
-          {
-            name: "TaskID",
-            value: "abc123",
-          }
-        ]
+        dimensions: []
       }, {
         metric_name: "pkt4-parse-failed",
         timestamp: timestamp,
         value: 0,
-        dimensions: [
-          {
-            name: "TaskID",
-            value: "abc123",
-          }
-        ]
+        dimensions: []
       }, {
         metric_name: "pkt4-receive-drop",
         timestamp: timestamp,
         value: 0,
-        dimensions: [
-          {
-            name: "TaskID",
-            value: "abc123",
-          }
-        ]
+        dimensions: []
       }, {
         metric_name: "pkt4-received",
         timestamp: timestamp,
         value: 37,
-        dimensions: [
-          {
-            name: "TaskID",
-            value: "abc123",
-          }
-        ]
+        dimensions: []
       }, {
         metric_name: "pkt4-release-received",
         timestamp: timestamp,
         value: 0,
-        dimensions: [
-          {
-            name: "TaskID",
-            value: "abc123",
-          }
-        ]
+        dimensions: []
       }, {
         metric_name: "pkt4-request-received",
         timestamp: timestamp,
         value: 18,
-        dimensions: [
-          {
-            name: "TaskID",
-            value: "abc123",
-          }
-        ]
+        dimensions: []
       }, {
         metric_name: "pkt4-sent",
         timestamp: timestamp,
         value: 37,
-        dimensions: [
-          {
-            name: "TaskID",
-            value: "abc123",
-          }
-        ]
+        dimensions: []
       }, {
         metric_name: "pkt4-unknown-received",
         timestamp: timestamp,
         value: 0,
-        dimensions: [
-          {
-            name: "TaskID",
-            value: "abc123",
-          }
-        ]
+        dimensions: []
       }, {
         metric_name: "reclaimed-declined-addresses",
         timestamp: timestamp,
         value: 0,
-        dimensions: [
-          {
-            name: "TaskID",
-            value: "abc123",
-          }
-        ]
+        dimensions: []
       }, {
         metric_name: "reclaimed-leases",
         timestamp: timestamp,
         value: 0,
-        dimensions: [
-          {
-            name: "TaskID",
-            value: "abc123",
-          }
-        ]
+        dimensions: []
       }, {
         metric_name: "cumulative-assigned-addresses",
         timestamp: timestamp,
@@ -265,10 +162,6 @@ describe PublishMetrics do
           {
             name: "Subnet",
             value: "1018"
-          },
-          {
-            name: "TaskID",
-            value: "abc123"
           }
         ]
       }, {
@@ -280,10 +173,6 @@ describe PublishMetrics do
           {
             name: "Subnet",
             value: "1018"
-          },
-          {
-            name: "TaskID",
-            value: "abc123",
           }
         ]
       }, {
@@ -295,10 +184,6 @@ describe PublishMetrics do
           {
             name: "Subnet",
             value: "1018"
-          },
-          {
-            name: "TaskID",
-            value: "abc123",
           }
         ]
       }, {
@@ -310,10 +195,6 @@ describe PublishMetrics do
           {
             name: "Subnet",
             value: "1018"
-          },
-          {
-            name: "TaskID",
-            value: "abc123",
           }
         ]
       }, {
@@ -325,10 +206,6 @@ describe PublishMetrics do
           {
             name: "Subnet",
             value: "1018"
-          },
-          {
-            name: "TaskID",
-            value: "abc123",
           }
         ]
       }, {
@@ -340,10 +217,6 @@ describe PublishMetrics do
           {
             name: "Subnet",
             value: "1018"
-          },
-          {
-            name: "TaskID",
-            value: "abc123",
           }
         ]
       }, {
@@ -355,10 +228,6 @@ describe PublishMetrics do
           {
             name: "Subnet",
             value: "1"
-          },
-          {
-            name: "TaskID",
-            value: "abc123",
           }
         ]
       }, {
@@ -370,10 +239,6 @@ describe PublishMetrics do
             {
               name: "Subnet",
               value: "1"
-            },
-            {
-              name: "TaskID",
-              value: "abc123",
             }
           ]
       }, {
@@ -385,10 +250,6 @@ describe PublishMetrics do
           {
             name: "Subnet",
             value: "1"
-          },
-          {
-            name: "TaskID",
-            value: "abc123",
           }
         ]
       }, {
@@ -400,10 +261,6 @@ describe PublishMetrics do
           {
             name: "Subnet",
             value: "1"
-          },
-          {
-            name: "TaskID",
-            value: "abc123",
           }
         ]
       }, {
@@ -415,10 +272,6 @@ describe PublishMetrics do
           {
             name: "Subnet",
             value: "1"
-          },
-          {
-            name: "TaskID",
-            value: "abc123",
           }
         ]
       }, {
@@ -430,10 +283,6 @@ describe PublishMetrics do
           {
             name: "Subnet",
             value: "1"
-          },
-          {
-            name: "TaskID",
-            value: "abc123",
           }
         ]
       }, {
@@ -465,12 +314,10 @@ describe PublishMetrics do
   end
 
   it 'uses a different task id' do
-    ecs_metadata_client = double(execute: { task_id: "def789" })
 
     kea_stats = JSON.parse(File.read("./metrics/spec/fixtures/kea_api_stats_response_minimal.json"))
     result = described_class.new(
       client: client,
-      ecs_metadata_client: ecs_metadata_client,
       kea_lease_usage: kea_lease_usage
     ).execute(kea_stats: kea_stats)
 
@@ -479,12 +326,7 @@ describe PublishMetrics do
         metric_name: "cumulative-assigned-addresses",
         timestamp: timestamp,
         value: 0,
-        dimensions: [
-          {
-            name: "TaskID",
-            value: "def789",
-          }
-        ]
+        dimensions: []
       },{
       dimensions: [
         {
