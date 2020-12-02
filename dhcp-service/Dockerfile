@@ -19,8 +19,7 @@ RUN apk add bash curl mysql mysql-client && \
   rm glibc-${GLIBC_VER}.apk && \
   rm glibc-bin-${GLIBC_VER}.apk && \
   rm -rf /var/cache/apk/* && \
-  cp -r usr/share/kea/kea/scripts/ usr/share/kea/ && \
-  gem install bundler
+  cp -r usr/share/kea/kea/scripts/ usr/share/kea/
 
 COPY ./bootstrap.sh ./bootstrap.sh
 COPY ./config.json ./test_config.json
