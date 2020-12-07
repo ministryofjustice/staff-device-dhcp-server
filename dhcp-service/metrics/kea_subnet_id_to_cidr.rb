@@ -11,6 +11,8 @@ class KeaSubnetIdToCidr
 
   def config
     @config ||= kea_client.get_config[0]["arguments"]["Dhcp4"]["subnet4"]
+    p @config
+    @config
   end
 
   attr_reader :kea_client
