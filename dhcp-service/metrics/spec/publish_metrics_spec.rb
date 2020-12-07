@@ -1,7 +1,4 @@
-require 'rspec'
-require 'json'
-require 'timecop'
-require 'time'
+require_relative 'spec_helper'
 require_relative '../publish_metrics'
 
 describe PublishMetrics do
@@ -45,7 +42,7 @@ describe PublishMetrics do
   end
 
   it 'converts kea stats to cloudwatch metrics and calls the client to publish them' do
-    kea_stats = JSON.parse(File.read("./metrics/spec/fixtures/kea_api_stats_response.json"))
+    kea_stats = JSON.parse(File.read("#{RSPEC_ROOT}/fixtures/kea_api_stats_response.json"))
 
     result = described_class.new(
       client: client,
@@ -315,7 +312,7 @@ describe PublishMetrics do
 
   it 'uses a different task id' do
 
-    kea_stats = JSON.parse(File.read("./metrics/spec/fixtures/kea_api_stats_response_minimal.json"))
+    kea_stats = JSON.parse(File.read("#{RSPEC_ROOT}/fixtures/kea_api_stats_response_minimal.json"))
     result = described_class.new(
       client: client,
       kea_lease_usage: kea_lease_usage
