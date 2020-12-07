@@ -1,3 +1,4 @@
+require_relative 'spec_helper'
 require_relative '../aws_client'
 
 describe AwsClient do

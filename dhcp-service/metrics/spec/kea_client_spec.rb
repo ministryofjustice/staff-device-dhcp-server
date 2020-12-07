@@ -1,5 +1,4 @@
-require 'rspec'
-require 'webmock/rspec'
+require_relative 'spec_helper'
 require_relative "../kea_client"
 
 describe KeaClient do
