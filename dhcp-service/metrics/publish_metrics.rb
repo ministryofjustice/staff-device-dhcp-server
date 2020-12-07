@@ -1,9 +1,10 @@
 require 'time'
 
 class PublishMetrics
-  def initialize(client:, kea_lease_usage:)
+  def initialize(client:, kea_lease_usage:, kea_subnet_id_to_cidr:)
     @client = client
     @kea_lease_usage = kea_lease_usage
+    @kea_subnet_id_to_cidr = kea_subnet_id_to_cidr
     @time = DateTime.now.to_time.to_i
   end
 
@@ -34,8 +35,9 @@ class PublishMetrics
     metric[:dimensions] = []
 
     if subnet_metric?(metric_name)
+      subnet_cidr = subnet_id_to_cidr(row[0][/\d+/])
       metric_name = metric_name.split(".")[1]
-      metric[:dimensions] << { name: "Subnet", value: row[0][/\d+/] }
+      metric[:dimensions] << { name: "Subnet", value: subnet_cidr }
       metric[:timestamp] = @time
     end
 
@@ -46,6 +48,10 @@ class PublishMetrics
     metric
   end
 
+  def subnet_id_to_cidr(subnet_id)
+    kea_subnet_id_to_cidr.execute(subnet_id: subnet_id)
+  end
+
   def with_percent_used(metrics)
     percent_used_subnet_metrics = metrics.select do |metric|
       metric[:metric_name] == 'total-addresses'
@@ -54,16 +60,17 @@ class PublishMetrics
     end
 
     kea_lease_usage.execute.each do |kea_metric|
+      subnet_cidr = subnet_id_to_cidr(kea_metric.fetch(:subnet_id))
       metrics << {
         metric_name: "lease-percent-used",
         timestamp: @time,
         value: kea_metric.fetch(:usage_percentage),
-        dimensions: [ { name: "Subnet", value: kea_metric.fetch(:subnet_id).to_s } ]
+        dimensions: [ { name: "Subnet", value: subnet_cidr } ]
       }
     end
 
     metrics
   end
 
-  attr_reader :client, :kea_lease_usage
+  attr_reader :client, :kea_lease_usage, :kea_subnet_id_to_cidr
 end

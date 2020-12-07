@@ -24,6 +24,14 @@ describe PublishMetrics do
       ])
   end
 
+  let(:kea_client) do
+    double(get_config: JSON.parse(File.read("#{RSPEC_ROOT}/fixtures/kea_api_config_get_response.json")))
+  end
+
+  let(:kea_subnet_id_to_cidr) do
+    KeaSubnetIdToCidr.new(kea_client: kea_client)
+  end
+
   before do
     Timecop.freeze(time)
   end
@@ -36,7 +44,8 @@ describe PublishMetrics do
     expect {
       described_class.new(
         client: client,
-        kea_lease_usage: kea_lease_usage
+        kea_lease_usage: kea_lease_usage,
+        kea_subnet_id_to_cidr: kea_subnet_id_to_cidr
       ).execute(kea_stats: kea_stats)
     }.to raise_error('Kea stats are empty')
   end
@@ -46,7 +55,8 @@ describe PublishMetrics do
 
     result = described_class.new(
       client: client,
-      kea_lease_usage: kea_lease_usage
+      kea_lease_usage: kea_lease_usage,
+      kea_subnet_id_to_cidr: kea_subnet_id_to_cidr
     ).execute(kea_stats: kea_stats)
 
     expected_result = [
@@ -158,7 +168,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1018"
+            value: "192.0.2.0/24"
           }
         ]
       }, {
@@ -169,7 +179,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1018"
+            value: "192.0.2.0/24"
           }
         ]
       }, {
@@ -180,7 +190,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1018"
+            value: "192.0.2.0/24"
           }
         ]
       }, {
@@ -191,7 +201,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1018"
+            value: "192.0.2.0/24"
           }
         ]
       }, {
@@ -202,7 +212,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1018"
+            value: "192.0.2.0/24"
           }
         ]
       }, {
@@ -213,7 +223,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1018"
+            value: "192.0.2.0/24"
           }
         ]
       }, {
@@ -224,7 +234,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1"
+            value: "10.0.0.0/8"
           }
         ]
       }, {
@@ -235,7 +245,7 @@ describe PublishMetrics do
           [
             {
               name: "Subnet",
-              value: "1"
+              value: "10.0.0.0/8"
             }
           ]
       }, {
@@ -246,7 +256,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1"
+            value: "10.0.0.0/8"
           }
         ]
       }, {
@@ -257,7 +267,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1"
+            value: "10.0.0.0/8"
           }
         ]
       }, {
@@ -268,7 +278,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1"
+            value: "10.0.0.0/8"
           }
         ]
       }, {
@@ -279,7 +289,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1"
+            value: "10.0.0.0/8"
           }
         ]
       }, {
@@ -290,7 +300,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1"
+            value: "10.0.0.0/8"
           }
         ]
       }, {
@@ -301,7 +311,7 @@ describe PublishMetrics do
         [
           {
             name: "Subnet",
-            value: "1018"
+            value: "192.0.2.0/24"
           }
         ]
       }
@@ -315,7 +325,8 @@ describe PublishMetrics do
     kea_stats = JSON.parse(File.read("#{RSPEC_ROOT}/fixtures/kea_api_stats_response_minimal.json"))
     result = described_class.new(
       client: client,
-      kea_lease_usage: kea_lease_usage
+      kea_lease_usage: kea_lease_usage,
+      kea_subnet_id_to_cidr: kea_subnet_id_to_cidr
     ).execute(kea_stats: kea_stats)
 
     expected_result = [
@@ -328,7 +339,7 @@ describe PublishMetrics do
       dimensions: [
         {
           name: "Subnet",
-          value: "1"
+          value: "10.0.0.0/8"
         }
         ],
         metric_name: "lease-percent-used",
@@ -339,7 +350,7 @@ describe PublishMetrics do
         dimensions: [
           {
             name: "Subnet",
-            value:"1018"
+            value:"192.0.2.0/24"
           }
         ],
         metric_name: "lease-percent-used",

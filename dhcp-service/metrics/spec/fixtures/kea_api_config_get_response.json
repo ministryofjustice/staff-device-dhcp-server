@@ -146,7 +146,7 @@
 
             ],
             "store-extended-info":false,
-            "subnet":"127.0.0.1/16",
+            "subnet":"10.0.0.0/8",
             "t1-percent":0.5,
             "t2-percent":0.875,
             "valid-lifetime":4000
@@ -156,7 +156,7 @@
             "4o6-interface-id":"",
             "4o6-subnet":"",
             "calculate-tee-times":false,
-            "id":2,
+            "id":1018,
             "option-data":[
 
             ],
@@ -177,7 +177,7 @@
 
             ],
             "store-extended-info":false,
-            "subnet":"10.0.0.1/16",
+            "subnet":"192.0.2.0/24",
             "t1-percent":0.5,
             "t2-percent":0.875,
             "valid-lifetime":4000
