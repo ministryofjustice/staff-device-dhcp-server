@@ -18,10 +18,6 @@ class KeaClient
 
   def get_config
     @req.body = { command: "config-get", service: ["dhcp4"] }.to_json
-    result = JSON.parse(@http.request(@req).body)
-
-    p "config get result is: #{result["result"]}"
-    p "config get text is: #{result["text"]}"
-    result
+    JSON.parse(@http.request(@req).body)
   end
 end
