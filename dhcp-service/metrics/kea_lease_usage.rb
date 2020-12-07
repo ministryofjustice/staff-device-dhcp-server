@@ -1,7 +1,6 @@
 class KeaLeaseUsage
-  def initialize(kea_client:, kea_subnet_id_to_cidr:)
+  def initialize(kea_client:)
     @kea_client = kea_client
-    @kea_subnet_id_to_cidr = kea_subnet_id_to_cidr
   end
 
   def execute
@@ -13,7 +12,7 @@ class KeaLeaseUsage
       assigned_addresses = lease_stat[3]
 
       {
-        subnet_id: subnet_id_to_cidr(lease_stat[0]),
+        subnet_id: lease_stat[0],
         total_addresses: total_addresses,
         assigned_addresses: assigned_addresses,
         declined_addresses: lease_stat[4],
@@ -26,10 +25,6 @@ class KeaLeaseUsage
 
   def usage_percent(total_addresses, assigned_addresses)
     ((assigned_addresses.to_f / total_addresses.to_f) * 100).round
-  end
-
-  def subnet_id_to_cidr(subnet_id)
-    kea_subnet_id_to_cidr.execute(subnet_id: subnet_id)
   end
 
   attr_reader :kea_client, :kea_subnet_id_to_cidr
