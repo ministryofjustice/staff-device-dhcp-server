@@ -61,16 +61,6 @@ describe PublishMetrics do
 
     expected_result = [
       {
-        metric_name: "cumulative-assigned-addresses",
-        timestamp: timestamp,
-        value: 0,
-        dimensions: []
-      }, {
-        metric_name: "declined-addresses",
-        timestamp: timestamp,
-        value: 0,
-        dimensions: []
-      }, {
         metric_name: "pkt4-ack-received",
         timestamp: timestamp,
         value: 0,
@@ -126,11 +116,6 @@ describe PublishMetrics do
         value: 0,
         dimensions: []
       }, {
-        metric_name: "pkt4-received",
-        timestamp: timestamp,
-        value: 37,
-        dimensions: []
-      }, {
         metric_name: "pkt4-release-received",
         timestamp: timestamp,
         value: 0,
@@ -141,22 +126,7 @@ describe PublishMetrics do
         value: 18,
         dimensions: []
       }, {
-        metric_name: "pkt4-sent",
-        timestamp: timestamp,
-        value: 37,
-        dimensions: []
-      }, {
         metric_name: "pkt4-unknown-received",
-        timestamp: timestamp,
-        value: 0,
-        dimensions: []
-      }, {
-        metric_name: "reclaimed-declined-addresses",
-        timestamp: timestamp,
-        value: 0,
-        dimensions: []
-      }, {
-        metric_name: "reclaimed-leases",
         timestamp: timestamp,
         value: 0,
         dimensions: []
@@ -330,12 +300,7 @@ describe PublishMetrics do
     ).execute(kea_stats: kea_stats)
 
     expected_result = [
-      {
-        metric_name: "cumulative-assigned-addresses",
-        timestamp: timestamp,
-        value: 0,
-        dimensions: []
-      },{
+     {
       dimensions: [
         {
           name: "Subnet",
