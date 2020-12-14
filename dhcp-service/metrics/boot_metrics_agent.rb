@@ -12,7 +12,6 @@ kea_subnet_id_to_cidr = KeaSubnetIdToCidr.new(kea_client: kea_client)
 kea_lease_usage = KeaLeaseUsage.new(kea_client: kea_client)
 
 while true do
-  p "booting metrics agent"
   PublishMetrics.new(
     client: AwsClient.new,
      kea_lease_usage: kea_lease_usage,
