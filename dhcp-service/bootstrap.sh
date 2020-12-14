@@ -11,7 +11,8 @@ fetch_kea_config() {
   if [ "$LOCAL_DEVELOPMENT" == "true" ]; then
     cp ./test_config.json /etc/kea/config.json
   else
-    aws s3 cp s3://${KEA_CONFIG_BUCKET_NAME}/config.json /etc/kea/config.json
+    aws s3 cp s3://${KEA_CONFIG_BUCKET_NAME}/config.json /tmp/configurations/config.json
+    cp /tmp/configurations/config.json /etc/kea/config.json
   fi
 }
 
@@ -61,6 +62,10 @@ ensure_healthy_server() {
   fi
 }
 
+start_kea_config_reload_daemon(){
+  ./reload_config.sh &
+}
+
 main() {
   fetch_kea_config
   configure_database_credentials
@@ -76,6 +81,7 @@ main() {
 
   touch /tmp/kea_started
   boot_metrics_agent
+  start_kea_config_reload_daemon
   fg %2 #KEA is running as a daemon, bring it back as the essential task of the container now that testing is finished
 }
 
