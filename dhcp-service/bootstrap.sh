@@ -65,10 +65,10 @@ main() {
   init_schema_if_not_loaded
   boot_control_agent
   boot_server
-  # if ! [ "$LOCAL_DEVELOPMENT" == "true" ]; then
-  #   run_acceptance_test
-  #   ensure_healthy_server
-  # fi
+  if ! [ "$LOCAL_DEVELOPMENT" == "true" ]; then
+    run_acceptance_test
+    ensure_healthy_server
+  fi
   touch /tmp/kea_started
   boot_metrics_agent
   fg %2 #KEA is running as a daemon, bring it back as the essential task of the container now that testing is finished
