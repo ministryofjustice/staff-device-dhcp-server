@@ -106,6 +106,31 @@
       },
       {
         "library": "/usr/lib/kea/hooks/libdhcp_stat_cmds.so"
+      },
+      {
+        "library": "/usr/lib/kea/hooks/libdhcp_ha.so",
+        "parameters": {
+          "high-availability": [ {
+              "this-server-name": "<SERVER_NAME>",
+              "mode": "hot-standby",
+              "heartbeat-delay": 10000,
+              "max-response-delay": 10000,
+              "max-ack-delay": 5000,
+              "max-unacked-clients": 5,
+              "peers": [
+                   {
+                       "name": "primary",
+                       "url": "http://<PRIMARY_IP>:8000",
+                       "role": "primary"
+                   },
+                   {
+                       "name": "standby",
+                       "url": "http://<STANDBY_IP>:8000",
+                       "role": "standby"
+                   }
+               ]
+           } ]
+      }
       }
     ],
     // Multi threaded config for a mysql backend

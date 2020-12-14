@@ -14,6 +14,9 @@ services:
       DB_PASS: kea
       DB_HOST: db
       DB_PORT: 3306
+      SERVER_NAME: "primary"
+      PRIMARY_IP: "127.0.0.1"
+      STANDBY_IP: "127.0.0.2"
       LOCAL_DEVELOPMENT: "true"
     ports:
       - 67:67/udp
