@@ -15,6 +15,9 @@ services:
       DB_HOST: db
       DB_PORT: 3306
       LOCAL_DEVELOPMENT: "true"
+      SERVER_NAME: "primary"
+      PRIMARY_IP: "127.0.0.1"
+      STANDBY_IP: "128.0.0.2"
     ports:
       - 67:67/udp
       - 8000:8000
