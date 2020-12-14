@@ -22,6 +22,9 @@ configure_database_credentials() {
   sed -i "s/<DB_PASS>/$DB_PASS/g" /etc/kea/config.json
   sed -i "s/<DB_HOST>/$DB_HOST/g" /etc/kea/config.json
   sed -i "s/<DB_PORT>/$DB_PORT/g" /etc/kea/config.json
+  sed -i "s/<SERVER_NAME>/$SERVER_NAME/g" /etc/kea/config.json
+  sed -i "s/<PRIMARY_IP>/$PRIMARY_IP/g" /etc/kea/config.json
+  sed -i "s/<STANDBY_IP>/$STANDBY_IP/g" /etc/kea/config.json
 }
 
 init_schema_if_not_loaded() {
