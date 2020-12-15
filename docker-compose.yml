@@ -1,7 +1,7 @@
 version: "3"
 services:
   dhcp:
-    build: 
+    build:
       context: ./dhcp-service
       args:
         SHARED_SERVICES_ACCOUNT_ID: "${SHARED_SERVICES_ACCOUNT_ID}"
@@ -23,7 +23,7 @@ services:
       - ./dhcp-service/metrics/:/metrics
 
   dhcp-test:
-    build: 
+    build:
       context: ./dhcp-service
       args:
         SHARED_SERVICES_ACCOUNT_ID: "${SHARED_SERVICES_ACCOUNT_ID}"
@@ -39,8 +39,6 @@ services:
 
   db:
     image: "${SHARED_SERVICES_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com/dhcp-mysql:latest"
-    volumes:
-      - db_data:/var/lib/mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: password
@@ -49,9 +47,6 @@ services:
       MYSQL_DATABASE: kea
     ports:
     - 3306:3306
-
-volumes:
-  db_data: {}
 
 networks:
   default:
