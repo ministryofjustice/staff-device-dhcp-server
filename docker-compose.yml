@@ -1,6 +1,6 @@
 version: "3"
 services:
-  dhcp:
+  dhcp-primary:
     build:
       context: ./dhcp-service
       args:
@@ -16,14 +16,40 @@ services:
       DB_PORT: 3306
       LOCAL_DEVELOPMENT: "true"
       SERVER_NAME: "primary"
-      PRIMARY_IP: "127.0.0.1"
-      STANDBY_IP: "128.0.0.2"
+      PRIMARY_IP: "172.1.0.10"
+      STANDBY_IP: "172.1.0.11"
     ports:
       - 67:67/udp
       - 8000:8000
     volumes:
       - $HOME/.aws/credentials:/root/.aws/credentials:ro
       - ./dhcp-service/metrics/:/metrics
+    networks:
+      default:
+        ipv4_address: 172.1.0.10
+
+  dhcp-standby:
+    build:
+      context: ./dhcp-service
+      args:
+        SHARED_SERVICES_ACCOUNT_ID: "${SHARED_SERVICES_ACCOUNT_ID}"
+    environment:
+      INTERFACE: eth0
+      DB_NAME: kea
+      DB_USER: kea
+      DB_PASS: kea
+      DB_HOST: db
+      DB_PORT: 3306
+      LOCAL_DEVELOPMENT: "true"
+      SERVER_NAME: "standby"
+      PRIMARY_IP: "172.1.0.10"
+      STANDBY_IP: "172.1.0.11"
+    volumes:
+      - $HOME/.aws/credentials:/root/.aws/credentials:ro
+      - ./dhcp-service/metrics/:/metrics
+    networks:
+      default:
+        ipv4_address: 172.1.0.11
 
   dhcp-test:
     build:
@@ -33,7 +59,7 @@ services:
         EXTRA_BUNDLE_CONFIG: ""
     depends_on:
       - db
-      - dhcp
+      - dhcp-primary
     ports:
       - 68:68/udp
     volumes:
