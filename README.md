@@ -37,7 +37,7 @@ To run the tests locally run
 $ make test
 ```
 
-This will first clear out any leases in the local database. We run `perfdhcp` to emulate a number of clients and multiple [DORA](https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol#Operation) cycles. We then check how many leases have been created to ensure the server is operating as expected. The `dhcp_test.sh` will exit with a non zero exit code if all of the leases have not been created.
+This will first clear out any leases in the local database. We run `perfdhcp` to emulate a number of clients and multiple [DORA](https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol#Operation) cycles. We then check how many leases have been created to ensure the server is operating as expected. The `dhcp_test` will exit with a non zero exit code if all of the leases have not been created.
 
 ## Container Health Checks
 
