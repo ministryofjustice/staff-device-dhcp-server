@@ -1,10 +1,10 @@
 DOCKER_COMPOSE = docker-compose -f docker-compose.yml
 
 authenticate-docker:
-	./scripts/authenticate_docker
+	./scripts/authenticate_docker.sh
 
 check-container-registry-account-id:
-	./scripts/check_container_registry_account_id
+	./scripts/check_container_registry_account_id.sh
 
 build: check-container-registry-account-id
 	docker build -t docker_dhcp ./dhcp-service --build-arg SHARED_SERVICES_ACCOUNT_ID
@@ -33,7 +33,7 @@ build-dev:
 
 start-db: check-container-registry-account-id
 	$(DOCKER_COMPOSE) up -d db
-	./wait_for_db.sh
+	./scripts/wait_for_db.sh
 
 stop:
 	$(DOCKER_COMPOSE) down -v
@@ -44,7 +44,7 @@ run: start-db
 	$(DOCKER_COMPOSE) up -d dhcp-standby
 
 test: run build-dev
-	./wait_for_dhcp_server.sh
+	./scripts/wait_for_dhcp_server.sh
 	$(DOCKER_COMPOSE) run --rm dhcp-test rspec ./metrics/spec
 	$(DOCKER_COMPOSE) run --rm dhcp-test bash ./dhcp_test.sh
 
