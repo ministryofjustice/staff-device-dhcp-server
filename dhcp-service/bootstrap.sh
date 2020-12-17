@@ -3,10 +3,6 @@
 # TODO: Add -e flag for erroring. This will cause the kea-admin command to error if the database exists.
 set -m
 
-run_acceptance_test() {
-  perfdhcp -l lo $(hostname -i) -n 20 -r 2 -D 20% -R 10 > ./test_result
-}
-
 fetch_kea_config() {
   if [ "$LOCAL_DEVELOPMENT" == "true" ]; then
     cp ./test_config.json /etc/kea/config.json
@@ -55,16 +51,6 @@ boot_metrics_agent() {
   ruby ./metrics/boot_metrics_agent.rb &
 }
 
-ensure_healthy_server() {
-  received_packets=`cat ./test_result | grep "received packets: 0"`
-
-  if ! [[ -z $received_packets ]]; then
-    echo "Container did not pass local perfdhcp healthcheck"
-    cat ./test_result
-    exit 1
-  fi
-}
-
 start_kea_config_reload_daemon(){
   echo "Booting config reload agent"
   if [ "$LOCAL_DEVELOPMENT" != "true" ]; then
@@ -96,12 +82,6 @@ main() {
   init_schema_if_not_loaded
   boot_control_agent
   boot_server
-
-  if [[ "$SERVER_NAME" == "primary" ]]; then
-    run_acceptance_test
-    ensure_healthy_server
-  fi
-
   touch /tmp/kea_started
   boot_metrics_agent
   start_kea_config_reload_daemon
