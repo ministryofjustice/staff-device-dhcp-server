@@ -17,15 +17,15 @@ fetch_kea_config() {
 }
 
 configure_database_credentials() {
-  sed -i "s/<INTERFACE>/$INTERFACE/g" /etc/kea/config.json
-  sed -i "s/<DB_NAME>/$DB_NAME/g" /etc/kea/config.json
-  sed -i "s/<DB_USER>/$DB_USER/g" /etc/kea/config.json
-  sed -i "s/<DB_PASS>/$DB_PASS/g" /etc/kea/config.json
-  sed -i "s/<DB_HOST>/$DB_HOST/g" /etc/kea/config.json
-  sed -i "s/<DB_PORT>/$DB_PORT/g" /etc/kea/config.json
-  sed -i "s/<SERVER_NAME>/$SERVER_NAME/g" /etc/kea/config.json
-  sed -i "s/<PRIMARY_IP>/$PRIMARY_IP/g" /etc/kea/config.json
-  sed -i "s/<STANDBY_IP>/$STANDBY_IP/g" /etc/kea/config.json
+  sed -i "s/<INTERFACE>/$INTERFACE/g" $1
+  sed -i "s/<DB_NAME>/$DB_NAME/g" $1
+  sed -i "s/<DB_USER>/$DB_USER/g" $1
+  sed -i "s/<DB_PASS>/$DB_PASS/g" $1
+  sed -i "s/<DB_HOST>/$DB_HOST/g" $1
+  sed -i "s/<DB_PORT>/$DB_PORT/g" $1
+  sed -i "s/<SERVER_NAME>/$SERVER_NAME/g" $1
+  sed -i "s/<PRIMARY_IP>/$PRIMARY_IP/g" $1
+  sed -i "s/<STANDBY_IP>/$STANDBY_IP/g" $1
 }
 
 init_schema_if_not_loaded() {
@@ -67,25 +67,27 @@ start_kea_config_reload_daemon(){
     while [ true ]; do
       echo "Checking for new configurations..."
       aws s3 sync s3://${KEA_CONFIG_BUCKET_NAME} /tmp/configurations --exclude "*" --include "config.json"
+      configure_database_credentials /tmp/configurations/config.json
       cmp -s /etc/kea/config.json /tmp/configurations/config.json
 
       if [ $? -ne 0 ]; then
         echo "Configuration changes detected. Copying in place and updating Kea"
         cp /tmp/configurations/config.json /etc/kea/config.json
-        configure_database_credentials
         curl -X "POST" "http://localhost:8000/" \
             -H 'Content-Type: application/json' \
             -d '{"command": "config-reload"}'
       else
         echo "No configuration changes detected"
       fi
+
+      sleep 300
     done
   fi
 }
 
 main() {
   fetch_kea_config
-  configure_database_credentials
+  configure_database_credentials /etc/kea/config.json
   ensure_database_permissions
   init_schema_if_not_loaded
   boot_control_agent
