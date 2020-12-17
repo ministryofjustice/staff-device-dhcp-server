@@ -16,11 +16,26 @@ assume_deploy_role() {
 
 deploy() {
   cluster_name=$( jq -r '.dhcp.ecs.cluster_name' <<< "${DHCP_DNS_TERRAFORM_OUTPUTS}" )
-  service_name=$( jq -r '.dhcp.ecs.service_name' <<< "${DHCP_DNS_TERRAFORM_OUTPUTS}" )
+  primary_service_name=$( jq -r '.dhcp.ecs.service_name' <<< "${DHCP_DNS_TERRAFORM_OUTPUTS}" )
+  standby_service_name=$( jq -r '.dhcp_standby.ecs.service_name' <<< "${DHCP_DNS_TERRAFORM_OUTPUTS}" )
+  api_service_name=$( jq -r '.dhcp_api.ecs.service_name' <<< "${DHCP_DNS_TERRAFORM_OUTPUTS}" )
 
+  echo "deploying KEA Standby"
   aws ecs update-service \
     --cluster $cluster_name \
-    --service $service_name \
+    --service $standby_service_name \
+    --force-new-deployment
+
+  echo "deploying KEA API"
+  aws ecs update-service \
+    --cluster $cluster_name \
+    --service $api_service_name \
+    --force-new-deployment
+
+  echo "deploying KEA PRIMARY"
+  aws ecs update-service \
+    --cluster $cluster_name \
+    --service $primary_service_name \
     --force-new-deployment
 }
 
