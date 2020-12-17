@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -euo pipefail
-
 printf "Waiting for Primary KEA DHCP server"
 
 count=0
