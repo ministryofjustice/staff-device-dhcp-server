@@ -5,7 +5,7 @@
 # Auto scaling will detect that there are too many tasks running for the current load and slowly start decomissioning the old running tasks
 # Production traffic will gradually be moved to the new running tasks
 
-set -veuo pipefail
+set -euo pipefail
 
 assume_deploy_role() {
   TEMP_ROLE=`aws sts assume-role --role-arn $ROLE_ARN --role-session-name ci-dhcp-deploy-$CODEBUILD_BUILD_NUMBER`

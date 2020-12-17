@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -veuo pipefail
+set -euo pipefail
 
 printf "Waiting for database to be ready"
 until docker-compose exec -T db mysql -hdb -uroot -ppassword -e 'SELECT 1' &> /dev/null

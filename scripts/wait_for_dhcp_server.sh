@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -veuo pipefail
+set -euo pipefail
 
 printf "Waiting for Primary KEA DHCP server"
 
