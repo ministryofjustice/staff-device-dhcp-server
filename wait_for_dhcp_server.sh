@@ -1,8 +1,8 @@
 #!/bin/bash
-printf "Waiting for KEA DHCP server"
+printf "Waiting for Primary KEA DHCP server"
 
 count=0
-until docker-compose exec -T dhcp ls /tmp/kea_started 2> /dev/null
+until docker-compose exec -T dhcp-primary ls /tmp/kea_started 2> /dev/null
 do
   printf "."
   sleep 1

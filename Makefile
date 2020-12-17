@@ -39,7 +39,9 @@ stop:
 	$(DOCKER_COMPOSE) down -v
 
 run: start-db
-	$(DOCKER_COMPOSE) up -d dhcp
+	$(DOCKER_COMPOSE) up -d dhcp-primary
+	./wait_for_dhcp_server.sh
+	$(DOCKER_COMPOSE) up -d dhcp-standby
 
 test: run build-dev
 	./wait_for_dhcp_server.sh
@@ -47,7 +49,7 @@ test: run build-dev
 	$(DOCKER_COMPOSE) run --rm dhcp-test bash ./dhcp_test.sh
 
 shell: start-db
-	$(DOCKER_COMPOSE) run --rm dhcp sh
+	$(DOCKER_COMPOSE) run --rm dhcp-primary sh
 
 shell-test: start-db
 	$(DOCKER_COMPOSE) run --rm dhcp-test sh
