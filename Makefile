@@ -40,7 +40,7 @@ stop:
 
 run: start-db
 	$(DOCKER_COMPOSE) up -d dhcp-primary
-	./wait_for_dhcp_server.sh
+	./scripts/wait_for_dhcp_server.sh
 	$(DOCKER_COMPOSE) up -d dhcp-standby
 
 test: run build-dev
