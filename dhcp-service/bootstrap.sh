@@ -41,10 +41,12 @@ ensure_database_permissions() {
 }
 
 boot_control_agent() {
+  echo "Booting control agent"
   kea-ctrl-agent -c /etc/kea/control-agent-config.json &
 }
 
 boot_server() {
+  echo "Booting dhcpv4 server"
   kea-dhcp4 -c /etc/kea/config.json &
 }
 
@@ -64,6 +66,7 @@ ensure_healthy_server() {
 }
 
 start_kea_config_reload_daemon(){
+  echo "Booting config reload agent"
   if [ "$LOCAL_DEVELOPMENT" != "true" ]; then
     while [ true ]; do
       echo "Checking for new configurations..."
