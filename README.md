@@ -2,7 +2,7 @@
 
 This folder contains the Dockerfile to create the [ISC Kea](https://www.isc.org/kea/) DHCP server docker image.
 
-This image is pushed up to [Amazon ECR](https://aws.amazon.com/ecr/).
+This image is published to [Amazon ECR](https://aws.amazon.com/ecr/).
 
 ## Getting started
 
