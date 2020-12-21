@@ -1,8 +1,8 @@
 # DHCP Docker Image
 
-This folder contains the dockerfile to create the [ISC Kea](https://www.isc.org/kea/) DHCP server docker image.
+This folder contains the Dockerfile to create the [ISC Kea](https://www.isc.org/kea/) DHCP server docker image.
 
-This images is pushed up to [Amazon ECR](https://aws.amazon.com/ecr/).
+This image is published to [Amazon ECR](https://aws.amazon.com/ecr/).
 
 ## Getting started
 
@@ -15,11 +15,12 @@ To get started with development you will need:
 
 The Docker base image is stored in ECR. Before you can build the app you need to authenticate Docker to the ECR registry. [Details can be found here](https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth).
 
-If you have aws-vault set up with credentials for shared services, you can do the following to authenticates:
+If you have  [aws-vault](https://github.com/99designs/aws-vault#installing) set up with credentials for shared services, you can do the following to authenticate:
 
 ```bash
-aws-vault exec SHARED_SERVICES_VAULT_PROFILE_NAME -- aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin SHARED_SERVICES_ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com
+aws-vault exec <SHARED_SERVICES_VAULT_PROFILE_NAME> -- aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin <SHARED_SERVICES_ACCOUNT_ID>.dkr.ecr.eu-west-2.amazonaws.com
 ```
+Replace `<SHARED_SERVICES_VAULT_PROFILE_NAME>` and `<SHARED_SERVICES_ACCOUNT_ID>` in the command above with the profile name and ID of the shared services account configured in aws-vault.
 
 ### Running locally
 
@@ -41,7 +42,7 @@ This will first clear out any leases in the local database. We run `perfdhcp` to
 
 ## Container Health Checks
 
-To ensure that an invalid task does not get into the production ecs cluster, a boostrap script has been writen. This uses `perfdhcp` to ensure that an IP can be leased. If this fails, a notification will be sent to the critical notifcation topic and forwarded to developers. This check is not done locally.
+To ensure that an invalid task does not get into the production ECS cluster, a bootstrap script has been written. This uses `perfdhcp` to ensure that an IP can be leased. If this fails, a notification will be sent to the SNS critical notification topic and forwarded to subscribers. This check is not performed locally.
 
 ## Manual Testing
 
@@ -49,7 +50,7 @@ To ensure that an invalid task does not get into the production ecs cluster, a b
 - Run
   `sudo nmap --script broadcast-dhcp-discover -e <NETWORK_INTERFACE>`
 
-  - The dhcp server should respond with an offer. EG:
+  - The DHCP server should respond with an offer, e.g:
 
   ```bash
     Starting Nmap 7.80 ( https://nmap.org ) at 2020-07-28 14:53 BST
@@ -71,17 +72,17 @@ At the time of writing, the stable release for ISC Kea is [version 1.6](https://
 
 ## Monitoring
 
-Metrics for the KEA Servers are displayed in the [IMA Grafana dashboard](https://github.com/ministryofjustice/staff-infrastructure-monitoring).
-The JSON that makes up the dashboard is stored in this repo, when updates are made, the JSON needs to be saved and tracked with version control.
+Metrics for the Kea servers are displayed in the [IMA Grafana dashboard](https://github.com/ministryofjustice/staff-infrastructure-monitoring-config/blob/main/integrations/staff-device-dns-dhcp-infrastructure/dashboards/dhcp/dhcp_template.json).
+The JSON configuration file for the dashboard is stored in this repo, when updates are made, the JSON needs to be saved and tracked with version control.
 
 The metrics categories are:
 
   - AWS Service metrics
-  - KEA Network metrics
-  - KEA Subnet metrics
+  - Kea Network metrics
+  - Kea Subnet metrics
 
 ![Grafana Dashboard](./documentation/images/dashboard.png)
 
 ## Considerations
 
-KEA currently does not support connecting to the database over SSL. See [kea#15](https://github.com/isc-projects/kea/pull/15)
+Kea currently does not support connecting to the database over SSL. See [kea#15](https://github.com/isc-projects/kea/pull/15)
