@@ -42,7 +42,7 @@ This will first clear out any leases in the local database. We run `perfdhcp` to
 
 ## Container Health Checks
 
-To ensure that an invalid task does not get into the production ECS cluster, a bootstrap script has been written. This uses `perfdhcp` to ensure that an IP can be leased. If this fails, a notification will be sent to the critical notification topic and forwarded to developers. This check is not done locally.
+To ensure that an invalid task does not get into the production ECS cluster, a bootstrap script has been written. This uses `perfdhcp` to ensure that an IP can be leased. If this fails, a notification will be sent to the SNS critical notification topic and forwarded to subscribers. This check is not performed locally.
 
 ## Manual Testing
 
