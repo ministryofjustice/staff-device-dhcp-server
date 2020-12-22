@@ -41,3 +41,10 @@ The passive backup configuration was discounted on the grounds that leases will 
 
 From the [Kea documentation](https://kea.readthedocs.io/en/latest/arm/hooks.html#supported-configurations):
 > *... The passive-backup configuration is used in situations when an administrator wants to take advantage of the backup servers as an additional storage for leases without a need for running the fully blown failover setup. In this case, if the primary server fails, the DHCP service is lost and it requires that the administrator manually starts the primary to resume the DHCP service. ...*
+
+## References
+
+- [Kea High Availability vs ISC DHCP Failover](https://kb.isc.org/docs/aa-01617) (Retrieved December 22, 2020)
+- [Kea 1.4 Adds High-Availability Mode](https://www.isc.org/blogs/kea-1-4-adds-high-availability-mode/) (Retrieved December 22, 2020)
+- [High Availability in Kea 1.4.0 - Design](https://gitlab.isc.org/isc-projects/kea/-/wikis/designs/High-Availability-Design) (Retrieved December 22, 2020)
+- [Kea documentation. 16.15. ha: High Availability](https://kea.readthedocs.io/en/kea-1.8.1/arm/hooks.html#high-availability-library) (Retrieved December 22, 2020)
