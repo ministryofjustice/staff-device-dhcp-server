@@ -1,6 +1,6 @@
 # DHCP Docker Image
 
-This folder contains the Dockerfile to create the [ISC Kea](https://www.isc.org/kea/) DHCP server docker image.
+This repository contains the Dockerfile to create the [ISC Kea](https://www.isc.org/kea/) DHCP server docker image.
 
 This image is published to [Amazon ECR](https://aws.amazon.com/ecr/).
 
