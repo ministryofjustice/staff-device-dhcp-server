@@ -17,7 +17,7 @@ In the event the primary server becomes unavailable, the secondary is configured
 
 The instances are linked via a known management communication channel. Each servers' communication channel is routed via it's dedicated load balancer meaning that servers can be restarted or replaced while maintaining a consistent control channel address.
 
-Server instances are provisioned using [AWS Fargate](https://aws.amazon.com/fargate/) to benefit from existing capabilities such as container deployment and health monitoring. Scalability is achieved by editing the terraform `aws_ecs_task_definition` (defined in the [infrastructure repository](https://github.com/ministryofjustice/staff-device-dns-dhcp-infrastructure)) then running the deployment pipeline. Our experiments indicate that these scaling operations, using Fargate capabilities, are minimal impact. 
+Server instances are provisioned using [AWS Fargate](https://aws.amazon.com/fargate/) to benefit from existing capabilities such as container deployment and health monitoring. Scalability is achieved by editing the terraform `aws_ecs_task_definition` (defined in the [infrastructure repository](https://github.com/ministryofjustice/staff-device-dns-dhcp-infrastructure)) then running the deployment pipeline. Initial experiments indicate that these scaling operations, using Fargate capabilities, are minimal impact. 
 
 ## Discounted Configurations
 
