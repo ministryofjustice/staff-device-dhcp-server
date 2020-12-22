@@ -11,9 +11,13 @@ Kea is configured to run in [hot-standby mode](https://kea.readthedocs.io/en/kea
 
 The hot standby configuration mandates a two server architecture containing a __primary__ and __secondary__ server. The primary server handles DHCP traffic while the secondary silently ignores requests.
 
-In the event the primary server becomes unavailable, the secondary will be configured to automatically assume the primary role and handle DHCP traffic.
+In this architecture, both servers are provided with identical configuration files, except for the `this-server-name` attribute, identifying the primary and secondary roles of instances.
 
-The instances are linked via a known management communication channel. Each servers' communication channel is routed via it's load balancer meaning that servers can be restarted or replaced while maintaining a consistent control channel address.
+In the event the primary server becomes unavailable, the secondary is configured to automatically assume the primary role and handle DHCP traffic.
+
+The instances are linked via a known management communication channel. Each servers' communication channel is routed via it's dedicated load balancer meaning that servers can be restarted or replaced while maintaining a consistent control channel address.
+
+Server instances are provisioned using [AWS Fargate](https://aws.amazon.com/fargate/) to benefit from existing capabilities such as container deployment and health monitoring. Scalability is achieved by editing the terraform `aws_ecs_task_definition` and running the pipeline. Our experiments indicate that these scaling operations, using Fargate capabilities, are minimal impact. 
 
 ## Discounted Configurations
 
