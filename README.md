@@ -1,8 +1,16 @@
 # DHCP Docker Image
 
-This folder contains the Dockerfile to create the [ISC Kea](https://www.isc.org/kea/) DHCP server docker image.
+This repository contains the Dockerfile to create the [ISC Kea](https://www.isc.org/kea/) DHCP server docker image.
 
 This image is published to [Amazon ECR](https://aws.amazon.com/ecr/).
+
+## ISC Kea version
+
+At the time of writing, the stable release for ISC Kea is [version 1.8.x](https://cloudsmith.io/~isc/repos/kea-1-8/packages/).
+
+## ISC Kea High Availability
+
+Kea is configured to run in [hot-standby mode](https://kea.readthedocs.io/en/kea-1.8.1/arm/hooks.html#hot-standby-configuration). Discussion of the implementation can be found [here](./documentation/high-availability.md).
 
 ## Getting started
 
@@ -13,20 +21,20 @@ To get started with development you will need:
 
 ### Authenticating Docker with AWS ECR
 
-The Docker base image is stored in ECR. Before you can build the app you need to authenticate Docker to the ECR registry. [Details can be found here](https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth).
+The Docker base image is stored in ECR. Prior to building the container you must authenticate Docker to the ECR registry. [Details can be found here](https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth).
 
-If you have  [aws-vault](https://github.com/99designs/aws-vault#installing) set up with credentials for shared services, you can do the following to authenticate:
+If you have [aws-vault](https://github.com/99designs/aws-vault#installing) configured with credentials for shared services, do the following to authenticate:
 
 ```bash
 aws-vault exec <SHARED_SERVICES_VAULT_PROFILE_NAME> -- aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin <SHARED_SERVICES_ACCOUNT_ID>.dkr.ecr.eu-west-2.amazonaws.com
 ```
 Replace `<SHARED_SERVICES_VAULT_PROFILE_NAME>` and `<SHARED_SERVICES_ACCOUNT_ID>` in the command above with the profile name and ID of the shared services account configured in aws-vault.
 
-### Running locally
+### Running Locally
 
 See the target `run` in the [Makefile](./Makefile)
 
-### Deploying to production
+### Deploying to Production
 
 Deployments are automated in the CI pipeline. See [buildspec.yml](./buildspec.yml)
 
@@ -38,7 +46,7 @@ To run the tests locally run
 $ make test
 ```
 
-This will first clear out any leases in the local database. We run `perfdhcp` to emulate a number of clients and multiple [DORA](https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol#Operation) cycles. We then check how many leases have been created to ensure the server is operating as expected. The `dhcp_test.sh` will exit with a non zero exit code if all of the leases have not been created.
+This will first clear out any leases in the local database. `perfdhcp` is used to emulate a number of clients and multiple [DORA](https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol#Operation) cycles. The number of created leases is checked to ensure the server is operating as expected. The [dhcp_test.sh](./dhcp_test.sh) script will exit with a non zero code if the expected number of leases were not created.
 
 ## Container Health Checks
 
@@ -65,10 +73,6 @@ To ensure that an invalid task does not get into the production ECS cluster, a b
     WARNING: No targets were specified, so 0 hosts scanned.
     Nmap done: 0 IP addresses (0 hosts up) scanned in 0.53 seconds
   ```
-
-## ISC Kea version
-
-At the time of writing, the stable release for ISC Kea is [version 1.6](https://cloudsmith.io/~isc/repos/kea-1-6/packages/).
 
 ## Monitoring
 
