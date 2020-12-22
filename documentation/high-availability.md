@@ -23,7 +23,7 @@ Server instances are provisioned using [AWS Fargate](https://aws.amazon.com/farg
 
 Irrespective of the selected load balancing strategy, lease information needs to be persisted across server deployments and restarts. An in-memory implementation is potentially slower during (re)starts as it requires the Kea servers to synch before coming online and requires that at least one server is always running.
 
-The [Kea documentation](https://gitlab.isc.org/isc-projects/kea/-/wikis/designs/High-Availability-Design#central-lease-database) regarding lease databases states:
+The [Kea documentation](https://gitlab.isc.org/isc-projects/kea/-/wikis/designs/High-Availability-Design#central-lease-database) details that the lease synch step is skipped, meaning servers come online faster:
 > *... When one of the servers (primary, standby, or load balancing) comes back online after a failure, it follows similar procedure to enable the DHCP service as described in previous sections, except that it doesn't synchronize the lease database with the peers. It transitions directly to the ''ready'' state (bypassing ''syncing'' state). ...*
 
 The lease database will be implemented using AWS RDS to reduce management overhead, using built in RDS backup functionality.
