@@ -17,7 +17,17 @@ In the event the primary server becomes unavailable, the secondary is configured
 
 The instances are linked via a known management communication channel. Each servers' communication channel is routed via it's dedicated load balancer meaning that servers can be restarted or replaced while maintaining a consistent control channel address.
 
-Server instances are provisioned using [AWS Fargate](https://aws.amazon.com/fargate/) to benefit from existing capabilities such as container deployment and health monitoring. Scalability is achieved by editing the terraform `aws_ecs_task_definition` (defined in the [infrastructure repository](https://github.com/ministryofjustice/staff-device-dns-dhcp-infrastructure)) then running the deployment pipeline. Initial experiments indicate that these scaling operations, using Fargate capabilities, are minimal impact. 
+Server instances are provisioned using [AWS Fargate](https://aws.amazon.com/fargate/) to benefit from existing capabilities such as container deployment and health monitoring. Scalability is achieved by editing the terraform `aws_ecs_task_definition` (defined in the [infrastructure repository](https://github.com/ministryofjustice/staff-device-dns-dhcp-infrastructure)) then running the deployment pipeline. Initial experiments indicate that these scaling operations, using Fargate capabilities, are minimal impact.
+
+## Shared Lease Database
+
+Irrespective of the selected load balancing strategy, lease information needs to be persisted across server deployments and restarts. An in-memory implementation is potentially slower during (re)starts as it requires the Kea servers to synch before coming online and requires that at least one server is always running.
+
+The [Kea documentation](https://gitlab.isc.org/isc-projects/kea/-/wikis/designs/High-Availability-Design#central-lease-database) regarding lease databases states:
+> *... When one of the servers (primary, standby, or load balancing) comes back online after a failure, it follows similar procedure to enable the DHCP service as described in previous sections, except that it doesn't synchronize the lease database with the peers. It transitions directly to the ''ready'' state (bypassing ''syncing'' state). ...*
+
+The lease database will be implemented using AWS RDS to reduce management overhead, using built in RDS backup functionality.
+
 
 ## Discounted Configurations
 
