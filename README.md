@@ -68,7 +68,7 @@ To ensure that an invalid task does not get into the production ECS cluster, a b
 
 ## ISC Kea version
 
-At the time of writing, the stable release for ISC Kea is [version 1.6](https://cloudsmith.io/~isc/repos/kea-1-6/packages/).
+At the time of writing, the stable release for ISC Kea is [version 1.8.x](https://cloudsmith.io/~isc/repos/kea-1-8/packages/).
 
 ## Monitoring
 
