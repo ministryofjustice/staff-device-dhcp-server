@@ -4,6 +4,14 @@ This folder contains the Dockerfile to create the [ISC Kea](https://www.isc.org/
 
 This image is published to [Amazon ECR](https://aws.amazon.com/ecr/).
 
+## ISC Kea version
+
+At the time of writing, the stable release for ISC Kea is [version 1.8.x](https://cloudsmith.io/~isc/repos/kea-1-8/packages/).
+
+## ISC Kea High Availability
+
+Kea is configured to run in [hot-standby mode](https://kea.readthedocs.io/en/kea-1.8.1/arm/hooks.html#hot-standby-configuration). Discussion of the implementation can be found [here](./documentation/high-availability.md).
+
 ## Getting started
 
 To get started with development you will need:
@@ -65,14 +73,6 @@ To ensure that an invalid task does not get into the production ECS cluster, a b
     WARNING: No targets were specified, so 0 hosts scanned.
     Nmap done: 0 IP addresses (0 hosts up) scanned in 0.53 seconds
   ```
-
-## ISC Kea version
-
-At the time of writing, the stable release for ISC Kea is [version 1.8.x](https://cloudsmith.io/~isc/repos/kea-1-8/packages/).
-
-## ISC Kea High Availability
-
-Kea is configured to run in [hot-standby mode](https://kea.readthedocs.io/en/kea-1.8.1/arm/hooks.html#hot-standby-configuration). Further detail of the design can be found [here](./documentation/high-availability.md).
 
 ## Monitoring
 
