@@ -60,4 +60,4 @@ logs:
 implode:
 	$(DOCKER_COMPOSE) rm
 
-.PHONY: build publish test shell stop start-db build-dev deploy
+.PHONY: build push publish deploy build-dev start-db stop run test shell shell-test logs implode authenticate-docker check-container-registry-account-id
