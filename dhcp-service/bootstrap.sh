@@ -83,7 +83,9 @@ main() {
   boot_control_agent
   boot_server
   touch /tmp/kea_started
-  boot_metrics_agent
+  if [[ "$SERVER_NAME" == "primary" || "$SERVER_NAME" == "standby" ]]; then
+    boot_metrics_agent
+  fi
   start_kea_config_reload_daemon
   fg %2 #KEA is running as a daemon, bring it back as the essential task of the container now that testing is finished
 }
