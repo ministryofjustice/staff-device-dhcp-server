@@ -11,7 +11,7 @@ class AwsClient
   def put_metric_data(metrics)
     sliced(metrics).each do |metrics_slice|
       client.put_metric_data(
-        namespace: "DHCP-Kea-Server",
+        namespace: "DHCP-Kea-Service",
         metric_data: metrics_slice
       )
     end
