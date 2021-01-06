@@ -48,10 +48,7 @@ boot_server() {
 
 boot_metrics_agent() {
   echo "Booting metrics agent"
-  while true; do
-    ruby ./metrics/boot_metrics_agent.rb
-    sleep 10;
-  done &
+  ruby ./metrics/boot_metrics_agent.rb &
 }
 
 start_kea_config_reload_daemon(){
