@@ -32,17 +32,9 @@ class PublishMetrics
     value = values[0][0]
     date = values[0][1]
 
-    return if IGNORED_METRICS.include?(metric_name)
+    return if IGNORED_METRICS.include?(metric_name) or subnet_metric?(metric_name)
 
     metric[:dimensions] = []
-
-    if subnet_metric?(metric_name)
-      subnet_cidr = subnet_id_to_cidr(row[0][/\d+/])
-      metric_name = metric_name.split(".")[1]
-      metric[:dimensions] << { name: "Subnet", value: subnet_cidr }
-      metric[:timestamp] = @time
-    end
-
     metric[:metric_name] = metric_name
     metric[:timestamp] = @time
     metric[:value] = value
@@ -55,12 +47,6 @@ class PublishMetrics
   end
 
   def with_percent_used(metrics)
-    percent_used_subnet_metrics = metrics.select do |metric|
-      metric[:metric_name] == 'total-addresses'
-    end.group_by do |metric|
-      metric[:dimensions].select { |d| d[:name] == 'Subnet' }.first[:value]
-    end
-
     kea_lease_usage.execute.each do |kea_metric|
       subnet_cidr = subnet_id_to_cidr(kea_metric.fetch(:subnet_id))
       metrics << {
@@ -75,14 +61,12 @@ class PublishMetrics
   end
 
   IGNORED_METRICS = [
-    "cumulative-assigned-addresses",
     "pkt4-sent",
+    "pkt4-inform-received",
+    "pkt4-parse-failed",
     "pkt4-received",
-    "cumulative-assigned-addresses",
-    "declined-addresses",
     "declined-reclaimed-addresses",
-    "reclaimed-declined-addresses",
-    "reclaimed-leases"
+    "total-addresses"
   ]
 
   attr_reader :client, :kea_lease_usage, :kea_subnet_id_to_cidr

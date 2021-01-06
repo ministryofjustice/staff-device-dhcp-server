@@ -60,7 +60,17 @@ describe PublishMetrics do
     ).execute(kea_stats: kea_stats)
 
     expected_result = [
-      {
+    {
+        metric_name: "cumulative-assigned-addresses",
+        timestamp: timestamp,
+        value: 0,
+        dimensions: []
+      }, {
+        metric_name: "declined-addresses",
+        timestamp: timestamp,
+        value: 0,
+        dimensions: []
+      }, {
         metric_name: "pkt4-ack-received",
         timestamp: timestamp,
         value: 0,
@@ -79,11 +89,6 @@ describe PublishMetrics do
         metric_name: "pkt4-discover-received",
         timestamp: timestamp,
         value: 19,
-        dimensions: []
-      }, {
-        metric_name: "pkt4-inform-received",
-        timestamp: timestamp,
-        value: 0,
         dimensions: []
       }, {
         metric_name: "pkt4-nak-received",
@@ -106,11 +111,6 @@ describe PublishMetrics do
         value: 19,
         dimensions: []
       }, {
-        metric_name: "pkt4-parse-failed",
-        timestamp: timestamp,
-        value: 0,
-        dimensions: []
-      }, {
         metric_name: "pkt4-receive-drop",
         timestamp: timestamp,
         value: 0,
@@ -131,137 +131,15 @@ describe PublishMetrics do
         value: 0,
         dimensions: []
       }, {
-        metric_name: "cumulative-assigned-addresses",
-        timestamp: timestamp,
-        value: 0,
-        dimensions:
-        [
-          {
-            name: "Subnet",
-            value: "192.0.2.0/24"
-          }
-        ]
-      }, {
-        metric_name: "declined-addresses",
-        timestamp: timestamp,
-        value: 0,
-        dimensions:
-        [
-          {
-            name: "Subnet",
-            value: "192.0.2.0/24"
-          }
-        ]
-      }, {
         metric_name: "reclaimed-declined-addresses",
         timestamp: timestamp,
         value: 0,
-        dimensions:
-        [
-          {
-            name: "Subnet",
-            value: "192.0.2.0/24"
-          }
-        ]
+        dimensions: []
       }, {
         metric_name: "reclaimed-leases",
         timestamp: timestamp,
         value: 0,
-        dimensions:
-        [
-          {
-            name: "Subnet",
-            value: "192.0.2.0/24"
-          }
-        ]
-      }, {
-        metric_name: "total-addresses",
-        timestamp: timestamp,
-        value: 255,
-        dimensions:
-        [
-          {
-            name: "Subnet",
-            value: "192.0.2.0/24"
-          }
-        ]
-      }, {
-        metric_name: "assigned-addresses",
-        timestamp: timestamp,
-        value: 25,
-        dimensions:
-        [
-          {
-            name: "Subnet",
-            value: "192.0.2.0/24"
-          }
-        ]
-      }, {
-        metric_name: "assigned-addresses",
-        timestamp: timestamp,
-        value: 10,
-        dimensions:
-        [
-          {
-            name: "Subnet",
-            value: "10.0.0.0/8"
-          }
-        ]
-      }, {
-        metric_name: "cumulative-assigned-addresses",
-        timestamp: timestamp,
-        value: 0,
-        dimensions:
-          [
-            {
-              name: "Subnet",
-              value: "10.0.0.0/8"
-            }
-          ]
-      }, {
-        metric_name: "declined-addresses",
-        timestamp: timestamp,
-        value: 0,
-        dimensions:
-        [
-          {
-            name: "Subnet",
-            value: "10.0.0.0/8"
-          }
-        ]
-      }, {
-        metric_name: "reclaimed-declined-addresses",
-        timestamp: timestamp,
-        value: 0,
-        dimensions:
-        [
-          {
-            name: "Subnet",
-            value: "10.0.0.0/8"
-          }
-        ]
-      }, {
-        metric_name: "reclaimed-leases",
-        timestamp: timestamp,
-        value: 0,
-        dimensions:
-        [
-          {
-            name: "Subnet",
-            value: "10.0.0.0/8"
-          }
-        ]
-      }, {
-        metric_name: "total-addresses",
-        timestamp: timestamp,
-        value: 512,
-        dimensions:
-        [
-          {
-            name: "Subnet",
-            value: "10.0.0.0/8"
-          }
-        ]
+        dimensions: []
       }, {
         metric_name: "lease-percent-used",
         timestamp: timestamp,
@@ -286,43 +164,6 @@ describe PublishMetrics do
         ]
       }
     ]
-
-    expect(client).to have_received(:put_metric_data).with(expected_result)
-  end
-
-  it 'uses a different task id' do
-
-    kea_stats = JSON.parse(File.read("#{RSPEC_ROOT}/fixtures/kea_api_stats_response_minimal.json"))
-    result = described_class.new(
-      client: client,
-      kea_lease_usage: kea_lease_usage,
-      kea_subnet_id_to_cidr: kea_subnet_id_to_cidr
-    ).execute(kea_stats: kea_stats)
-
-    expected_result = [
-     {
-      dimensions: [
-        {
-          name: "Subnet",
-          value: "10.0.0.0/8"
-        }
-        ],
-        metric_name: "lease-percent-used",
-        timestamp: timestamp,
-        value: 43
-      },
-      {
-        dimensions: [
-          {
-            name: "Subnet",
-            value:"192.0.2.0/24"
-          }
-        ],
-        metric_name: "lease-percent-used",
-        timestamp: timestamp,
-        value: 50
-        }
-      ]
 
     expect(client).to have_received(:put_metric_data).with(expected_result)
   end
