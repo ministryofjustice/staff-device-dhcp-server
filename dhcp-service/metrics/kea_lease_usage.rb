@@ -7,7 +7,11 @@ class KeaLeaseUsage
     lease_stats = kea_client.get_leases
     parsed_lease_stats = lease_stats[0]["arguments"]["result-set"]["rows"]
 
-    parsed_lease_stats.map do |lease_stat|
+    top_5_lease_stats = parsed_lease_stats.sort_by do |stat|
+      usage_percent(stat[1], stat[3])
+    end.reverse.first(5)
+
+    top_5_lease_stats.map do |lease_stat|
       total_addresses = lease_stat[1]
       assigned_addresses = lease_stat[3]
 
