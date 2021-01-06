@@ -50,6 +50,19 @@ describe PublishMetrics do
     }.to raise_error('Kea stats are empty')
   end
 
+  it 'does not publish when the metrics payload does not contain the "arguments" key' do
+    kea_stats = [{}]
+
+    described_class.new(
+      client: client,
+      kea_lease_usage: kea_lease_usage,
+      kea_subnet_id_to_cidr: kea_subnet_id_to_cidr
+    ).execute(kea_stats: kea_stats)
+
+    expect(client).to_not have_received(:put_metric_data)
+  end
+
+
   it 'converts kea stats to cloudwatch metrics and calls the client to publish them' do
     kea_stats = JSON.parse(File.read("#{RSPEC_ROOT}/fixtures/kea_api_stats_response.json"))
 
