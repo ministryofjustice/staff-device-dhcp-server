@@ -11,6 +11,8 @@ class PublishMetrics
   def execute(kea_stats:)
     raise "Kea stats are empty" if kea_stats.empty?
 
+    return if kea_stats[0]["arguments"].nil?
+
     client.put_metric_data(
       with_percent_used(generate_cloudwatch_metrics(kea_stats)))
   end
