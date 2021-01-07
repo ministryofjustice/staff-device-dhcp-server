@@ -83,7 +83,7 @@ main() {
   boot_control_agent
   boot_server
   touch /tmp/kea_started
-  if [[ "$SERVER_NAME" == "primary" || "$SERVER_NAME" == "standby" ]]; then
+  if [[ "$PUBLISH_METRICS" == "true" ]]; then
     boot_metrics_agent
   fi
   start_kea_config_reload_daemon
