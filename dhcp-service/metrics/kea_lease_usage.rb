@@ -11,6 +11,8 @@ class KeaLeaseUsage
       usage_percent(stat[1], stat[3])
     end.reverse.first(5)
 
+    p "Top 5 #{top_5_lease_stats}"
+
     top_5_lease_stats.map do |lease_stat|
       total_addresses = lease_stat[1]
       assigned_addresses = lease_stat[3]
