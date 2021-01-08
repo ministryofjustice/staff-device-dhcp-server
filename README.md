@@ -12,6 +12,10 @@ At the time of writing, the stable release for ISC Kea is [version 1.8.x](https:
 
 Kea is configured to run in [hot-standby mode](https://kea.readthedocs.io/en/kea-1.8.1/arm/hooks.html#hot-standby-configuration). Discussion of the implementation can be found [here](./documentation/high-availability.md).
 
+## Performance Testing
+
+Results of the KEA [performance test](documentation/performance_metrics.md).
+
 ## Getting started
 
 To get started with development you will need:
