@@ -14,7 +14,7 @@ Kea is configured to run in [hot-standby mode](https://kea.readthedocs.io/en/kea
 
 ## Performance Testing
 
-Results of the KEA [performance test](documentation/performance_metrics.md).
+Results of the KEA [performance test](documentation/performance-metrics.md).
 
 ## Getting started
 
