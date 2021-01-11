@@ -17,7 +17,7 @@ This documentation contains the results of the load test conducted on the 8th of
 
 ## Considerations
 
-- Tests are run from a remote site in Corsham, this may introduce network latency
+- Tests are run from a remote site in Corsham, which is integrated through an AWS Transit Gateway to the DHCP service. This may introduce network latency
 - A lease request is considered the entire DORA DHCP flow
 - 10 tests were run, the highest and lowest results were eliminated and the remaining average was used
 - The KEA configuration file is pulled from an S3 bucket every 5 minutes. It is compared to the current configuration and is loaded if any changes were detected. This seems to not impact performance.
