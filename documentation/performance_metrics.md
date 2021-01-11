@@ -41,7 +41,7 @@ The drop time is set to 3 seconds with the `-d` flag, any requests taking more t
 
 ## Load test results - 8th January 2021
 
-The test results shows that KEA can handle approximately 256 requests per second. This test was run multiple times and the results were consistent.
+The test results indicate that the current KEA configuration can service **approximately 256 requests per second**. This test was performed multiple times and the results were observed to be consistent.
 
 ### Hypothetical usage scenario
 
