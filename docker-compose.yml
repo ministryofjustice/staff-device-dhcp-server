@@ -67,7 +67,7 @@ services:
       - ./dhcp-service/metrics/:/metrics
 
   db:
-    image: "${SHARED_SERVICES_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com/dhcp-mysql:latest"
+    image: "${SHARED_SERVICES_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com/dhcp-mysql:mysql-5-7"
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: password
