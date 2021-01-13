@@ -7,15 +7,7 @@ class KeaLeaseUsage
     lease_stats = kea_client.get_leases
     parsed_lease_stats = lease_stats[0]["arguments"]["result-set"]["rows"]
 
-    used_subnets = parsed_lease_stats.find do |stat|
-      stat[2] != 0
-    end
-
-    p "Used cumulative subnets: #{used_subnets}"
-
     top_5_lease_stats = parsed_lease_stats.sort_by { |stat| stat[3] }.reverse.first(5)
-
-    p "Top 5 #{top_5_lease_stats}"
 
     top_5_lease_stats.map do |lease_stat|
       total_addresses = lease_stat[1]
