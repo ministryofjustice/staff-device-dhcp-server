@@ -65,7 +65,7 @@ start_kea_config_reload_daemon(){
         cp /tmp/configurations/config.json /etc/kea/config.json
         curl -X "POST" "http://localhost:8000/" \
             -H 'Content-Type: application/json' \
-            -d '{"command": "config-reload"}'
+            -d '{"command": "config-reload", "service": ["dhcp4"]}'
       else
         echo "No configuration changes detected"
       fi
