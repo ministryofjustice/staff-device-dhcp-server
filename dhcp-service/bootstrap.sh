@@ -1,7 +1,7 @@
 #!/bin/bash
 # -m for job control within a bash script (used to foreground server after testing)
 # TODO: Add -e flag for erroring. This will cause the kea-admin command to error if the database exists.
-set -m
+set -me
 
 fetch_kea_config() {
   if [ "$LOCAL_DEVELOPMENT" == "true" ]; then
@@ -32,8 +32,10 @@ init_schema_if_not_loaded() {
 }
 
 ensure_database_permissions() {
-  echo "running grants on lease db"
-  mysql -u ${DB_USER} -p${DB_PASS} -n ${DB_NAME} -h ${DB_HOST} -e "GRANT ALL ON ${DB_NAME}.* TO '${DB_USER}'@'${DB_HOST}';" #https://kea.readthedocs.io/en/kea-1.6.3/arm/admin.html
+  if [[ "$LOCAL_DEVELOPMENT" != "true" ]] && [[ "$SERVER_NAME" == "primary" ]]; then
+    echo "running grants on lease db"
+    mysql -u ${DB_USER} -p${DB_PASS} -n ${DB_NAME} -h ${DB_HOST} -e "GRANT ALL ON ${DB_NAME}.* TO '${DB_USER}'@'${DB_HOST}';" #https://kea.readthedocs.io/en/kea-1.6.3/arm/admin.html
+  fi
 }
 
 boot_control_agent() {
