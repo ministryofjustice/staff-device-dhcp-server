@@ -1,0 +1,69 @@
+{
+  "Dhcp4": {
+    "interfaces-config": {
+      "interfaces": ["*"],
+      "dhcp-socket-type": "udp",
+      "outbound-interface": "use-routing"
+    },
+    "lease-database": {
+      "type": "mysql",
+      "name": "<DB_NAME>",
+      "user": "<DB_USER>",
+      "password": "<DB_PASS>",
+      "host": "<DB_HOST>",
+      "port": 3306
+    },
+    "valid-lifetime": 4000,
+    "host-reservation-identifiers": [
+      "circuit-id",
+      "hw-address",
+      "duid",
+      "client-id"
+    ],
+    "hosts-database": {
+      "type": "mysql",
+      "name": "<DB_NAME>",
+      "user": "<DB_USER>",
+      "password": "<DB_PASS>",
+      "host": "<DB_HOST>",
+      "port": 3306
+    },
+    "control-socket": {
+        "socket-type": "unix",
+        "socket-name": "/tmp/dhcp4-socket"
+    },
+    "subnet4": [
+      {
+        "pools": [
+          {
+            "pool": "172.1.0.10 - 172.1.0.100"
+          }
+        ],
+        "subnet": "127.0.0.1/0",
+        "id": 1
+      }
+    ],
+    "loggers": [
+      {
+        "name": "kea-dhcp4",
+        "output_options": [
+          {
+            "output": "stdout"
+          }
+        ],
+        "severity": "DEBUG",
+        "debuglevel": 0
+      }
+    ],
+    "hooks-libraries": [
+      {
+        "library": "/usr/lib/kea/hooks/libdhcp_lease_cmds.so"
+      }
+    ],
+    "multi-threading": {
+       "enable-multi-threading": true,
+       "thread-pool-size": 12,
+       "packet-queue-size": 792
+    }
+  }
+}

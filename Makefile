@@ -42,6 +42,7 @@ run: start-db
 	$(DOCKER_COMPOSE) up -d dhcp-primary
 	./scripts/wait_for_dhcp_server.sh
 	$(DOCKER_COMPOSE) up -d dhcp-standby
+	$(DOCKER_COMPOSE) up -d dhcp-api
 
 test: run build-dev
 	./scripts/wait_for_dhcp_server.sh

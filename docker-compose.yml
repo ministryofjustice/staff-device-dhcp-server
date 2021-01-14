@@ -18,6 +18,7 @@ services:
       SERVER_NAME: "primary"
       PRIMARY_IP: "172.1.0.10"
       STANDBY_IP: "172.1.0.11"
+      PUBLISH_METRICS: "true"
     ports:
       - 67:67/udp
       - 8000:8000
@@ -50,6 +51,26 @@ services:
     networks:
       default:
         ipv4_address: 172.1.0.11
+
+  dhcp-api:
+    build:
+      context: ./dhcp-service
+      args:
+        SHARED_SERVICES_ACCOUNT_ID: "${SHARED_SERVICES_ACCOUNT_ID}"
+    environment:
+      INTERFACE: eth0
+      DB_NAME: kea
+      DB_USER: kea
+      DB_PASS: kea
+      DB_HOST: db
+      DB_PORT: 3306
+      LOCAL_DEVELOPMENT: "true"
+      SERVER_NAME: "api"
+      PRIMARY_IP: "172.1.0.10"
+      STANDBY_IP: "172.1.0.11"
+    volumes:
+      - $HOME/.aws/credentials:/root/.aws/credentials:ro
+      - ./dhcp-service/metrics/:/metrics
 
   dhcp-test:
     build:
