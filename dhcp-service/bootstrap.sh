@@ -5,10 +5,13 @@ set -me
 
 fetch_kea_config() {
   if [ "$SERVER_NAME" == "api" ]; then
+    echo "Booting as API"
     cp ./config_ha.json /etc/kea/config.json
   elif [ "$LOCAL_DEVELOPMENT" == "true" ]; then
+    echo "Booting local server"
     cp ./test_config.json /etc/kea/config.json
   else
+    echo "Booting HA peer server"
     aws s3 cp s3://${KEA_CONFIG_BUCKET_NAME}/config.json /tmp/configurations/config.json
     cp /tmp/configurations/config.json /etc/kea/config.json
   fi
