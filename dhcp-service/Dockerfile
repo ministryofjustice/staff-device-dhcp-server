@@ -22,7 +22,7 @@ RUN apk add bash curl mysql mysql-client && \
   cp -r usr/share/kea/kea/scripts/ usr/share/kea/
 
 COPY ./bootstrap.sh ./bootstrap.sh
-COPY ./config_ha.json ./config_ha.json
+COPY ./config_api.json ./config_api.json
 COPY ./local_development_config.json ./test_config.json
 COPY ./metrics ./metrics
 COPY ./control-agent-config.json /etc/kea/control-agent-config.json
