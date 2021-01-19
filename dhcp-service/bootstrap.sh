@@ -6,7 +6,7 @@ set -me
 fetch_kea_config() {
   if [ "$SERVER_NAME" == "api" ]; then
     echo "Booting as API"
-    cp ./config_ha.json /etc/kea/config.json
+    cp ./config_api.json /etc/kea/config.json
   elif [ "$LOCAL_DEVELOPMENT" == "true" ]; then
     echo "Booting local server"
     cp ./test_config.json /etc/kea/config.json
