@@ -78,7 +78,3 @@ This number only applies when traffic is spread evenly over an 8 hour working da
 ## How to run these tests
 
 To gain access to the remote test site, please see [Corsham Testing](https://github.com/ministryofjustice/staff-device-dns-dhcp-infrastructure/blob/main/documentation/corsham-test.md).
-
-
-Changing instance size did not increase upper bound
-How many devices can be supported
