@@ -8,7 +8,7 @@ This documentation contains the results of the load test conducted on the 20th o
 ## Configuration
 
 - Multi-Threading is enabled, the server can concurrently process 12 concurrent threads with up to 65 queued packets per thread
-- High Availability is configuration for Kea to run in [hot-standby mode](https://gitlab.isc.org/isc-projects/kea/-/wikis/designs/High-Availability-Design), using a Primary and Standby server
+- High Availability is configured for Kea to run in [hot-standby mode](https://gitlab.isc.org/isc-projects/kea/-/wikis/designs/High-Availability-Design), using a Primary and Standby server
 - Kea runs on ECS Fargate and has 4GB Memory and 1GB CPU available
 - Kea is configured to use a shared AWS RDS MySQL lease backend. Sized at [db.t2.large](https://aws.amazon.com/rds/instance-types/)
 - The production configuration file has been loaded and contains the following:
