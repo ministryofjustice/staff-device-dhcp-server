@@ -4,7 +4,13 @@ class KeaSubnetIdToCidr
   end
 
   def execute(subnet_id:)
-    config.find { |row| subnet_id.to_s == row.fetch("id").to_s }["subnet"]
+    result = config.find { |row| subnet_id.to_s == row["id"].to_s }
+
+    if result.nil?
+      p "Subnet #{subnet_id} not found" and return
+    end
+
+    result.fetch("subnet")
   end
 
   private

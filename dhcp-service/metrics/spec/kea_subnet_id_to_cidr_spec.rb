@@ -15,7 +15,13 @@ describe KeaSubnetIdToCidr do
     expected_result = "192.0.2.0/24"
 
     kea_client = double(get_config: JSON.parse(File.read("#{RSPEC_ROOT}/fixtures/kea_api_config_get_response.json")))
-    result = described_class.new(kea_client: kea_client).execute(subnet_id: 1018)
+    result = described_class.new(kea_client: kea_client).execute(subnet_id: 2)
     expect(result).to eq(expected_result)
+  end
+
+  it "Should return static value for deleted subnet" do
+    kea_client = double(get_config: [{"arguments" => {"Dhcp4" => {"subnet4" => []}}}])
+    result = described_class.new(kea_client: kea_client).execute(subnet_id: 2)
+    expect(result).to be_nil
   end
 end

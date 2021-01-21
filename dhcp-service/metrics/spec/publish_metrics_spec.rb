@@ -15,7 +15,7 @@ describe PublishMetrics do
         declined_addresses: 0,
         usage_percentage: 43
       }, {
-        subnet_id: 1018,
+        subnet_id: 2,
         assigned_addresses: 2034,
         total_addresses: 4098,
         declined_addresses: 4,
