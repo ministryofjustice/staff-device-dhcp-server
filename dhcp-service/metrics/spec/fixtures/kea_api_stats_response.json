@@ -569,37 +569,73 @@
           "2020-11-09 11:33:29.855132"
         ]
       ],
-      "subnet[1018].cumulative-assigned-addresses": [
+      "subnet[3].cumulative-assigned-addresses": [
         [
           0,
           "2020-11-09 11:33:29.854250"
         ]
       ],
-      "subnet[1018].declined-addresses": [
+      "subnet[3].declined-addresses": [
         [
           0,
           "2020-11-09 11:33:29.855313"
         ]
       ],
-      "subnet[1018].reclaimed-declined-addresses": [
+      "subnet[3].reclaimed-declined-addresses": [
         [
           0,
           "2020-11-09 11:33:29.855317"
         ]
       ],
-      "subnet[1018].reclaimed-leases": [
+      "subnet[3].reclaimed-leases": [
         [
           0,
           "2020-11-09 11:33:29.855322"
         ]
       ],
-      "subnet[1018].total-addresses": [
+      "subnet[3].total-addresses": [
         [
           255,
           "2020-11-09 11:33:29.854247"
         ]
       ],
-      "subnet[1018].assigned-addresses": [
+      "subnet[3].assigned-addresses": [
+        [
+          25,
+          "2020-11-09 11:33:29.854247"
+        ]
+      ],
+      "subnet[2].cumulative-assigned-addresses": [
+        [
+          0,
+          "2020-11-09 11:33:29.854250"
+        ]
+      ],
+      "subnet[2].declined-addresses": [
+        [
+          0,
+          "2020-11-09 11:33:29.855313"
+        ]
+      ],
+      "subnet[2].reclaimed-declined-addresses": [
+        [
+          0,
+          "2020-11-09 11:33:29.855317"
+        ]
+      ],
+      "subnet[2].reclaimed-leases": [
+        [
+          0,
+          "2020-11-09 11:33:29.855322"
+        ]
+      ],
+      "subnet[2].total-addresses": [
+        [
+          255,
+          "2020-11-09 11:33:29.854247"
+        ]
+      ],
+      "subnet[2].assigned-addresses": [
         [
           25,
           "2020-11-09 11:33:29.854247"

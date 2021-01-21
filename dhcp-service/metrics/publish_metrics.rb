@@ -51,12 +51,14 @@ class PublishMetrics
   def with_percent_used(metrics)
     kea_lease_usage.execute.each do |kea_metric|
       subnet_cidr = subnet_id_to_cidr(kea_metric.fetch(:subnet_id))
-      metrics << {
-        metric_name: "lease-percent-used",
-        timestamp: @time,
-        value: kea_metric.fetch(:usage_percentage),
-        dimensions: [ { name: "Subnet", value: subnet_cidr } ]
-      }
+      unless subnet_cidr.nil?
+        metrics << {
+          metric_name: "lease-percent-used",
+          timestamp: @time,
+          value: kea_metric.fetch(:usage_percentage),
+          dimensions: [ { name: "Subnet", value: subnet_cidr } ]
+        }
+      end
     end
 
     metrics
