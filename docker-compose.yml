@@ -78,6 +78,12 @@ services:
       args:
         SHARED_SERVICES_ACCOUNT_ID: "${SHARED_SERVICES_ACCOUNT_ID}"
         EXTRA_BUNDLE_CONFIG: ""
+    environment:
+      DB_NAME: kea
+      DB_USER: kea
+      DB_PASS: kea
+      DB_HOST: db
+      DB_PORT: 3306
     depends_on:
       - db
       - dhcp-primary
