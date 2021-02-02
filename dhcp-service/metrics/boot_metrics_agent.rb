@@ -10,10 +10,11 @@ require_relative "kea_subnet_id_to_cidr"
 
 kea_client = KeaClient.new
 db_client = DbClient.new
-kea_subnet_id_to_cidr = KeaSubnetIdToCidr.new(kea_client: kea_client)
 kea_lease_usage = KeaLeaseUsage.new(kea_client: kea_client, db_client: db_client)
 
 while true do
+  kea_subnet_id_to_cidr = KeaSubnetIdToCidr.new(kea_client: kea_client)
+
   PublishMetrics.new(
     client: AwsClient.new,
     kea_lease_usage: kea_lease_usage,
