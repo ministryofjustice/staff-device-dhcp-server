@@ -16,11 +16,11 @@ This document details the results of the Kea HA testing, carried out on the 8th 
   - 14404 reservations
   - At least two client classes per subnet
 
-## Considerations
+## Test Strategy
 
-- Tests are run from a remote site in the Corsham DC, which is integrated through an AWS Transit Gateway to the DHCP service. This may introduce network latency
+- Tests are run from a remote site in the Corsham DC. The host is integrated through an AWS Transit Gateway to the DHCP service.
+- To enable observation of each server's behaviour, two clients will be run. One pointing to the primary server and one at the standby server.
 - A request is considered the entire DORA DHCP request exchange
-- The Kea configuration file is checked, in an S3 bucket, every 5 minutes. It is compared to the current configuration and is loaded when changes are detected. This operation has no discernable impact on performance.
 - The perfdhcp testing tool occasionally exits before the last response packet is delivered, skewing the results by 1. This does not affect the findings of this test and was taken into consideration.
 
 ## Test Command
