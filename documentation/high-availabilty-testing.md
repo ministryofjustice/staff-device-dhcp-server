@@ -62,13 +62,20 @@ To simulate the loss of a primary server, the appropriate ECS tasks desired coun
 |Primary is re-enabled         | 11:41:57 | 5m 0s        |
 |Primary resumes serving leases| 11:44:07 | 2m 10s       |
 
+### Result Log Files
 
-The results of the test were saved to two files. The contents of the files document the process of failing over from the primary server to the secondary server.
+Log files were recorded for each of the perfdhcp test clients. Note that the ip addresses have been redacted.
 
+- [Primary Server perfdhcp log](./primary-results.txt)
+- [Standby Server perfdhcp log](./standby-results.txt)
 
-### DHCP Monitoring in Grafana
+### DHCP Monitoring in IMA
 
-The Grafana dashboard for DHCP monitors the ECS task instance count along with other metrics. When the primary server is down (instance count of less than 1) the alarms will be triggered.
+The IMA dashboard for DHCP monitors the ECS task instance count along with other metrics. When the primary server was taken down (instance count of less than 1):
 
-![AWS ECS Task Instance - Pending](./images/high-availability-testing/dashboard-pending-alarm.png)
+- The __DHCP ECS task count__ panel changed to reflect the transition.
+- An alert was raised in the __Alerting__ panel.
 
+#### IMA DHCP Monitor Dashboard
+
+![AWS ECS Task Instance](./images/high-availability-testing/dashboard-alerting-alarm.png)
