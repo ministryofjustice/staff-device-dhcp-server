@@ -8,7 +8,7 @@ This document details the results of the Kea HA testing, carried out on the 8th 
 - Hosted on [AWS Fargate](https://aws.amazon.com/fargate/) with 4GB Memory and 1GB CPU available
 - The load testing tool is [perfdhcp](#PerfDHCP).
 - Multi-Threading is enabled, the server can concurrently process 12 concurrent threads with up to 65 queued packets per thread.
-- High Availability is configured for Kea to run in [hot-standby mode](https://gitlab.isc.org/isc-projects/kea/-/wikis/designs/High-Availability-Design), using a Primary and Standby server
+- High Availability is configured for Kea to run in [hot-standby mode](https://kea.readthedocs.io/en/kea-1.8.2/arm/hooks.html#hot-standby-configuration), using a Primary and Standby server
 - Kea is configured to use a shared AWS RDS MySQL lease backend. Sized at [db.t2.large](https://aws.amazon.com/rds/instance-types/)
 - The production configuration file has been loaded and contains the following:
   - 142 Sites
@@ -36,3 +36,28 @@ perfdhcp -4 $DHCP_SERVICE_IP -n3000 -r300 -R 5000000 -d3
 ```
 
 The drop time is set to 3 seconds with the `-d` flag, any request taking more than 3 seconds is considered a failed request.
+
+## High-Availability Configuration
+
+Test were run with the following __default__ HA hot-standby configuration values:
+
+```bash
+heartbeat-interval  : 10000 
+max-response-delay  : 60000 
+max-ack-delay       : 10000
+max-unacked-message : 10000
+```
+
+## Results
+
+To simulate the loss of a primary server, the appropriate ECS tasks desired count, min and max were set to 0. It should be noted that the server / task removal is not instant.
+
+### Key Event Timings
+
+| Event Description            | Time     | Time Elapsed |
+|------------------------------|----------|--------------|
+|Primary Server Taken down     | 11:30:15 | -            |
+|Primary stops serving leases  | 11:36:06 | 5m 51s       |
+|Standby starts serving leases | 11:36:57 | 0m 51s       |
+|Primary is re-enabled         | 11:41:57 | 5m 0s        |
+|Primary resumes serving leases| 11:44:07 | 2m 10s       |
