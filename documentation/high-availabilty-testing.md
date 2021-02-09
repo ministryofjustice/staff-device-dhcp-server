@@ -1,6 +1,6 @@
 # KEA DHCP High Availability Testing
 
-This document details the results of the Kea HA testing, carried out on the 8th of February 2021.
+This document details the results of the Kea HA testing, carried out on the 9th of February 2021.
 
 ## Configuration
 
@@ -56,8 +56,19 @@ To simulate the loss of a primary server, the appropriate ECS tasks desired coun
 
 | Event Description            | Time     | Time Elapsed |
 |------------------------------|----------|--------------|
-|Primary Server Taken down     | 11:30:15 | -            |
+|Primary server taken down     | 11:30:15 | -            |
 |Primary stops serving leases  | 11:36:06 | 5m 51s       |
 |Standby starts serving leases | 11:36:57 | 0m 51s       |
 |Primary is re-enabled         | 11:41:57 | 5m 0s        |
 |Primary resumes serving leases| 11:44:07 | 2m 10s       |
+
+
+The results of the test were saved to two files. The contents of the files document the process of failing over from the primary server to the secondary server.
+
+
+### DHCP Monitoring in Grafana
+
+The Grafana dashboard for DHCP monitors the ECS task instance count along with other metrics. When the primary server is down (instance count of less than 1) the alarms will be triggered.
+
+![AWS ECS Task Instance - Pending](./images/high-availability-testing/dashboard-pending-alarm.png)
+
