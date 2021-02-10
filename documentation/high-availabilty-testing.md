@@ -25,21 +25,21 @@ This document details the results of the Kea HA testing, carried out on the 9th 
 
 ## Test Command
 
-[Perfdhcp version 1.8.1](https://kea.readthedocs.io/en/latest/man/perfdhcp.8.html) was used for performance testing.
+[Perfdhcp version 1.8.1](https://kea.readthedocs.io/en/latest/man/perfdhcp.8.html) was used for performance testing. 
 
-The drop rate was manually observed to establish the health threshold.
+The drop rate was manually observed to monitor when the primary server stopped serving leases and when the standby server took over and started serving leases.
 
 The following command was run from the remote site in Corsham.
 
 ```sh
-perfdhcp -4 $DHCP_SERVICE_IP -n3000 -r300 -R 5000000 -d3
+perfdhcp $DHCP_SERVICE_IP -n 100 -r 10 -R 100 -d 3 -W 3
 ```
 
 The drop time is set to 3 seconds with the `-d` flag, any request taking more than 3 seconds is considered a failed request.
 
 ## High-Availability Configuration
 
-Test were run with the following __default__ HA hot-standby configuration values:
+Test were run with the following __default__ HA [hot-standby configuration values]((https://kea.readthedocs.io/en/kea-1.8.2/arm/hooks.html#hot-standby-configuration)):
 
 ```bash
 heartbeat-interval  : 10000 
@@ -64,7 +64,7 @@ To simulate the loss of a primary server, the appropriate ECS tasks desired coun
 
 ### Result Log Files
 
-Log files were recorded for each of the perfdhcp test clients. Note that the ip addresses have been redacted.
+Log files were recorded for each of the perfdhcp test clients. Note that the IP addresses have been redacted.
 
 - [Primary Server perfdhcp log](./primary-results.txt)
 - [Standby Server perfdhcp log](./standby-results.txt)
