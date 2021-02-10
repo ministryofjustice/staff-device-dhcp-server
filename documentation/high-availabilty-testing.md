@@ -6,7 +6,7 @@ This document details the results of the Kea HA testing, carried out on the 9th 
 
 - [Kea DHCP V1.8.2](https://github.com/ministryofjustice/staff-device-dhcp-server/blob/main/dhcp-service/Dockerfile) was the subject under test.
 - Hosted on [AWS Fargate](https://aws.amazon.com/fargate/) with 4GB Memory and 1GB CPU available
-- The load testing tool is [perfdhcp](#PerfDHCP).
+- The load testing tool is [perfdhcp](https://kea.readthedocs.io/en/kea-1.8.2/man/perfdhcp.8.html).
 - Multi-Threading is enabled, the server can concurrently process 12 concurrent threads with up to 65 queued packets per thread.
 - High Availability is configured for Kea to run in [hot-standby mode](https://kea.readthedocs.io/en/kea-1.8.2/arm/hooks.html#hot-standby-configuration), using a Primary and Standby server
 - Kea is configured to use a shared AWS RDS MySQL lease backend. Sized at [db.t2.large](https://aws.amazon.com/rds/instance-types/)
@@ -25,7 +25,7 @@ This document details the results of the Kea HA testing, carried out on the 9th 
 
 ## Test Command
 
-[Perfdhcp version 1.8.1](https://kea.readthedocs.io/en/latest/man/perfdhcp.8.html) was used for performance testing. 
+[Perfdhcp version 1.8.1](https://kea.readthedocs.io/en/kea-1.8.2/man/perfdhcp.8.html) was used for performance testing. 
 
 The drop rate was manually observed to monitor when the primary server stopped serving leases and when the standby server took over and started serving leases.
 
@@ -39,7 +39,7 @@ The drop time is set to 3 seconds with the `-d` flag, any request taking more th
 
 ## High-Availability Configuration
 
-Test were run with the following __default__ HA [hot-standby configuration values]((https://kea.readthedocs.io/en/kea-1.8.2/arm/hooks.html#hot-standby-configuration)):
+Test were run with the following __default__ HA [hot-standby configuration values](https://kea.readthedocs.io/en/kea-1.8.2/arm/hooks.html#hot-standby-configuration):
 
 ```bash
 heartbeat-interval  : 10000 
