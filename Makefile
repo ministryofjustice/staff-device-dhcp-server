@@ -14,14 +14,15 @@ build-nginx:
 
 push-nginx:
 	aws ecr get-login-password | docker login --username AWS --password-stdin ${REGISTRY_URL}
-	docker tag nginx:latest ${REGISTRY_URL}/staff-device-${ENV}-dhcp-docker-nginx:latest
-	docker push ${REGISTRY_URL}/staff-device-${ENV}-dhcp-docker-nginx:latest
+	repo=$( jq -r '.dhcp.ecr.nginx_repository_url' <<< "${DHCP_DNS_TERRAFORM_OUTPUTS}" )
+	docker tag nginx:latest ${repo}:latest
+	docker push ${repo}:latest
 
 push:
-	echo ${REGISTRY_URL}
 	aws ecr get-login-password | docker login --username AWS --password-stdin ${REGISTRY_URL}
-	docker tag docker_dhcp:latest ${REGISTRY_URL}/staff-device-${ENV}-dhcp-docker:latest
-	docker push ${REGISTRY_URL}/staff-device-${ENV}-dhcp-docker:latest
+	repo=$( jq -r '.dhcp.ecr.repository_url' <<< "${DHCP_DNS_TERRAFORM_OUTPUTS}" )
+	docker tag dhcp:latest ${repo}:latest
+	docker push ${repo}:latest
 
 publish: build push build-nginx push-nginx
 
