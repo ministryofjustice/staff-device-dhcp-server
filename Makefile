@@ -7,22 +7,20 @@ check-container-registry-account-id:
 	./scripts/check_container_registry_account_id.sh
 
 build: check-container-registry-account-id
-	docker build -t docker_dhcp ./dhcp-service --build-arg SHARED_SERVICES_ACCOUNT_ID
+	docker build -t dhcp ./dhcp-service --build-arg SHARED_SERVICES_ACCOUNT_ID
 
 build-nginx:
 	docker build -t nginx ./nginx --build-arg SHARED_SERVICES_ACCOUNT_ID
 
 push-nginx:
 	aws ecr get-login-password | docker login --username AWS --password-stdin ${REGISTRY_URL}
-	repo=$( jq -r '.dhcp.ecr.nginx_repository_url' <<< "${DHCP_DNS_TERRAFORM_OUTPUTS}" )
-	docker tag nginx:latest ${repo}:latest
-	docker push ${repo}:latest
+	docker tag nginx:latest ${REGISTRY_URL}/staff-device-${ENV}-dhcp-nginx:latest
+	docker push ${REGISTRY_URL}/staff-device-${ENV}-dhcp-nginx:latest
 
 push:
 	aws ecr get-login-password | docker login --username AWS --password-stdin ${REGISTRY_URL}
-	repo=$( jq -r '.dhcp.ecr.repository_url' <<< "${DHCP_DNS_TERRAFORM_OUTPUTS}" )
-	docker tag dhcp:latest ${repo}:latest
-	docker push ${repo}:latest
+	docker tag dhcp:latest ${REGISTRY_URL}/staff-device-${ENV}-dhcp:latest
+	docker push ${REGISTRY_URL}/staff-device-${ENV}-dhcp:latest
 
 publish: build push build-nginx push-nginx
 
