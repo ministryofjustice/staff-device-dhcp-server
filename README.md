@@ -10,7 +10,9 @@ At the time of writing, the stable release for ISC Kea is [version 1.8.x](https:
 
 ## ISC Kea High Availability
 
-Kea is configured to run in [hot-standby mode](https://kea.readthedocs.io/en/kea-1.8.1/arm/hooks.html#hot-standby-configuration). Discussion of the implementation can be found [here](./documentation/high-availability.md).
+Kea is configured to run in [hot-standby mode](https://kea.readthedocs.io/en/kea-1.8.1/arm/hooks.html#hot-standby-configuration). Discussion of the implementation can be found [here](./docs/high-availability.md).
+
+[High availability testing](documentation/high-availabilty-testing.md)
 
 ## Performance Testing
 
@@ -89,7 +91,7 @@ The metrics categories are:
   - Kea Network metrics
   - Kea Subnet metrics
 
-![Grafana Dashboard](./documentation/images/dashboard.png)
+![Grafana Dashboard](./docs/images/dashboard.png)
 
 ## Considerations
 

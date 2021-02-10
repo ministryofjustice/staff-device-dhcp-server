@@ -1,0 +1,1797 @@
+2021-02-09 11:29:46 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.79937 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 9.904 ms
+avg delay: 137.658 ms
+max delay: 1541.892 ms
+std deviation: 341.902 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 36.258 ms
+avg delay: 95.531 ms
+max delay: 196.882 ms
+std deviation: 14.563 ms
+collected packets: 0
+
+2021-02-09 11:30:06 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.79859 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 9.839 ms
+avg delay: 117.624 ms
+max delay: 1507.064 ms
+std deviation: 305.388 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 35.027 ms
+avg delay: 102.069 ms
+max delay: 198.789 ms
+std deviation: 18.433 ms
+collected packets: 0
+
+2021-02-09 11:30:26 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.79883 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 9.936 ms
+avg delay: 137.451 ms
+max delay: 1540.475 ms
+std deviation: 341.357 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 34.646 ms
+avg delay: 95.921 ms
+max delay: 197.987 ms
+std deviation: 14.523 ms
+collected packets: 0
+
+2021-02-09 11:30:46 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.79957 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 9.929 ms
+avg delay: 10.941 ms
+max delay: 17.646 ms
+std deviation: 1.205 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 91.854 ms
+avg delay: 99.544 ms
+max delay: 197.305 ms
+std deviation: 10.116 ms
+collected packets: 0
+
+2021-02-09 11:31:06 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.79911 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 9.742 ms
+avg delay: 131.269 ms
+max delay: 1503.010 ms
+std deviation: 330.188 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 33.605 ms
+avg delay: 103.116 ms
+max delay: 197.930 ms
+std deviation: 19.316 ms
+collected packets: 0
+
+2021-02-09 11:31:26 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.79911 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 9.835 ms
+avg delay: 130.388 ms
+max delay: 1489.964 ms
+std deviation: 325.882 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 41.790 ms
+avg delay: 95.497 ms
+max delay: 358.679 ms
+std deviation: 33.339 ms
+collected packets: 0
+
+2021-02-09 11:31:46 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.79937 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 10.020 ms
+avg delay: 139.044 ms
+max delay: 1548.932 ms
+std deviation: 344.241 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 36.342 ms
+avg delay: 93.771 ms
+max delay: 179.352 ms
+std deviation: 14.939 ms
+collected packets: 0
+
+2021-02-09 11:32:06 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.79935 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 10.176 ms
+avg delay: 131.990 ms
+max delay: 1506.606 ms
+std deviation: 331.196 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 33.742 ms
+avg delay: 101.076 ms
+max delay: 196.374 ms
+std deviation: 16.633 ms
+collected packets: 0
+
+2021-02-09 11:32:26 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.79916 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 9.725 ms
+avg delay: 10.968 ms
+max delay: 17.709 ms
+std deviation: 1.274 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 90.858 ms
+avg delay: 99.402 ms
+max delay: 197.173 ms
+std deviation: 10.095 ms
+collected packets: 0
+
+2021-02-09 11:32:46 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.79857 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 10.031 ms
+avg delay: 139.486 ms
+max delay: 1555.263 ms
+std deviation: 345.439 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 37.213 ms
+avg delay: 93.870 ms
+max delay: 197.356 ms
+std deviation: 16.251 ms
+collected packets: 0
+
+2021-02-09 11:33:06 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.89959 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 10.132 ms
+avg delay: 128.618 ms
+max delay: 1480.273 ms
+std deviation: 323.127 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 99
+drops: 0
+drops ratio: 0.000 %
+orphans: 0
+
+min delay: 31.465 ms
+avg delay: 105.242 ms
+max delay: 1597.802 ms
+std deviation: 152.619 ms
+collected packets: 0
+
+2021-02-09 11:33:26 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.79896 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 9.799 ms
+avg delay: 133.081 ms
+max delay: 1515.945 ms
+std deviation: 334.169 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 34.340 ms
+avg delay: 101.137 ms
+max delay: 198.547 ms
+std deviation: 17.722 ms
+collected packets: 0
+
+2021-02-09 11:33:46 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.79963 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 9.962 ms
+avg delay: 139.476 ms
+max delay: 1552.522 ms
+std deviation: 345.208 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 34.051 ms
+avg delay: 93.623 ms
+max delay: 197.771 ms
+std deviation: 16.831 ms
+collected packets: 0
+
+2021-02-09 11:34:06 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.79947 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 10.011 ms
+avg delay: 13.120 ms
+max delay: 209.736 ms
+std deviation: 19.891 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 90.312 ms
+avg delay: 98.606 ms
+max delay: 114.060 ms
+std deviation: 2.182 ms
+collected packets: 0
+
+2021-02-09 11:34:26 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.79959 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 9.941 ms
+avg delay: 139.913 ms
+max delay: 1554.848 ms
+std deviation: 346.224 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 36.416 ms
+avg delay: 93.246 ms
+max delay: 197.373 ms
+std deviation: 16.900 ms
+collected packets: 0
+
+2021-02-09 11:34:46 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 8.79933 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 89
+drops: 11
+drops ratio: 11 %
+orphans: 0
+
+min delay: 9.904 ms
+avg delay: 11.733 ms
+max delay: 84.551 ms
+std deviation: 7.781 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 89
+received packets: 88
+drops: 1
+drops ratio: 1.124 %
+orphans: 0
+
+min delay: 25.716 ms
+avg delay: 98.748 ms
+max delay: 196.444 ms
+std deviation: 13.274 ms
+collected packets: 0
+
+2021-02-09 11:35:06 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.79958 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 10.098 ms
+avg delay: 133.235 ms
+max delay: 1512.974 ms
+std deviation: 333.147 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 29.574 ms
+avg delay: 109.915 ms
+max delay: 399.275 ms
+std deviation: 47.431 ms
+collected packets: 0
+
+2021-02-09 11:35:26 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.79858 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 9.977 ms
+avg delay: 135.367 ms
+max delay: 1527.074 ms
+std deviation: 337.576 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 33.374 ms
+avg delay: 98.104 ms
+max delay: 196.947 ms
+std deviation: 14.597 ms
+collected packets: 0
+
+2021-02-09 11:35:46 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 1
+drops: 99
+drops ratio: 99 %
+orphans: 0
+
+min delay: 705.687 ms
+avg delay: 705.687 ms
+max delay: 705.687 ms
+std deviation: 0.000 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 1
+received packets: 0
+drops: 1
+drops ratio: 100.000 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:36:06 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:36:26 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:36:46 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:37:07 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:37:27 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:37:47 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:38:07 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:38:27 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:38:47 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:39:07 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:39:27 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:39:47 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:40:07 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:40:27 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:40:47 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:41:07 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:41:27 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:41:47 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:42:07 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:42:27 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:42:47 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:43:07 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:43:27 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:43:47 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 0 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 0
+drops: 100
+drops ratio: 100 %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 0
+received packets: 0
+drops: 0
+drops ratio: -nan %
+orphans: 0
+
+min delay: inf ms
+avg delay: min delay: n/a
+avg delay: n/a
+max delay: n/a
+std deviation: n/a
+collected packets: 0
+
+2021-02-09 11:44:07 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 3.09954 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 33
+drops: 67
+drops ratio: 67 %
+orphans: 0
+
+min delay: 9.999 ms
+avg delay: 456.443 ms
+max delay: 1663.830 ms
+std deviation: 558.816 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 33
+received packets: 31
+drops: 2
+drops ratio: 6.061 %
+orphans: 0
+
+min delay: 33.813 ms
+avg delay: 75.841 ms
+max delay: 109.156 ms
+std deviation: 22.613 ms
+collected packets: 0
+
+2021-02-09 11:44:28 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.79915 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 9.719 ms
+avg delay: 127.500 ms
+max delay: 1572.797 ms
+std deviation: 325.175 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 34.940 ms
+avg delay: 90.748 ms
+max delay: 99.921 ms
+std deviation: 17.659 ms
+collected packets: 0
+
+2021-02-09 11:44:48 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.79922 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 9.734 ms
+avg delay: 157.088 ms
+max delay: 1654.669 ms
+std deviation: 377.526 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 34.658 ms
+avg delay: 110.743 ms
+max delay: 1779.064 ms
+std deviation: 170.297 ms
+collected packets: 0
+
+2021-02-09 11:45:08 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.79956 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 9.671 ms
+avg delay: 10.699 ms
+max delay: 11.782 ms
+std deviation: 0.390 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 89.169 ms
+avg delay: 98.382 ms
+max delay: 103.114 ms
+std deviation: 1.139 ms
+collected packets: 0
+
+2021-02-09 11:45:28 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.7994 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 9.801 ms
+avg delay: 131.275 ms
+max delay: 1497.523 ms
+std deviation: 328.147 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 26.473 ms
+avg delay: 106.385 ms
+max delay: 372.360 ms
+std deviation: 31.735 ms
+collected packets: 0
+
+2021-02-09 11:45:48 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 8.2991 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 9.966 ms
+avg delay: 131.237 ms
+max delay: 1504.329 ms
+std deviation: 330.433 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 83
+drops: 16
+drops ratio: 16.162 %
+orphans: 0
+
+min delay: 95.867 ms
+avg delay: 103.578 ms
+max delay: 386.863 ms
+std deviation: 33.467 ms
+collected packets: 0
+
+2021-02-09 11:46:08 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.79926 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 10.009 ms
+avg delay: 144.993 ms
+max delay: 1565.457 ms
+std deviation: 348.580 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 40.062 ms
+avg delay: 122.933 ms
+max delay: 275.301 ms
+std deviation: 62.596 ms
+collected packets: 0
+
+2021-02-09 11:46:28 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.79875 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 10.125 ms
+avg delay: 132.320 ms
+max delay: 1504.144 ms
+std deviation: 330.053 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 28.909 ms
+avg delay: 105.085 ms
+max delay: 367.564 ms
+std deviation: 31.850 ms
+collected packets: 0
+
+2021-02-09 11:46:48 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.79884 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 10.161 ms
+avg delay: 15.589 ms
+max delay: 329.260 ms
+std deviation: 33.839 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 45.632 ms
+avg delay: 97.333 ms
+max delay: 105.539 ms
+std deviation: 5.980 ms
+collected packets: 0
+
+2021-02-09 11:47:08 - primary
+Running: perfdhcp -n 100 -r 10 -R 100 -d 3 -W 3 x.x.x.x
+Scenario: basic.
+Multi-thread mode enabled.
+***Rate statistics***
+Rate: 9.79956 4-way exchanges/second, expected rate: 10
+
+***Statistics for: DISCOVER-OFFER***
+sent packets: 100
+received packets: 99
+drops: 1
+drops ratio: 1 %
+orphans: 0
+
+min delay: 10.231 ms
+avg delay: 129.941 ms
+max delay: 1486.447 ms
+std deviation: 324.794 ms
+collected packets: 0
+
+***Statistics for: REQUEST-ACK***
+sent packets: 99
+received packets: 98
+drops: 1
+drops ratio: 1.010 %
+orphans: 0
+
+min delay: 28.892 ms
+avg delay: 113.949 ms
+max delay: 1648.697 ms
+std deviation: 156.459 ms
+collected packets: 0
