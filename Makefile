@@ -21,7 +21,7 @@ push-nginx:
 push:
 	aws ecr get-login-password | docker login --username AWS --password-stdin ${REGISTRY_URL}
 	repo=$( jq -r '.dhcp.ecr.repository_url' <<< "${DHCP_DNS_TERRAFORM_OUTPUTS}" )
-	docker tag docker_dhcp:latest ${repo}:latest
+	docker tag dhcp:latest ${repo}:latest
 	docker push ${repo}:latest
 
 publish: build push build-nginx push-nginx
