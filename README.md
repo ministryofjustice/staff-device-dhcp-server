@@ -87,11 +87,11 @@ The JSON configuration file for the dashboard is stored in this repo, when updat
 
 The metrics categories are:
 
-  - AWS Service metrics
-  - Kea Network metrics
-  - Kea Subnet metrics
+- AWS Service metrics
+- Kea Network metrics
+- Kea Subnet metrics
 
-![Grafana Dashboard](./docs/images/dashboard.png)
+![Grafana Dashboard](/documentation/images/dashboard.png)
 
 ## Considerations
 
