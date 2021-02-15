@@ -36,7 +36,12 @@ class PublishMetrics
 
     return if IGNORED_METRICS.include?(metric_name) or subnet_metric?(metric_name)
 
-    metric[:dimensions] = []
+    metric[:dimensions] = [
+      {
+        name: "Server",
+        value: ENV.fetch("SERVER_NAME")
+      }
+    ]
     metric[:metric_name] = metric_name
     metric[:timestamp] = @time
     metric[:value] = value
@@ -56,7 +61,16 @@ class PublishMetrics
           metric_name: "lease-percent-used",
           timestamp: @time,
           value: kea_metric.fetch(:usage_percentage),
-          dimensions: [ { name: "Subnet", value: subnet_cidr } ]
+          dimensions: [
+            {
+               name: "Subnet",
+               value: subnet_cidr
+            },
+            {
+               name: "Server",
+               value: ENV.fetch("SERVER_NAME")
+            }
+          ]
         }
       end
     end

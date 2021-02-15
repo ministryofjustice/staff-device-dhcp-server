@@ -21,7 +21,15 @@ describe PublishMetrics do
         declined_addresses: 4,
         usage_percentage: 50
       }
-      ])
+    ])
+  end
+
+  let(:subject) do
+    described_class.new(
+      client: client,
+      kea_lease_usage: kea_lease_usage,
+      kea_subnet_id_to_cidr: kea_subnet_id_to_cidr
+    )
   end
 
   let(:kea_client) do
@@ -34,6 +42,7 @@ describe PublishMetrics do
 
   before do
     Timecop.freeze(time)
+    ENV.delete("SERVER_NAME")
   end
 
   after do
@@ -41,143 +50,252 @@ describe PublishMetrics do
   end
 
   it 'raises an error if the kea stats is empty' do
-    expect {
-      described_class.new(
-        client: client,
-        kea_lease_usage: kea_lease_usage,
-        kea_subnet_id_to_cidr: kea_subnet_id_to_cidr
-      ).execute(kea_stats: kea_stats)
-    }.to raise_error('Kea stats are empty')
+    expect { subject.execute(kea_stats: kea_stats) }.to raise_error('Kea stats are empty')
+  end
+
+  it 'raises an error if the server name is not set' do
+    kea_stats = JSON.parse(File.read("#{RSPEC_ROOT}/fixtures/kea_api_stats_response.json"))
+
+    expect { subject.execute(kea_stats: kea_stats) }.to raise_error(KeyError)
   end
 
   it 'does not publish when the metrics payload does not contain the "arguments" key' do
-    kea_stats = [{}]
-
-    described_class.new(
-      client: client,
-      kea_lease_usage: kea_lease_usage,
-      kea_subnet_id_to_cidr: kea_subnet_id_to_cidr
-    ).execute(kea_stats: kea_stats)
+    subject.execute(kea_stats: [{}])
 
     expect(client).to_not have_received(:put_metric_data)
   end
 
+  context 'Primary Server' do
+    before do
+      ENV['SERVER_NAME'] = "primary"
+    end
 
-  it 'converts kea stats to cloudwatch metrics and calls the client to publish them' do
-    kea_stats = JSON.parse(File.read("#{RSPEC_ROOT}/fixtures/kea_api_stats_response.json"))
+    it 'converts kea stats to cloudwatch metrics and calls the client to publish them' do
+      kea_stats = JSON.parse(File.read("#{RSPEC_ROOT}/fixtures/kea_api_stats_response.json"))
+      subject.execute(kea_stats: kea_stats)
 
-    result = described_class.new(
-      client: client,
-      kea_lease_usage: kea_lease_usage,
-      kea_subnet_id_to_cidr: kea_subnet_id_to_cidr
-    ).execute(kea_stats: kea_stats)
+      expected_result = [
+      {
+          metric_name: "cumulative-assigned-addresses",
+          timestamp: timestamp,
+          value: 0,
+          dimensions: [
+            {
+              name: "Server",
+              value: "primary"
+            }
+          ]
+        }, {
+          metric_name: "declined-addresses",
+          timestamp: timestamp,
+          value: 0,
+          dimensions: [
+            {
+              name: "Server",
+              value: "primary"
+            }
+          ]
+        }, {
+          metric_name: "pkt4-ack-received",
+          timestamp: timestamp,
+          value: 0,
+          dimensions: [
+            {
+              name: "Server",
+              value: "primary"
+            }
+          ]
+        }, {
+          metric_name: "pkt4-ack-sent",
+          timestamp: timestamp,
+          value: 18,
+          dimensions: [
+            {
+              name: "Server",
+              value: "primary"
+            }
+          ]
+        }, {
+          metric_name: "pkt4-decline-received",
+          timestamp: timestamp,
+          value: 0,
+          dimensions: [
+            {
+              name: "Server",
+              value: "primary"
+            }
+          ]
+        }, {
+          metric_name: "pkt4-discover-received",
+          timestamp: timestamp,
+          value: 19,
+          dimensions: [
+            {
+              name: "Server",
+              value: "primary"
+            }
+          ]
+        }, {
+          metric_name: "pkt4-nak-received",
+          timestamp: timestamp,
+          value: 0,
+          dimensions: [
+            {
+              name: "Server",
+              value: "primary"
+            }
+          ]
+        }, {
+          metric_name: "pkt4-nak-sent",
+          timestamp: timestamp,
+          value: 0,
+          dimensions: [
+            {
+              name: "Server",
+              value: "primary"
+            }
+          ]
+        }, {
+          metric_name: "pkt4-offer-received",
+          timestamp: timestamp,
+          value: 0,
+          dimensions: [
+            {
+              name: "Server",
+              value: "primary"
+            }
+          ]
+        }, {
+          metric_name: "pkt4-offer-sent",
+          timestamp: timestamp,
+          value: 19,
+          dimensions: [
+            {
+              name: "Server",
+              value: "primary"
+            }
+          ]
+        }, {
+          metric_name: "pkt4-receive-drop",
+          timestamp: timestamp,
+          value: 0,
+          dimensions: [
+            {
+              name: "Server",
+              value: "primary"
+            }
+          ]
+        }, {
+          metric_name: "pkt4-release-received",
+          timestamp: timestamp,
+          value: 0,
+          dimensions: [
+            {
+              name: "Server",
+              value: "primary"
+            }
+          ]
+        }, {
+          metric_name: "pkt4-request-received",
+          timestamp: timestamp,
+          value: 18,
+          dimensions: [
+            {
+              name: "Server",
+              value: "primary"
+            }
+          ]
+        }, {
+          metric_name: "pkt4-unknown-received",
+          timestamp: timestamp,
+          value: 0,
+          dimensions: [
+            {
+              name: "Server",
+              value: "primary"
+            }
+          ]
+        }, {
+          metric_name: "reclaimed-declined-addresses",
+          timestamp: timestamp,
+          value: 0,
+          dimensions: [
+            {
+              name: "Server",
+              value: "primary"
+            }
+          ]
+        }, {
+          metric_name: "reclaimed-leases",
+          timestamp: timestamp,
+          value: 0,
+          dimensions: [
+            {
+              name: "Server",
+              value: "primary"
+            }
+          ]
+        }, {
+          metric_name: "lease-percent-used",
+          timestamp: timestamp,
+          value: 43,
+          dimensions:
+          [
+            {
+              name: "Subnet",
+              value: "10.0.0.0/8"
+            }, {
+              name: "Server",
+              value: "primary"
+            }
+          ]
+        }, {
+          metric_name: "lease-percent-used",
+          timestamp: timestamp,
+          value: 50,
+          dimensions:
+          [
+            {
+              name: "Subnet",
+              value: "192.0.2.0/24"
+            },
+            {
+              name: "Server",
+              value: "primary"
+            }
+          ]
+        }
+      ]
 
-    expected_result = [
-    {
-        metric_name: "cumulative-assigned-addresses",
-        timestamp: timestamp,
-        value: 0,
-        dimensions: []
-      }, {
-        metric_name: "declined-addresses",
-        timestamp: timestamp,
-        value: 0,
-        dimensions: []
-      }, {
-        metric_name: "pkt4-ack-received",
-        timestamp: timestamp,
-        value: 0,
-        dimensions: []
-      }, {
-        metric_name: "pkt4-ack-sent",
-        timestamp: timestamp,
-        value: 18,
-        dimensions: []
-      }, {
-        metric_name: "pkt4-decline-received",
-        timestamp: timestamp,
-        value: 0,
-        dimensions: []
-      }, {
-        metric_name: "pkt4-discover-received",
-        timestamp: timestamp,
-        value: 19,
-        dimensions: []
-      }, {
-        metric_name: "pkt4-nak-received",
-        timestamp: timestamp,
-        value: 0,
-        dimensions: []
-      }, {
-        metric_name: "pkt4-nak-sent",
-        timestamp: timestamp,
-        value: 0,
-        dimensions: []
-      }, {
-        metric_name: "pkt4-offer-received",
-        timestamp: timestamp,
-        value: 0,
-        dimensions: []
-      }, {
-        metric_name: "pkt4-offer-sent",
-        timestamp: timestamp,
-        value: 19,
-        dimensions: []
-      }, {
-        metric_name: "pkt4-receive-drop",
-        timestamp: timestamp,
-        value: 0,
-        dimensions: []
-      }, {
-        metric_name: "pkt4-release-received",
-        timestamp: timestamp,
-        value: 0,
-        dimensions: []
-      }, {
-        metric_name: "pkt4-request-received",
-        timestamp: timestamp,
-        value: 18,
-        dimensions: []
-      }, {
-        metric_name: "pkt4-unknown-received",
-        timestamp: timestamp,
-        value: 0,
-        dimensions: []
-      }, {
-        metric_name: "reclaimed-declined-addresses",
-        timestamp: timestamp,
-        value: 0,
-        dimensions: []
-      }, {
-        metric_name: "reclaimed-leases",
-        timestamp: timestamp,
-        value: 0,
-        dimensions: []
-      }, {
-        metric_name: "lease-percent-used",
-        timestamp: timestamp,
-        value: 43,
-        dimensions:
-        [
-          {
-            name: "Subnet",
-            value: "10.0.0.0/8"
-          }
-        ]
-      }, {
-        metric_name: "lease-percent-used",
-        timestamp: timestamp,
-        value: 50,
-        dimensions:
-        [
-          {
-            name: "Subnet",
-            value: "192.0.2.0/24"
-          }
-        ]
-      }
-    ]
+      expect(client).to have_received(:put_metric_data).with(expected_result)
+    end
+  end
 
-    expect(client).to have_received(:put_metric_data).with(expected_result)
+  context 'Standby Server' do
+    before do
+      ENV['SERVER_NAME'] = 'standby'
+    end
+
+    it 'sets the Server dimension to standby' do
+      kea_stats = JSON.parse(File.read("#{RSPEC_ROOT}/fixtures/kea_api_stats_response.json"))
+      expected_result = {
+          metric_name: "lease-percent-used",
+          timestamp: timestamp,
+          value: 50,
+          dimensions: [
+            {
+              name: "Subnet",
+              value: "192.0.2.0/24"
+            },
+            {
+              name: "Server",
+              value: "standby"
+            }
+          ]
+        }
+
+      subject.execute(kea_stats: kea_stats)
+      expect(client).to have_received(:put_metric_data).with(a_hash_including(expected_result))
+    end
   end
 end
