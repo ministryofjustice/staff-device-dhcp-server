@@ -37,6 +37,14 @@ The AWS section displays all the relevant metrics to AWS. These include:
 
 ![Custom DHCP Metrics](./images/monitoring/custom_panel.png)
 
-The Custom section displays all DHCP metrics output by [Kea](https://cloudsmith.io/~isc/repos/kea-1-8/packages/)
+The custom section displays all DHCP metrics outputted by [Kea](https://cloudsmith.io/~isc/repos/kea-1-8/packages/) as well as a subset of [error and debug messages](https://kea.readthedocs.io/en/kea-1.8.0/kea-messages.html).
+
+- CONFIGURATION RELOAD SUCCESSFUL
+- CONFIGURATION RELOAD FAILED
+- CONFIGURATION RELOAD SUCCESSFUL
+- CONFIGURATION RELOAD FAILED
+- ALLOC_ENGINE_V4_ALLOC_ERROR
+- ALLOC_ENGINE_V4_ALLOC_FAIL
+- ALLOC_ENGINE_V4_ALLOC_FAIL_CLASSES
 
 The dashboards monitor [subnet and network metrics](https://kea.readthedocs.io/en/kea-1.8.1/arm/stats.html) including the rate of change of DORA operations (Discovery, Offer, Request and Acknowledge).
