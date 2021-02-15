@@ -65,10 +65,6 @@ class PublishMetrics
             {
                name: "Subnet",
                value: subnet_cidr
-            },
-            {
-               name: "Server",
-               value: ENV.fetch("SERVER_NAME")
             }
           ]
         }
