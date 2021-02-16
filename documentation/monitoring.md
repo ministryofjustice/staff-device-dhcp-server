@@ -37,7 +37,7 @@ This section displays all the relevant AWS metrics. These include:
 
 ![Custom DHCP Metrics](./images/monitoring/custom_panel.png)
 
-The custom section displays all DHCP metrics outputted by [Kea](https://cloudsmith.io/~isc/repos/kea-1-8/packages/) as well as a subset of [error and debug messages](https://kea.readthedocs.io/en/kea-1.8.0/kea-messages.html).
+The custom section displays all DHCP metrics produced by [Kea](https://cloudsmith.io/~isc/repos/kea-1-8/packages/) as well as a subset of [error and debug messages](https://kea.readthedocs.io/en/kea-1.8.0/kea-messages.html).
 
 - CONFIGURATION RELOAD SUCCESSFUL
 - CONFIGURATION RELOAD FAILED
