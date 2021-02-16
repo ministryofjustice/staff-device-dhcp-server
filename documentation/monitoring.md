@@ -45,4 +45,4 @@ The custom section displays all DHCP metrics produced by [Kea](https://cloudsmit
 - ALLOC_ENGINE_V4_ALLOC_FAIL
 - ALLOC_ENGINE_V4_ALLOC_FAIL_CLASSES
 
-The dashboards monitor [subnet and network metrics](https://kea.readthedocs.io/en/kea-1.8.1/arm/stats.html) including the rate of change of DORA operations (Discovery, Offer, Request and Acknowledge).
+The dashboards monitor [subnet and network metrics](https://kea.readthedocs.io/en/kea-1.8.1/arm/stats.html) including the rate of change for DORA operations (Discovery, Offer, Request and Acknowledge) and Not Acknowledge (NAK) operations.
