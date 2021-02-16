@@ -25,7 +25,7 @@ The alarms section summarizes the state of the system and categorizes them as OK
 
 ![aws](./images/monitoring/aws_panel.png)
 
-The AWS section displays all the relevant metrics to AWS. These include:
+This section displays all the relevant AWS metrics. These include:
 
 - [ECS Task Count](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch-metrics.html)
 - [NLB ProccessBytes](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-cloudwatch-metrics.html)
