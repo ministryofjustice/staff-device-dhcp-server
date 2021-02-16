@@ -1,11 +1,16 @@
 #!/bin/bash
 
 set -euo pipefail
+SERVER='dhcp-primary'
 
-printf "Waiting for Primary KEA DHCP server"
+if [ $# -ge 1 ] && [ -n "$1" ]; then
+  SERVER=$1
+fi
+
+printf "Waiting for $SERVER KEA DHCP server"
 
 count=0
-until docker-compose exec -T dhcp-primary ls /tmp/kea_started 2> /dev/null
+until docker-compose exec -T $SERVER ls /tmp/kea_started 2> /dev/null
 do
   printf "."
   sleep 1

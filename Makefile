@@ -48,6 +48,11 @@ test: run build-dev
 	$(DOCKER_COMPOSE) run --rm dhcp-test rspec ./metrics/spec
 	$(DOCKER_COMPOSE) run --rm dhcp-test bash ./dhcp_test.sh
 
+test-ha: run build-dev
+	./scripts/wait_for_dhcp_server.sh
+	./scripts/wait_for_dhcp_server.sh 'dhcp-standby'
+	$(DOCKER_COMPOSE) run --rm dhcp-test-ha bash ./dhcp_test_ha.sh
+
 shell: start-db
 	$(DOCKER_COMPOSE) run --rm dhcp-primary sh
 

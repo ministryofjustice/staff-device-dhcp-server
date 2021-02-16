@@ -95,6 +95,29 @@ services:
       - ./dhcp-service/dhcp_test.sh:/dhcp_test.sh
       - ./dhcp-service/metrics/:/metrics
 
+  dhcp-test-ha:
+    build:
+      context: ./dhcp-service
+      args:
+        SHARED_SERVICES_ACCOUNT_ID: "${SHARED_SERVICES_ACCOUNT_ID}"
+        EXTRA_BUNDLE_CONFIG: ""
+    environment:
+      DB_NAME: kea
+      DB_USER: kea
+      DB_PASS: kea
+      DB_HOST: db
+      DB_PORT: 3306
+      METRICS_NAMESPACE: "Kea-DHCP"
+    depends_on:
+      - db
+      - dhcp-primary
+      - dhcp-standby
+    ports:
+      - 68:68/udp
+    volumes:
+      - ./dhcp-service/dhcp_test_ha.sh:/dhcp_test_ha.sh
+      - ./dhcp-service/metrics/:/metrics
+
   db:
     image: "${SHARED_SERVICES_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com/dhcp-mysql:mysql-5-7"
     restart: always
