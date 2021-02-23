@@ -181,10 +181,17 @@
             "t1-percent":0.5,
             "t2-percent":0.875,
             "valid-lifetime":4000
+          },
+          {
+            "id":777,
+            "pools":[
+              {
+                "pool":"10.180.82.5-10.180.82.254"
+              }
+            ],
+            "subnet":"10.180.82.0/24"
           }
         ],
-        "t1-percent":0.5,
-        "t2-percent":0.875,
         "valid-lifetime":4000
       }
     },
