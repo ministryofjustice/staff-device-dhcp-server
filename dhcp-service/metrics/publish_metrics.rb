@@ -56,7 +56,7 @@ class PublishMetrics
   def with_percent_used(metrics)
     kea_lease_usage.execute.each do |kea_metric|
       subnet_cidr = subnet_id_to_cidr(kea_metric.fetch(:subnet_id))
-      if !subnet_cidr.nil? and kea_metric.fetch(:subnet_id).to_i != ENV.fetch("HEARTBEAT_SUBNET_ID").to_i
+      unless subnet_cidr.nil?
         metrics << {
           metric_name: "lease-percent-used",
           timestamp: @time,

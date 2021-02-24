@@ -20,12 +20,6 @@ describe PublishMetrics do
         total_addresses: 4098,
         declined_addresses: 4,
         usage_percentage: 50
-      }, {
-        subnet_id: 777,
-        assigned_addresses: 2034,
-        total_addresses: 4098,
-        declined_addresses: 4,
-        usage_percentage: 50
       }
     ])
   end
@@ -49,7 +43,6 @@ describe PublishMetrics do
   before do
     Timecop.freeze(time)
     ENV.delete("SERVER_NAME")
-    ENV["HEARTBEAT_SUBNET_ID"] = "777"
   end
 
   after do
@@ -292,30 +285,6 @@ describe PublishMetrics do
 
       subject.execute(kea_stats: kea_stats)
       expect(client).to have_received(:put_metric_data).with(a_hash_including(expected_result))
-    end
-  end
-
-  context 'Heartbeat subnet' do
-    before do
-      ENV['SERVER_NAME'] = 'primary'
-    end
-
-    it 'does not publish lease usage metrics for the heartbeat subnet' do
-      kea_stats = JSON.parse(File.read("#{RSPEC_ROOT}/fixtures/kea_api_stats_response.json"))
-      expected_result = {
-          metric_name: "lease-percent-used",
-          timestamp: timestamp,
-          value: 50,
-          dimensions: [
-            {
-              name: "Subnet",
-              value: "10.180.82.0/24"
-            }
-          ]
-        }
-
-      subject.execute(kea_stats: kea_stats)
-      expect(client).to_not have_received(:put_metric_data).with(a_hash_including(expected_result))
     end
   end
 end
