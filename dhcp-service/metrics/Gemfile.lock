@@ -29,7 +29,7 @@ GEM
     multipart-post (2.1.1)
     mysql2 (0.5.3)
     public_suffix (4.0.6)
-    rexml (3.2.4)
+    rexml (3.2.5)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
@@ -53,7 +53,7 @@ GEM
       faraday
     sequel (5.44.0)
     timecop (0.9.4)
-    webmock (3.11.1)
+    webmock (3.13.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
