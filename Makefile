@@ -1,4 +1,9 @@
-DOCKER_COMPOSE = docker-compose -f docker-compose.yml
+ifneq (,$(wildcard ./.env))
+    include .env
+    export
+endif
+
+DOCKER_COMPOSE = docker-compose -f docker-compose.yml --env-file .env
 
 authenticate-docker:
 	./scripts/authenticate_docker.sh

@@ -9,17 +9,10 @@ services:
       - db
     environment:
       INTERFACE: eth0
-      DB_NAME: kea
-      DB_USER: kea
-      DB_PASS: kea
       DB_HOST: db
       DB_PORT: 3306
-      LOCAL_DEVELOPMENT: "true"
       SERVER_NAME: "primary"
-      PRIMARY_IP: "172.1.0.10"
-      STANDBY_IP: "172.1.0.11"
-      PUBLISH_METRICS: "true"
-      METRICS_NAMESPACE: "Kea-DHCP"
+    env_file: .env
     ports:
       - 67:67/udp
       - 8000:8000
@@ -28,7 +21,7 @@ services:
       - ./dhcp-service/metrics/:/metrics
     networks:
       default:
-        ipv4_address: 172.1.0.10
+        ipv4_address: ${PRIMARY_IP}
 
   dhcp-standby:
     build:
@@ -37,21 +30,16 @@ services:
         SHARED_SERVICES_ACCOUNT_ID: "${SHARED_SERVICES_ACCOUNT_ID}"
     environment:
       INTERFACE: eth0
-      DB_NAME: kea
-      DB_USER: kea
-      DB_PASS: kea
       DB_HOST: db
       DB_PORT: 3306
-      LOCAL_DEVELOPMENT: "true"
       SERVER_NAME: "standby"
-      PRIMARY_IP: "172.1.0.10"
-      STANDBY_IP: "172.1.0.11"
+    env_file: .env
     volumes:
       - $HOME/.aws/credentials:/root/.aws/credentials:ro
       - ./dhcp-service/metrics/:/metrics
     networks:
       default:
-        ipv4_address: 172.1.0.11
+        ipv4_address: ${STANDBY_IP}
 
   dhcp-api:
     build:
@@ -60,15 +48,10 @@ services:
         SHARED_SERVICES_ACCOUNT_ID: "${SHARED_SERVICES_ACCOUNT_ID}"
     environment:
       INTERFACE: eth0
-      DB_NAME: kea
-      DB_USER: kea
-      DB_PASS: kea
       DB_HOST: db
       DB_PORT: 3306
-      LOCAL_DEVELOPMENT: "true"
       SERVER_NAME: "api"
-      PRIMARY_IP: "172.1.0.10"
-      STANDBY_IP: "172.1.0.11"
+    env_file: .env
     volumes:
       - $HOME/.aws/credentials:/root/.aws/credentials:ro
       - ./dhcp-service/metrics/:/metrics
@@ -80,12 +63,10 @@ services:
         SHARED_SERVICES_ACCOUNT_ID: "${SHARED_SERVICES_ACCOUNT_ID}"
         EXTRA_BUNDLE_CONFIG: ""
     environment:
-      DB_NAME: kea
-      DB_USER: kea
-      DB_PASS: kea
+      INTERFACE: eth0
       DB_HOST: db
       DB_PORT: 3306
-      METRICS_NAMESPACE: "Kea-DHCP"
+    env_file: .env
     depends_on:
       - db
       - dhcp-primary
@@ -100,9 +81,9 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_USER: kea
-      MYSQL_PASSWORD: kea
-      MYSQL_DATABASE: kea
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+      MYSQL_DATABASE: ${DB_NAME}
     ports:
     - 3306:3306
 
