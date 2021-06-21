@@ -10,16 +10,28 @@ describe PublishMetrics do
     double(execute: [
       {
         subnet_id: 1,
+        assigned_addresses: 10,
+        total_addresses: 256,
+        declined_addresses: 0,
+        usage_percentage: 25.6
+      }, {
+        subnet_id: 2,
         assigned_addresses: 111,
         total_addresses: 256,
         declined_addresses: 0,
         usage_percentage: 43
       }, {
-        subnet_id: 2,
+        subnet_id: 3,
         assigned_addresses: 2034,
         total_addresses: 4098,
         declined_addresses: 4,
         usage_percentage: 50
+      }, {
+        subnet_id: 4,
+        assigned_addresses: 1017,
+        total_addresses: 4098,
+        declined_addresses: 4,
+        usage_percentage: 25
       }
     ])
   end
@@ -238,6 +250,17 @@ describe PublishMetrics do
         }, {
           metric_name: "lease-percent-used",
           timestamp: timestamp,
+          value: 25.6,
+          dimensions:
+          [
+            {
+              name: "Subnet",
+              value: "127.0.0.0/24"
+            }
+          ]
+        }, {
+          metric_name: "lease-percent-used",
+          timestamp: timestamp,
           value: 43,
           dimensions:
           [
@@ -255,6 +278,17 @@ describe PublishMetrics do
             {
               name: "Subnet",
               value: "192.0.2.0/24"
+            }
+          ]
+        }, {
+          metric_name: "lease-percent-used",
+          timestamp: timestamp,
+          value: 25,
+          dimensions:
+          [
+            {
+              name: "Subnet",
+              value: "172.1.0.0/24"
             }
           ]
         }

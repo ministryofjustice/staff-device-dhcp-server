@@ -113,74 +113,113 @@
         },
         "server-hostname":"",
         "server-tag":"",
-        "shared-networks":[
-
-        ],
         "statistic-default-sample-age":0,
         "statistic-default-sample-count":20,
         "store-extended-info":false,
-        "subnet4":[
+        "subnet4": [
           {
-            "4o6-interface":"",
-            "4o6-interface-id":"",
-            "4o6-subnet":"",
-            "calculate-tee-times":false,
-            "id":1,
-            "option-data":[
-
-            ],
-            "pools":[
+            "4o6-interface": "",
+            "4o6-interface-id": "",
+            "4o6-subnet": "",
+            "calculate-tee-times": false,
+            "id": 1,
+            "option-data": [],
+            "pools": [
               {
-                "option-data":[
-
-                ],
-                "pool":"172.1.0.10-172.1.0.100"
+                "option-data": [],
+                "pool": "127.0.0.1 - 127.0.0.254"
               }
             ],
-            "relay":{
-              "ip-addresses":[
-
-              ]
+            "relay": {
+              "ip-addresses": []
             },
-            "reservations":[
-
-            ],
-            "store-extended-info":false,
-            "subnet":"10.0.0.0/8",
-            "t1-percent":0.5,
-            "t2-percent":0.875,
-            "valid-lifetime":4000
+            "reservations": [],
+            "store-extended-info": false,
+            "subnet": "127.0.0.0/24",
+            "t1-percent": 0.5,
+            "t2-percent": 0.875,
+            "valid-lifetime": 4000
+          }
+        ],
+        "shared-networks": [
+          {
+            "name": "test shared network 1",
+            "subnet4": [
+              {
+                "4o6-interface": "",
+                "4o6-interface-id": "",
+                "4o6-subnet": "",
+                "calculate-tee-times": false,
+                "id": 2,
+                "option-data": [],
+                "pools": [
+                  {
+                    "option-data": [],
+                    "pool": "172.1.0.10-172.1.0.100"
+                  }
+                ],
+                "relay": {
+                  "ip-addresses": []
+                },
+                "reservations": [],
+                "store-extended-info": false,
+                "subnet": "10.0.0.0/8",
+                "t1-percent": 0.5,
+                "t2-percent": 0.875,
+                "valid-lifetime": 4000
+              },
+              {
+                "4o6-interface": "",
+                "4o6-interface-id": "",
+                "4o6-subnet": "",
+                "calculate-tee-times": false,
+                "id": 3,
+                "option-data": [],
+                "pools": [
+                  {
+                    "option-data": [],
+                    "pool": "172.1.0.10-172.1.0.100"
+                  }
+                ],
+                "relay": {
+                  "ip-addresses": []
+                },
+                "reservations": [],
+                "store-extended-info": false,
+                "subnet": "192.0.2.0/24",
+                "t1-percent": 0.5,
+                "t2-percent": 0.875,
+                "valid-lifetime": 4000
+              }
+            ]
           },
           {
-            "4o6-interface":"",
-            "4o6-interface-id":"",
-            "4o6-subnet":"",
-            "calculate-tee-times":false,
-            "id":2,
-            "option-data":[
-
-            ],
-            "pools":[
+            "name": "test shared network 2",
+            "subnet4": [
               {
-                "option-data":[
-
+                "4o6-interface": "",
+                "4o6-interface-id": "",
+                "4o6-subnet": "",
+                "calculate-tee-times": false,
+                "id": 4,
+                "option-data": [],
+                "pools": [
+                  {
+                    "option-data": [],
+                    "pool": "172.1.0.10-172.1.0.100"
+                  }
                 ],
-                "pool":"172.1.0.10-172.1.0.100"
+                "relay": {
+                  "ip-addresses": []
+                },
+                "reservations": [],
+                "store-extended-info": false,
+                "subnet": "172.1.0.0/24",
+                "t1-percent": 0.5,
+                "t2-percent": 0.875,
+                "valid-lifetime": 4000
               }
-            ],
-            "relay":{
-              "ip-addresses":[
-
-              ]
-            },
-            "reservations":[
-
-            ],
-            "store-extended-info":false,
-            "subnet":"192.0.2.0/24",
-            "t1-percent":0.5,
-            "t2-percent":0.875,
-            "valid-lifetime":4000
+            ]
           }
         ],
         "t1-percent":0.5,
