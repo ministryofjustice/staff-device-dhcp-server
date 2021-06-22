@@ -75,15 +75,39 @@
     // database. Subnet identifier is equal to 1. If this subnet is selected for
     // the client, this subnet id will be used to search for the reservations
     // within the database.
-    "subnet4": [
+    "shared-networks": [
       {
-        "pools": [
+        "name": "test-shared-network",
+        "subnet4": [
           {
-            "pool": "172.1.0.10 - 172.1.0.100"
+            "pools": [
+              {
+                "pool": "172.1.0.10 - 172.1.0.12"
+              }
+            ],
+            "subnet": "172.1.0.0/24",
+            "id": 1
+          },
+          {
+            "pools": [
+              {
+                "pool": "192.168.1.10 - 192.168.1.12"
+              }
+            ],
+            "subnet": "192.168.1.0/24",
+            "id": 2
           }
-        ],
-        "subnet": "127.0.0.1/0",
-        "id": 1
+          ,
+          {
+            "pools": [
+              {
+                "pool": "192.168.2.10 - 192.168.2.13"
+              }
+            ],
+            "subnet": "192.168.2.0/24",
+            "id": 3
+          }
+        ]
       }
     ],
     // The following configures logging. It assumes that messages with at
