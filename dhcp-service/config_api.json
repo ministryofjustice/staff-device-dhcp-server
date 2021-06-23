@@ -52,7 +52,7 @@
           }
         ],
         "severity": "DEBUG",
-        "debuglevel": 0
+        "debuglevel": 99
       }
     ],
     "hooks-libraries": [
