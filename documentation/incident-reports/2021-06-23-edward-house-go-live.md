@@ -9,7 +9,7 @@ Packet captures were run on the Palo Alto firewalls in ARK for both a live worki
 
 On inspection of the packets, the switch (DHCP relay) at Cygnet Park was found to be sending DISCOVER to port 67 on the DHCP server. Further inspection of the packet payload showed the source port to be 67 and the destination port to be 67.
 
-![Cygnet Park DISCOVER packet capture](../images/incident-reports/2021-06-23-edward-house-go-live/edward-house-discover-packet-capture.png "Cygnet Park DISCOVER packet capture")
+![Cygnet Park DISCOVER packet capture](../images/incident-reports/2021-06-23-edward-house-go-live/cygnet-park-discover-packet-capture.png "Cygnet Park DISCOVER packet capture")
 
 Inspection of the Edward House packet capture also showed packets sent to port 67 on the DHCP server, however, inspection of the packet
 payload showed the source port to be port 68 and the destination to be port 67.
