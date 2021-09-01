@@ -65,7 +65,7 @@ GEM
     sentry-ruby-core (4.6.5)
       concurrent-ruby
       faraday
-    sequel (5.47.0)
+    sequel (5.48.0)
     timecop (0.9.4)
     webmock (3.14.0)
       addressable (>= 2.8.0)
@@ -80,7 +80,7 @@ DEPENDENCIES
   mysql2 (~> 0.5.3)
   rspec
   sentry-ruby
-  sequel (~> 5.47)
+  sequel (~> 5.48)
   timecop
   webmock
 
