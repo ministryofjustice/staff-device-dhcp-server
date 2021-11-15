@@ -5,6 +5,12 @@ To get started with development you will need:
 - [Docker](https://www.docker.com/)
 - [Docker Compose](https://docs.docker.com/compose/)
 
+
+Copy the .env.example file to a new .env file
+`cp .env.example .env`
+
+Populate the missing value (SHARED_SERVICES_ACCOUNT_ID)
+
 ## Authenticating Docker with AWS ECR
 
 The Docker base image is stored in ECR. Prior to building the container you must authenticate Docker to the ECR registry. [Details can be found here](https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth).
@@ -12,10 +18,10 @@ The Docker base image is stored in ECR. Prior to building the container you must
 If you have [aws-vault](https://github.com/99designs/aws-vault#installing) configured with credentials for shared services, do the following to authenticate:
 
 ```bash
-aws-vault exec <SHARED_SERVICES_VAULT_PROFILE_NAME> -- aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin <SHARED_SERVICES_ACCOUNT_ID>.dkr.ecr.eu-west-2.amazonaws.com
+aws-vault exec <SHARED_SERVICES_VAULT_PROFILE_NAME> -- make authenticate-docker
 ```
 
-Replace `<SHARED_SERVICES_VAULT_PROFILE_NAME>` and `<SHARED_SERVICES_ACCOUNT_ID>` in the command above with the profile name and ID of the shared services account configured in aws-vault.
+Replace `<SHARED_SERVICES_VAULT_PROFILE_NAME>` with the profile name and ID of the shared services account configured in aws-vault.
 
 ## Running Locally
 
