@@ -37,10 +37,10 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.11.0)
     rspec-support (3.11.0)
-    sentry-ruby (5.0.1)
+    sentry-ruby (5.1.0)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-      sentry-ruby-core (= 5.0.1)
-    sentry-ruby-core (5.0.1)
+      sentry-ruby-core (= 5.1.0)
+    sentry-ruby-core (5.1.0)
       concurrent-ruby
     sequel (5.53.0)
     timecop (0.9.4)
