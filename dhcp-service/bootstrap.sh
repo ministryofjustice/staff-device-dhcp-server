@@ -30,9 +30,15 @@ configure_database_credentials() {
 }
 
 init_schema_if_not_loaded() {
-  db_version=$(kea-admin db-version mysql -u ${DB_USER} -p ${DB_PASS} -n ${DB_NAME} -h ${DB_HOST})
-  if [ -z "$db_version" ]; then
+  echo "Start of the Kea DB initialisation process:"
+  db_version=$(kea-admin db-version mysql -u ${DB_USER} -p ${DB_PASS} -n ${DB_NAME} -h ${DB_HOST}) || echo "Kea DB not configured"
+  if [[ "$db_version" == *"Failed to get schema version"* ]]; then
+    echo "Kea DB is not initialised"
+    echo "Initialising now............"
     $(kea-admin db-init mysql -u ${DB_USER} -p ${DB_PASS} -n ${DB_NAME} -h ${DB_HOST} &> /dev/null)
+    echo "Kea DB is now initialised"
+  else
+    echo "Kea DB is already initialised"
   fi
 }
 
