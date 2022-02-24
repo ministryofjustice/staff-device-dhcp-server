@@ -43,7 +43,8 @@ init_schema_if_not_loaded() {
 }
 
 upgrade_db_if_required() {
-$(kea-admin db-upgrade mysql -u ${DB_USER} -p ${DB_PASS} -n ${DB_NAME} -h ${DB_HOST} &> /dev/null)
+  echo "Start of the Kea schema upgrade process:"
+  kea-admin db-upgrade mysql -u ${DB_USER} -p ${DB_PASS} -n ${DB_NAME} -h ${DB_HOST}
 }
 
 ensure_database_permissions() {
