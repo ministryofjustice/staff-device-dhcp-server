@@ -42,6 +42,10 @@ init_schema_if_not_loaded() {
   fi
 }
 
+upgrade_db_if_required() {
+$(kea-admin db-upgrade mysql -u ${DB_USER} -p ${DB_PASS} -n ${DB_NAME} -h ${DB_HOST} &> /dev/null)
+}
+
 ensure_database_permissions() {
   echo "running grants on lease db"
   mysql -u ${DB_USER} -p${DB_PASS} -n ${DB_NAME} -h ${DB_HOST} -e "GRANT ALL ON ${DB_NAME}.* TO '${DB_USER}'@'${DB_HOST}';" #https://kea.readthedocs.io/en/kea-1.6.3/arm/admin.html
@@ -93,6 +97,7 @@ main() {
     ensure_database_permissions
   fi
   init_schema_if_not_loaded
+  upgrade_db_if_required
   boot_control_agent
   boot_server
   touch /tmp/kea_started
