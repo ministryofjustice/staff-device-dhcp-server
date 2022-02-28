@@ -36,10 +36,6 @@ init_schema_if_not_loaded() {
   fi
 }
 
-temporary_schema_fix() {
-  mysql -u ${DB_USER} -p${DB_PASS} -n ${DB_NAME} -h ${DB_HOST} -e "update schema_version set version = 9, minor = 3 where 1;"
-}
-
 ensure_database_permissions() {
   echo "running grants on lease db"
   mysql -u ${DB_USER} -p${DB_PASS} -n ${DB_NAME} -h ${DB_HOST} -e "GRANT ALL ON ${DB_NAME}.* TO '${DB_USER}'@'${DB_HOST}';" #https://kea.readthedocs.io/en/kea-1.6.3/arm/admin.html
@@ -91,7 +87,6 @@ main() {
     ensure_database_permissions
   fi
   init_schema_if_not_loaded
-  temporary_schema_fix
   boot_control_agent
   boot_server
   touch /tmp/kea_started
