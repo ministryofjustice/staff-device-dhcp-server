@@ -3,8 +3,8 @@
 source "http://rubygems.org"
 ruby File.read(".ruby-version").chomp
 
-gem "aws-sdk-cloudwatch", "~>1.61"
-gem "sequel", "~> 5.53"
+gem "aws-sdk-cloudwatch", "~>1.64"
+gem "sequel", "~> 5.55"
 gem "mysql2", "~> 0.5.3"
 gem "sentry-ruby"
 

@@ -4,11 +4,11 @@ GEM
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     aws-eventstream (1.2.0)
-    aws-partitions (1.555.0)
-    aws-sdk-cloudwatch (1.61.0)
-      aws-sdk-core (~> 3, >= 3.126.0)
+    aws-partitions (1.577.0)
+    aws-sdk-cloudwatch (1.64.0)
+      aws-sdk-core (~> 3, >= 3.127.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-core (3.126.2)
+    aws-sdk-core (3.130.1)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.525.0)
       aws-sigv4 (~> 1.1)
@@ -20,7 +20,7 @@ GEM
       rexml
     diff-lcs (1.5.0)
     hashdiff (1.0.1)
-    jmespath (1.6.0)
+    jmespath (1.6.1)
     mysql2 (0.5.3)
     public_suffix (4.0.6)
     rexml (3.2.5)
@@ -37,13 +37,13 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.11.0)
     rspec-support (3.11.0)
-    sentry-ruby (5.1.0)
+    sentry-ruby (5.2.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-      sentry-ruby-core (= 5.1.0)
-    sentry-ruby-core (5.1.0)
+      sentry-ruby-core (= 5.2.1)
+    sentry-ruby-core (5.2.1)
       concurrent-ruby
-    sequel (5.53.0)
-    timecop (0.9.4)
+    sequel (5.55.0)
+    timecop (0.9.5)
     webmock (3.14.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
@@ -53,11 +53,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aws-sdk-cloudwatch (~> 1.61)
+  aws-sdk-cloudwatch (~> 1.64)
   mysql2 (~> 0.5.3)
   rspec
   sentry-ruby
-  sequel (~> 5.53)
+  sequel (~> 5.55)
   timecop
   webmock
 
