@@ -3,8 +3,6 @@ services:
   dhcp-primary:
     build:
       context: ./dhcp-service
-      args:
-        SHARED_SERVICES_ACCOUNT_ID: "${SHARED_SERVICES_ACCOUNT_ID}"
     depends_on:
       - db
     environment:
@@ -33,8 +31,6 @@ services:
   dhcp-standby:
     build:
       context: ./dhcp-service
-      args:
-        SHARED_SERVICES_ACCOUNT_ID: "${SHARED_SERVICES_ACCOUNT_ID}"
     environment:
       INTERFACE: eth0
       DB_NAME: kea
@@ -56,8 +52,6 @@ services:
   dhcp-api:
     build:
       context: ./dhcp-service
-      args:
-        SHARED_SERVICES_ACCOUNT_ID: "${SHARED_SERVICES_ACCOUNT_ID}"
     environment:
       INTERFACE: eth0
       DB_NAME: kea
@@ -77,7 +71,6 @@ services:
     build:
       context: ./dhcp-service
       args:
-        SHARED_SERVICES_ACCOUNT_ID: "${SHARED_SERVICES_ACCOUNT_ID}"
         EXTRA_BUNDLE_CONFIG: ""
     environment:
       DB_NAME: kea
@@ -96,7 +89,7 @@ services:
       - ./dhcp-service/metrics/:/metrics
 
   db:
-    image: "${SHARED_SERVICES_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com/dhcp-mysql:mysql-5-7"
+    image: "mysql:5.7"
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: password
