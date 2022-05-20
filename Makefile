@@ -10,7 +10,7 @@ build:
 	docker build -t dhcp ./dhcp-service
 
 build-nginx:
-	docker build -t nginx ./nginx --build-arg SHARED_SERVICES_ACCOUNT_ID
+	docker build -t nginx ./nginx
 
 push-nginx:
 	aws ecr get-login-password | docker login --username AWS --password-stdin ${REGISTRY_URL}
