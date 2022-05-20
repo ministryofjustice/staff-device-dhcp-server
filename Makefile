@@ -6,11 +6,8 @@ DOCKER_COMPOSE = docker-compose -f docker-compose.yml
 authenticate-docker:
 	./scripts/authenticate_docker.sh
 
-check-container-registry-account-id:
-	./scripts/check_container_registry_account_id.sh
-
-build: check-container-registry-account-id
-	docker build -t dhcp ./dhcp-service --build-arg SHARED_SERVICES_ACCOUNT_ID
+build:
+	docker build -t dhcp ./dhcp-service
 
 build-nginx:
 	docker build -t nginx ./nginx --build-arg SHARED_SERVICES_ACCOUNT_ID
