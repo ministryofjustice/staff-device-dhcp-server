@@ -69,7 +69,7 @@ services:
 
   dhcp-test:
     build:
-      context: ./dhcp-service
+      context: ./dhcp_test_client
       args:
         EXTRA_BUNDLE_CONFIG: ""
     environment:
@@ -97,7 +97,7 @@ services:
       MYSQL_PASSWORD: kea
       MYSQL_DATABASE: kea
     ports:
-    - 3306:3306
+      - 3306:3306
 
 networks:
   default:

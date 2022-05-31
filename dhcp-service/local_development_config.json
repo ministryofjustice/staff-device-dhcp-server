@@ -1,19 +1,20 @@
-// This is an example configuration file for the DHCPv4 server in Kea.
-// It contains configuration of the MySQL host database backend, used
-// to retrieve reserved addresses, host names, DHCPv4 message fields
-// and DHCP options from MySQL database.
 {
   "Dhcp4": {
-    // Kea is told to listen on ethX interface only.
+    "option-def": [
+      {
+        "name": "delivery-optimisation",
+        "code": 234,
+        "type": "string",
+        "space": "dhcp4"
+      }
+    ],
     "interfaces-config": {
-      "interfaces": ["*"],
+      "interfaces": [
+        "*"
+      ],
       "dhcp-socket-type": "udp",
       "outbound-interface": "use-routing"
     },
-    // We need to specify the the database used to store leases. As of
-    // September 2016, four database backends are supported: MySQL,
-    // PostgreSQL, Cassandra, and the in-memory database, Memfile.
-    // We'll use memfile  because it doesn't require any prior set up.
     "lease-database": {
       "type": "mysql",
       "name": "<DB_NAME>",
@@ -22,40 +23,13 @@
       "host": "<DB_HOST>",
       "port": 3306
     },
-    // Addresses will be assigned with a lifetime of 4000 seconds.
-    "valid-lifetime": 4000,
-    // Renew and rebind timers are commented out. This implies that options
-    // 58 and 59 will not be sent to the client. In this case it is up to
-    // the client to pick the timer values according to RFC2131. Uncomment the
-    // timers to send these options to the client.
-    //  "renew-timer": 1000,
-    //  "rebind-timer": 2000,
-    // Kea supports reservations by several different types of
-    // identifiers: hw-address (hardware/MAC address of the client), duid
-    // (DUID inserted by the client), client-id (client identifier inserted
-    // by the client) and circuit-id (circuit identifier inserted by the
-    // relay agent). When told to do so, Kea can check for all of those
-    // identifier types, but it takes a costly database lookup to do so. It
-    // is therefore useful from a performance perspective to use only the
-    // reservation types that are actually used in a given network.
-    // The example below is not optimal from a performance perspective, but it
-    // nicely showcases the host reservation capabilities. Please use the minimum
-    // set of identifier types used in your network.
+    "valid-lifetime": 86400,
     "host-reservation-identifiers": [
       "circuit-id",
       "hw-address",
       "duid",
       "client-id"
     ],
-    // Specify connection to the database holding host reservations. The type
-    // specifies that the MySQL database is used. user and password are the
-    // credentials used to connect to the database. host and name specify
-    // location of the host where the database instance is running, and the
-    // name of the database to use. The server processing a packet will first
-    // check if there are any reservations specified for this client in the
-    // reservations list, within the subnet (configuration file). If there are
-    // no reservations there, the server will try to retrieve reservations
-    // from this database.
     "hosts-database": {
       "type": "mysql",
       "name": "<DB_NAME>",
@@ -64,31 +38,70 @@
       "host": "<DB_HOST>",
       "port": 3306
     },
-    // This is the control socket for the kea control agent. This must
-    // match the sockets used in the control-agent-config.json
     "control-socket": {
-        "socket-type": "unix",
-        "socket-name": "/tmp/dhcp4-socket"
+      "socket-type": "unix",
+      "socket-name": "/tmp/dhcp4-socket"
     },
-    // Define a subnet with a single pool of dynamic addresses. Addresses from
-    // this pool will be assigned to clients which don't have reservations in the
-    // database. Subnet identifier is equal to 1. If this subnet is selected for
-    // the client, this subnet id will be used to search for the reservations
-    // within the database.
+    "shared-networks": [
+      {
+        "name": "FITS_0001-1",
+        "subnet4": [
+          {
+            "pools": [
+              {
+                "pool": "172.1.0.10 - 172.1.0.100"
+              }
+            ],
+            "subnet": "172.1.0.0/24",
+            "id": 1001,
+            "user-context": {
+              "site-id": "FITS_0001",
+              "site-name": "Test"
+            },
+            "reservations": [
+              {
+                "hw-address": "aa:bb:cc:dd:ee:ff",
+                "ip-address": "172.1.0.99",
+                "hostname": "host.test.example.com",
+                "user-context": {
+                  "description": "Test Host"
+                }
+              }
+            ],
+            "require-client-classes": [
+              "subnet-172.1.0.0-client"
+            ]
+          },
+          {
+            "pools": [
+              {
+                "pool": "10.1.0.1 - 10.1.0.254"
+              }
+            ],
+            "subnet": "10.1.0.0/24",
+            "id": 1002,
+            "user-context": {
+              "site-id": "FITS_0001",
+              "site-name": "Test"
+            },
+            "require-client-classes": [
+              "subnet-10.1.0.0-client"
+            ]
+          }
+        ]
+      }
+    ],
     "subnet4": [
       {
         "pools": [
           {
-            "pool": "172.1.0.10 - 172.1.0.100"
+            "pool": "127.0.0.1 - 127.0.0.254"
           }
         ],
-        "subnet": "127.0.0.1/0",
+        "subnet": "127.0.0.1/24",
         "id": 1
       }
     ],
-    // The following configures logging. It assumes that messages with at
-    // least informational level (info, warn, error and fatal) should be
-    // logged to stdout.
     "loggers": [
       {
         "name": "kea-dhcp4",
@@ -98,7 +111,7 @@
           }
         ],
         "severity": "DEBUG",
-        "debuglevel": 0
+        "debuglevel": 99
       }
     ],
     "hooks-libraries": [
@@ -138,12 +151,74 @@
         }
       }
     ],
-    // Multi threaded config for a mysql backend
-    // https://kea.readthedocs.io/en/kea-1.8.0/arm/dhcp4-srv.html#multi-threading-settings-in-different-backends
     "multi-threading": {
-       "enable-multi-threading": true,
-       "thread-pool-size": 12,
-       "packet-queue-size": 792
-    }
+      "enable-multi-threading": true,
+      "thread-pool-size": 12,
+      "packet-queue-size": 65
+    },
+    "option-data": [
+      {
+        "name": "domain-name",
+        "data": "test.justice.gov.uk"
+      },
+      {
+        "name": "domain-name-servers",
+        "data": "8.8.8.8, 8.8.4.4"
+      }
+    ],
+    "client-classes": [
+      {
+        "name": "Test Client Class",
+        "test": "option[77].hex == 'W10TEST'",
+        "option-data": [
+          {
+            "name": "domain-name",
+            "data": "test.example.com"
+          },
+          {
+            "name": "domain-name-servers",
+            "data": "1.1.1.1, 2.2.2.2"
+          }
+        ]
+      },
+      {
+        "name": "subnet-172.1.0.0-client",
+        "test": "member('ALL')",
+        "only-if-required": true,
+        "option-data": [
+          {
+            "name": "routers",
+            "data": "172.1.0.10"
+          },
+          {
+            "name": "delivery-optimisation",
+            "space": "dhcp4",
+            "code": 234,
+            "data": "a2f68131-2b7b-42f7-8fe8-1b6834a586d3"
+          },
+          {
+            "name": "domain-name-servers",
+            "data": "3.3.3.3, 3.3.3.4"
+          }
+        ]
+      },
+      {
+        "name": "subnet-10.1.0.0-client",
+        "test": "member('ALL')",
+        "only-if-required": true,
+        "option-data": [
+          {
+            "name": "routers",
+            "data": "10.1.0.10"
+          },
+          {
+            "name": "delivery-optimisation",
+            "space": "dhcp4",
+            "code": 234,
+            "data": "a2f68131-2b7b-42f7-8fe8-1b6834a586d3"
+          }
+        ]
+      }
+    ]
   }
 }

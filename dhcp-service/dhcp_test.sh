@@ -19,8 +19,12 @@ perfdhcp -r 2 \
          -n $number_of_clients \
          -R $number_of_clients \
          -d 2 \
+         -4 \
+         -o 55,00EA \
          -W 20000000 \
          172.1.0.10
+
+# 00EA is hex string for '234' (decimal to hex conversion)
 
 echo "Checking leases created..."
 count=$(mysql --user=kea --password=kea --host=db --database=kea --silent --silent --skip-column-names --execute "SELECT count(*) FROM lease4;")
