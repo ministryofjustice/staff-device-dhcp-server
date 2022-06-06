@@ -69,7 +69,8 @@ services:
 
   dhcp-test:
     build:
-      context: ./dhcp_test_client
+      context: ./dhcp-service
+      dockerfile: Dockerfile.test
       args:
         EXTRA_BUNDLE_CONFIG: ""
     environment:
