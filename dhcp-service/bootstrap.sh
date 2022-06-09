@@ -42,10 +42,6 @@ init_schema_if_not_loaded() {
   fi
 }
 
-temporary_schema_fix() {
-  mysql -u ${DB_USER} -p${DB_PASS} -n ${DB_NAME} -h ${DB_HOST} -e "update schema_version set version = 12, minor = 0 where 1;"
-}
-
 upgrade_db_if_required() {
 $(kea-admin db-upgrade mysql -u ${DB_USER} -p ${DB_PASS} -n ${DB_NAME} -h ${DB_HOST} &> /dev/null)
 }
@@ -102,7 +98,6 @@ main() {
     ensure_database_permissions
   fi
   init_schema_if_not_loaded
-  temporary_schema_fix
   upgrade_db_if_required
   boot_control_agent
   boot_server
