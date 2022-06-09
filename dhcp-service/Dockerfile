@@ -1,4 +1,4 @@
-FROM ruby:2.7.2-alpine3.13
+FROM ruby:3.0.3-alpine3.13
 
 ENV GLIBC_VER=2.34-r0
 ARG EXTRA_BUNDLE_CONFIG="without 'test'"
