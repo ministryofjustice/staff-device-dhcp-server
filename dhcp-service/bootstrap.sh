@@ -30,16 +30,27 @@ configure_database_credentials() {
 }
 
 init_schema_if_not_loaded() {
-  db_version=$(kea-admin db-version mysql -u ${DB_USER} -p ${DB_PASS} -n ${DB_NAME} -h ${DB_HOST})
-  if [ -z "$db_version" ]; then
+  echo "Start of the Kea DB initialisation process:"
+  db_version=$(kea-admin db-version mysql -u ${DB_USER} -p ${DB_PASS} -n ${DB_NAME} -h ${DB_HOST}) || echo "Kea DB not configured"
+  if [[ "$db_version" == *"Failed to get schema version"* ]] || [ -z "$db_version" ]; then
+    echo "Kea DB is not initialised"
+    echo "Initialising now............"
     $(kea-admin db-init mysql -u ${DB_USER} -p ${DB_PASS} -n ${DB_NAME} -h ${DB_HOST} &> /dev/null)
+    echo "Kea DB is now initialised"
+  else
+    echo "Kea DB is already initialised"
   fi
+}
+
+upgrade_db_if_required() {
+$(kea-admin db-upgrade mysql -u ${DB_USER} -p ${DB_PASS} -n ${DB_NAME} -h ${DB_HOST} &> /dev/null)
 }
 
 ensure_database_permissions() {
   echo "running grants on lease db"
   mysql -u ${DB_USER} -p${DB_PASS} -n ${DB_NAME} -h ${DB_HOST} -e "GRANT ALL ON ${DB_NAME}.* TO '${DB_USER}'@'${DB_HOST}';" #https://kea.readthedocs.io/en/kea-1.6.3/arm/admin.html
 }
+
 
 boot_control_agent() {
   echo "Booting control agent"
@@ -87,6 +98,7 @@ main() {
     ensure_database_permissions
   fi
   init_schema_if_not_loaded
+  upgrade_db_if_required
   boot_control_agent
   boot_server
   touch /tmp/kea_started

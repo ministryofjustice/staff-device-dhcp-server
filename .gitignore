@@ -1,1 +1,4 @@
 .env
+.vscode
+*.pcap
+dhcp-service/local_development_config copy.json
