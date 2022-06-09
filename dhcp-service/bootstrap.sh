@@ -101,7 +101,6 @@ main() {
   if [[ "$LOCAL_DEVELOPMENT" != "true" ]] && [[ "$SERVER_NAME" == "primary" ]]; then
     ensure_database_permissions
   fi
-  temporary_schema_fix
   init_schema_if_not_loaded
   temporary_schema_fix
   upgrade_db_if_required
