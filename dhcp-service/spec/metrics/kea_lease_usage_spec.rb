@@ -1,5 +1,5 @@
-require_relative 'spec_helper'
-require_relative "../kea_lease_usage"
+require_relative '../spec_helper'
+require_relative "../../metrics/kea_lease_usage"
 require "json"
 
 describe KeaLeaseUsage do

@@ -9,7 +9,10 @@ RUN apk add bash build-base curl mysql mysql-client mysql-dev && \
   apk add isc-kea-perfdhcp && \
   rm -rf /var/cache/apk/*
 
+WORKDIR /test
+
 COPY ./metrics ./metrics
+COPY ./spec ./spec
 
 RUN cd metrics && \
   bundle config set no-cache 'true' ${EXTRA_BUNDLE_CONFIG} && \

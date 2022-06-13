@@ -87,7 +87,8 @@ services:
       - 68:68/udp
     volumes:
       - ./dhcp-service/dhcp_test.sh:/dhcp_test.sh
-      - ./dhcp-service/metrics/:/metrics
+      - ./dhcp-service/metrics/:/test/metrics
+      - ./dhcp-service/spec/:/test/spec
 
   db:
     image: "mysql:5.7"

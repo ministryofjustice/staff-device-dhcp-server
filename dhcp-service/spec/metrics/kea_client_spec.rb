@@ -1,5 +1,5 @@
-require_relative 'spec_helper'
-require_relative "../kea_client"
+require_relative '../spec_helper'
+require_relative "../../metrics/kea_client"
 
 describe KeaClient do
   before do
