@@ -86,7 +86,6 @@ services:
     ports:
       - 68:68/udp
     volumes:
-      - ./dhcp-service/dhcp_test.sh:/dhcp_test.sh
       - ./dhcp-service/metrics/:/test/metrics
       - ./dhcp-service/spec/:/test/spec
 
