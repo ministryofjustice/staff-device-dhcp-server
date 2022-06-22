@@ -159,7 +159,7 @@
     "option-data": [
       {
         "name": "domain-name",
-        "data": "test.justice.gov.uk"
+        "data": "test_default.example.com"
       },
       {
         "name": "domain-name-servers",
@@ -173,11 +173,7 @@
         "option-data": [
           {
             "name": "domain-name",
-            "data": "test.example.com"
-          },
-          {
-            "name": "domain-name-servers",
-            "data": "1.1.1.1, 2.2.2.2"
+            "data": "test_client_class.example.com"
           }
         ]
       },
@@ -195,10 +191,6 @@
             "space": "dhcp4",
             "code": 234,
             "data": "a2f68131-2b7b-42f7-8fe8-1b6834a586d3"
-          },
-          {
-            "name": "domain-name-servers",
-            "data": "3.3.3.3, 3.3.3.4"
           }
         ]
       },

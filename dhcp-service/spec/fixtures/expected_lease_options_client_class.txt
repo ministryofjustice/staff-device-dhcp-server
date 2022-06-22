@@ -6,11 +6,11 @@
         Router: 172.1.0.10
     Option: (6) Domain Name Server
         Length: 8
-        Domain Name Server: 3.3.3.3
-        Domain Name Server: 3.3.3.4
+        Domain Name Server: 8.8.8.8
+        Domain Name Server: 8.8.4.4
     Option: (15) Domain Name
-        Length: 19
-        Domain Name: test.justice.gov.uk
+        Length: 29
+        Domain Name: test_client_class.example.com
     Option: (51) IP Address Lease Time
         Length: 4
         IP Address Lease Time: (86400s) 1 day
@@ -21,8 +21,5 @@
         Length: 7
         Hardware type: Ethernet (0x01)
         Client MAC address: Abatron_02:03:04 (00:0c:01:02:03:04)
-    Option: (234) Private
-        Length: 36
-        Value: 61326636383133312d326237622d343266372d386665382d316236383334613538366433
     Option: (255) End
         Option End: 255
