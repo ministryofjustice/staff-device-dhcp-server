@@ -6,7 +6,7 @@ ARG EXTRA_BUNDLE_CONFIG="without 'test'"
 RUN apk add bash curl mysql mysql-client && \
   curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-2-0/setup.alpine.sh' |  bash && \
   apk upgrade && \
-  apk add build-base mysql-dev isc-kea-admin isc-kea-perfdhcp isc-kea-dhcp4 isc-kea-ctrl-agent isc-kea-hook-lease-cmds isc-kea-hook-stat-cmds isc-kea-hook-ha && \
+  apk add build-base git python3 openjdk11 mysql-dev isc-kea-admin isc-kea-perfdhcp isc-kea-dhcp4 isc-kea-ctrl-agent isc-kea-hook-lease-cmds isc-kea-hook-stat-cmds isc-kea-hook-ha && \
   curl -sL https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o /etc/apk/keys/sgerrand.rsa.pub && \
   curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-${GLIBC_VER}.apk && \
   curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-bin-${GLIBC_VER}.apk && \
@@ -18,6 +18,12 @@ RUN apk add bash curl mysql mysql-client && \
   rm glibc-${GLIBC_VER}.apk && \
   rm glibc-bin-${GLIBC_VER}.apk && \
   rm -rf /var/cache/apk/*
+
+COPY ./stork-agent.env /etc/stork/agent.env
+RUN git clone https://gitlab.isc.org/isc-projects/stork
+RUN cd stork && \
+  rake build && \
+  rake install:agent
 
 COPY ./bootstrap.sh ./bootstrap.sh
 COPY ./config_api.json ./config_api.json

@@ -62,6 +62,11 @@ boot_server() {
   kea-dhcp4 -c /etc/kea/config.json &
 }
 
+boot_stork_agent() {
+  echo "Booting stork agent"
+  cd stork && rake run:agent &
+}
+
 boot_metrics_agent() {
   echo "Booting metrics agent"
   ruby ./metrics/boot_metrics_agent.rb &
@@ -101,6 +106,7 @@ main() {
   upgrade_db_if_required
   boot_control_agent
   boot_server
+  boot_stork_agent
   touch /tmp/kea_started
   if [[ "$PUBLISH_METRICS" == "true" ]]; then
     boot_metrics_agent
