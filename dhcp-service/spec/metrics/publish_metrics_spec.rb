@@ -1,5 +1,5 @@
-require_relative 'spec_helper'
-require_relative '../publish_metrics'
+require_relative '../spec_helper'
+require_relative '../../metrics/publish_metrics'
 
 describe PublishMetrics do
   let(:client) { spy }

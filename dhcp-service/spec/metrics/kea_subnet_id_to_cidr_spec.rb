@@ -1,5 +1,5 @@
-require_relative 'spec_helper'
-require_relative "../kea_subnet_id_to_cidr"
+require_relative '../spec_helper'
+require_relative "../../metrics/kea_subnet_id_to_cidr"
 require "json"
 
 describe KeaSubnetIdToCidr do

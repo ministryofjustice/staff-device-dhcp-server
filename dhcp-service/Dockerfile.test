@@ -1,0 +1,19 @@
+FROM ruby:3.0.3-alpine3.13
+
+RUN apk add bash build-base curl mysql mysql-client mysql-dev && \
+  curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-2-0/setup.alpine.sh' | bash && \
+  apk update &&  \
+  apk upgrade && \
+  apk add isc-kea-perfdhcp tshark && \
+  rm -rf /var/cache/apk/*
+
+RUN chown root:root /usr/bin/dumpcap
+
+WORKDIR /test
+
+COPY ./metrics ./metrics
+COPY ./spec ./spec
+
+RUN cd metrics && \
+  bundle config set no-cache 'true' && \
+  bundle install
