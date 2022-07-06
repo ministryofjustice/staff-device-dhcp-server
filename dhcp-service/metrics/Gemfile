@@ -6,7 +6,7 @@ ruby File.read(".ruby-version").chomp
 gem "aws-sdk-cloudwatch", "~>1.64"
 gem "sequel", "~> 5.56"
 gem "mysql2", "~> 0.5.3"
-# gem "sentry-ruby"
+gem "sentry-ruby"
 
 group :test do
   gem "rspec"
