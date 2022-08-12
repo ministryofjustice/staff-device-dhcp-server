@@ -4,11 +4,11 @@ GEM
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     aws-eventstream (1.2.0)
-    aws-partitions (1.609.0)
-    aws-sdk-cloudwatch (1.65.0)
+    aws-partitions (1.616.0)
+    aws-sdk-cloudwatch (1.66.0)
       aws-sdk-core (~> 3, >= 3.127.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-core (3.131.3)
+    aws-sdk-core (3.132.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.525.0)
       aws-sigv4 (~> 1.1)
@@ -50,7 +50,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aws-sdk-cloudwatch (~> 1.65)
+  aws-sdk-cloudwatch (~> 1.66)
   mysql2 (~> 0.5.3)
   rspec
   sentry-ruby
