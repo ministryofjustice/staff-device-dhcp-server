@@ -21,7 +21,7 @@ GEM
     diff-lcs (1.5.0)
     hashdiff (1.0.1)
     jmespath (1.6.1)
-    mysql2 (0.5.3)
+    mysql2 (0.5.4)
     public_suffix (5.0.0)
     rexml (3.2.5)
     rspec (3.11.0)
@@ -51,7 +51,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk-cloudwatch (~> 1.66)
-  mysql2 (~> 0.5.3)
+  mysql2 (~> 0.5.4)
   rspec
   sentry-ruby
   sequel (~> 5.60)
