@@ -6,10 +6,12 @@ require_relative "publish_metrics"
 require_relative "aws_client"
 require_relative "kea_client"
 
-Sentry.init do |config|
-  # All errors will be sent syncronously!
-  config.background_worker_threads = 0
-  config.environment = ENV["SENTRY_CURRENT_ENV"]
+if ENV["SENTRY_DSN"]
+  Sentry.init do |config|
+    # All errors will be sent syncronously!
+    config.background_worker_threads = 0
+    config.environment = ENV["SENTRY_CURRENT_ENV"]
+  end
 end
 
 class Agent
@@ -23,7 +25,9 @@ class Agent
       sleep 10
     end
   rescue => e
-    Sentry.capture_exception(e)
+    if ENV["SENTRY_DSN"]
+      Sentry.capture_exception(e)
+    end
     raise e
   end
 
