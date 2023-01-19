@@ -3,7 +3,7 @@
 source "http://rubygems.org"
 ruby File.read(".ruby-version").chomp
 
-gem "aws-sdk-cloudwatch", "~>1.70"
+gem "aws-sdk-cloudwatch", "~>1.71"
 gem "sequel", "~> 5.64"
 gem "mysql2", "~> 0.5.4"
 
