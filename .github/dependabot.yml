@@ -16,4 +16,4 @@ updates:
   - package-ecosystem: "docker"
     directory: "/nginx"
     schedule:
-      interval: "daily
+      interval: "daily"
