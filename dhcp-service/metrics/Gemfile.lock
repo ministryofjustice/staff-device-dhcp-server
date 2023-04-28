@@ -15,7 +15,7 @@ GEM
       jmespath (~> 1, >= 1.6.1)
     aws-sigv4 (1.5.2)
       aws-eventstream (~> 1, >= 1.0.2)
-    concurrent-ruby (1.2.0)
+    concurrent-ruby (1.2.2)
     crack (0.4.5)
       rexml
     diff-lcs (1.5.0)
@@ -37,7 +37,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
     rspec-support (3.12.0)
-    sentry-ruby (5.8.0)
+    sentry-ruby (5.9.0)
       concurrent-ruby (~> 1.0, >= 1.0.2)
     sequel (5.67.0)
     timecop (0.9.6)
