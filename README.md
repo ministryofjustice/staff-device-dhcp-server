@@ -13,17 +13,17 @@ The image is published to [Amazon Web Services ECR](https://aws.amazon.com/ecr/)
 
 ## ISC Kea version
 
-The version of ISC Kea is built from the dockerfile [here](https://github.com/ministryofjustice/staff-device-dhcp-server/blob/fa383451a1bd0f58813e04c5076c90620189f5aa/dhcp-service/Dockerfile#L7).
+The version of ISC Kea is built from the dockerfile [here](dhcp-service/Dockerfile).
 
 ## Documentation
 
-- [Getting Started](/documentation/getting-started.md)
-- [High Availability Configuration](/documentation/high-availability.md)
-- [High Availability Testing](/documentation/high-availability-testing.md)
-- [Performance Testing](/documentation/performance-metrics.md)
-- [Health Checks](/documentation/health-checks.md)
-- [Monitoring](/documentation/monitoring.md)
-- [Deployment](/documentation/deployment.md)
+- [Getting Started](documentation/getting-started.md)
+- [High Availability Configuration](documentation/high-availability.md)
+- [High Availability Testing](documentation/high-availability-testing.md)
+- [Performance Testing](documentation/performance-metrics.md)
+- [Health Checks](documentation/health-checks.md)
+- [Monitoring](documentation/monitoring.md)
+- [Deployment](documentation/deployment.md)
 
 ## Notes
 
