@@ -25,6 +25,14 @@ The version of ISC Kea is built from the dockerfile [here](dhcp-service/Dockerfi
 - [Monitoring](documentation/monitoring.md)
 - [Deployment](documentation/deployment.md)
 
+## CI/CD
+
+- [CI Terraform code - staff-device-shared-services-infrastructure](https://github.com/ministryofjustice/staff-device-shared-services-infrastructure)
+- Terraform module - module "pttp-infrastructure-ci-pipeline-dhcp-container"
+- AWS Account - MOJ Official (Shared Services)
+- [Pipeline "Staff-Device-DHCP-Server"](https://eu-west-2.console.aws.amazon.com/codesuite/codepipeline/pipelines/Staff-Device-DHCP-Server/view?region=eu-west-2)
+
+
 ## Notes
 
 Kea currently does not support connecting to the database over SSL. See [kea#15](https://github.com/isc-projects/kea/pull/15)
