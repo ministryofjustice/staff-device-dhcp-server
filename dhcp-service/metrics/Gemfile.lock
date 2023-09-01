@@ -15,6 +15,7 @@ GEM
       jmespath (~> 1, >= 1.6.1)
     aws-sigv4 (1.6.0)
       aws-eventstream (~> 1, >= 1.0.2)
+    bigdecimal (3.1.4)
     concurrent-ruby (1.2.2)
     crack (0.4.5)
       rexml
@@ -39,7 +40,8 @@ GEM
     rspec-support (3.12.0)
     sentry-ruby (5.9.0)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-    sequel (5.70.0)
+    sequel (5.72.0)
+      bigdecimal
     timecop (0.9.6)
     webmock (3.18.1)
       addressable (>= 2.8.0)
@@ -54,7 +56,7 @@ DEPENDENCIES
   mysql2 (~> 0.5.5)
   rspec
   sentry-ruby
-  sequel (~> 5.70)
+  sequel (~> 5.72)
   timecop
   webmock
 
