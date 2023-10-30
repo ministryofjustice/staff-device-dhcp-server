@@ -1,5 +1,5 @@
-require_relative 'spec_helper'
-require_relative '../aws_client'
+require_relative '../spec_helper'
+require_relative '../../metrics/aws_client'
 
 describe AwsClient do
   it 'chunks 20 metrics maximum' do

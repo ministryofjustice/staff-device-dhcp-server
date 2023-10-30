@@ -1,10 +1,10 @@
-FROM ruby:3.0.3-alpine3.13
+FROM ruby:3.1.3-alpine3.15
 
 ENV GLIBC_VER=2.34-r0
 ARG EXTRA_BUNDLE_CONFIG="without 'test'"
 
 RUN apk add bash curl mysql mysql-client && \
-  curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-2-0/setup.alpine.sh' |  bash && \
+  curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-2-2/setup.alpine.sh' |  bash && \
   apk upgrade && \
   apk add build-base git python3 openjdk11 mysql-dev isc-kea-admin isc-kea-perfdhcp isc-kea-dhcp4 isc-kea-ctrl-agent isc-kea-hook-lease-cmds isc-kea-hook-stat-cmds isc-kea-hook-ha && \
   curl -sL https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o /etc/apk/keys/sgerrand.rsa.pub && \

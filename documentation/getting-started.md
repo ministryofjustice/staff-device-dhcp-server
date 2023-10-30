@@ -7,7 +7,7 @@ To get started with development you will need:
 
 ## Authenticate with AWS  
 
-Assuming you have been granted necessary access permissions to the Shared Service Account, please follow the CloudOps best practices provided [step-by-step guide](https://ministryofjustice.github.io/cloud-operations/documentation/team-guide/best-practices/use-aws-sso.html#re-configure-aws-vault) to configure your AWS Vault and AWS Cli with AWS SSO.  
+Assuming you have been granted necessary access permissions to the Shared Service Account, please follow the NVVS DevOps best practices provided [step-by-step guide](https://ministryofjustice.github.io/nvvs-devops/documentation/team-guide/best-practices/use-aws-sso.html#re-configure-aws-vault) to configure your AWS Vault and AWS Cli with AWS SSO.  
 
 ## Prepare the variables  
 
@@ -16,7 +16,7 @@ Assuming you have been granted necessary access permissions to the Shared Servic
 
 | Variables | How? |
 | --- | --- |
-| `AWS_PROFILE=` | your **AWS-CLI** profile name for the **Shared Services** AWS account. Check [this guide](https://ministryofjustice.github.io/cloud-operations/documentation/team-guide/best-practices/use-aws-sso.html#re-configure-aws-vault) if you need help. |
+| `AWS_PROFILE=` | your **AWS-CLI** profile name for the **Shared Services** AWS account. Check [this guide](https://ministryofjustice.github.io/nvvs-devops/documentation/team-guide/best-practices/use-aws-sso.html#re-configure-aws-vault) if you need help. |
 | `SHARED_SERVICES_ACCOUNT_ID=` | Account ID of the MoJO Shared Services AWS account.  |
 | `REGISTRY_URL=` | `<MoJO Development AWS Account ID>`.dkr.ecr.eu-west-2.amazonaws.com |  
 | `ENV=` | Your Terraform namespace from the DNS DHCP Infrastructure repo. |  
@@ -25,7 +25,7 @@ Assuming you have been granted necessary access permissions to the Shared Servic
 
 The Docker base image is stored in ECR. Prior to building the container you must authenticate Docker to the ECR registry. [Details can be found here](https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth).
 
-If you have [aws-vault](https://github.com/99designs/aws-vault#installing) configured according to CloudOps best practices, do the following to authenticate:
+If you have [aws-vault](https://github.com/99designs/aws-vault#installing) configured according to NVVS DevOps best practices, do the following to authenticate:
 
 ```bash
 make authenticate-docker

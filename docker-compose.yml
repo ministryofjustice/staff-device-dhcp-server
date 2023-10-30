@@ -73,6 +73,7 @@ services:
   dhcp-test:
     build:
       context: ./dhcp-service
+      dockerfile: Dockerfile.test
       args:
         EXTRA_BUNDLE_CONFIG: ""
     environment:
@@ -88,8 +89,8 @@ services:
     ports:
       - 68:68/udp
     volumes:
-      - ./dhcp-service/dhcp_test.sh:/dhcp_test.sh
-      - ./dhcp-service/metrics/:/metrics
+      - ./dhcp-service/metrics/:/test/metrics
+      - ./dhcp-service/spec/:/test/spec
 
   db:
     image: "mysql:5.7"
@@ -100,7 +101,7 @@ services:
       MYSQL_PASSWORD: kea
       MYSQL_DATABASE: kea
     ports:
-    - 3306:3306
+      - 3306:3306
 
 networks:
   default:

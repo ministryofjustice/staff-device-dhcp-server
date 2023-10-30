@@ -1,5 +1,5 @@
-require_relative 'spec_helper'
-require_relative '../db_client'
+require_relative '../spec_helper'
+require_relative '../../metrics/db_client'
 require 'sequel'
 
 describe DbClient do
