@@ -13,7 +13,5 @@ class DbClient
     db[:lease4_stat].all
   end
 
-  private
-
   attr_reader :db
 end

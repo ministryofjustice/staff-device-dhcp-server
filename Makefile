@@ -6,14 +6,11 @@ DOCKER_COMPOSE = docker-compose -f docker-compose.yml
 authenticate-docker:
 	./scripts/authenticate_docker.sh
 
-check-container-registry-account-id:
-	./scripts/check_container_registry_account_id.sh
-
-build: check-container-registry-account-id
-	docker build -t dhcp ./dhcp-service --build-arg SHARED_SERVICES_ACCOUNT_ID
+build:
+	docker build -t dhcp ./dhcp-service
 
 build-nginx:
-	docker build -t nginx ./nginx --build-arg SHARED_SERVICES_ACCOUNT_ID
+	docker build -t nginx ./nginx
 
 push-nginx:
 	aws ecr get-login-password | docker login --username AWS --password-stdin ${REGISTRY_URL}
@@ -48,8 +45,7 @@ run: start-db
 
 test: run build-dev
 	./scripts/wait_for_dhcp_server.sh
-	$(DOCKER_COMPOSE) run --rm dhcp-test rspec ./metrics/spec
-	$(DOCKER_COMPOSE) run --rm dhcp-test bash ./dhcp_test.sh
+	$(DOCKER_COMPOSE) run --rm dhcp-test rspec -f d ./spec
 
 shell: start-db
 	$(DOCKER_COMPOSE) run --rm dhcp-primary sh

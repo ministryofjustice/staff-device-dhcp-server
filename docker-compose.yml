@@ -3,8 +3,6 @@ services:
   dhcp-primary:
     build:
       context: ./dhcp-service
-      args:
-        SHARED_SERVICES_ACCOUNT_ID: "${SHARED_SERVICES_ACCOUNT_ID}"
     depends_on:
       - db
     environment:
@@ -33,8 +31,6 @@ services:
   dhcp-standby:
     build:
       context: ./dhcp-service
-      args:
-        SHARED_SERVICES_ACCOUNT_ID: "${SHARED_SERVICES_ACCOUNT_ID}"
     environment:
       INTERFACE: eth0
       DB_NAME: kea
@@ -56,8 +52,6 @@ services:
   dhcp-api:
     build:
       context: ./dhcp-service
-      args:
-        SHARED_SERVICES_ACCOUNT_ID: "${SHARED_SERVICES_ACCOUNT_ID}"
     environment:
       INTERFACE: eth0
       DB_NAME: kea
@@ -76,8 +70,8 @@ services:
   dhcp-test:
     build:
       context: ./dhcp-service
+      dockerfile: Dockerfile.test
       args:
-        SHARED_SERVICES_ACCOUNT_ID: "${SHARED_SERVICES_ACCOUNT_ID}"
         EXTRA_BUNDLE_CONFIG: ""
     environment:
       DB_NAME: kea
@@ -92,11 +86,11 @@ services:
     ports:
       - 68:68/udp
     volumes:
-      - ./dhcp-service/dhcp_test.sh:/dhcp_test.sh
-      - ./dhcp-service/metrics/:/metrics
+      - ./dhcp-service/metrics/:/test/metrics
+      - ./dhcp-service/spec/:/test/spec
 
   db:
-    image: "${SHARED_SERVICES_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com/dhcp-mysql:mysql-5-7"
+    image: "mysql:5.7"
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: password
@@ -104,7 +98,7 @@ services:
       MYSQL_PASSWORD: kea
       MYSQL_DATABASE: kea
     ports:
-    - 3306:3306
+      - 3306:3306
 
 networks:
   default:

@@ -43,7 +43,6 @@ init_schema_if_not_loaded() {
 }
 
 upgrade_db_if_required() {
-  echo "Start of the Kea schema upgrade process:"
   kea-admin db-upgrade mysql -u ${DB_USER} -p ${DB_PASS} -n ${DB_NAME} -h ${DB_HOST}
 }
 
@@ -51,6 +50,7 @@ ensure_database_permissions() {
   echo "running grants on lease db"
   mysql -u ${DB_USER} -p${DB_PASS} -n ${DB_NAME} -h ${DB_HOST} -e "GRANT ALL ON ${DB_NAME}.* TO '${DB_USER}'@'${DB_HOST}';" #https://kea.readthedocs.io/en/kea-1.6.3/arm/admin.html
 }
+
 
 boot_control_agent() {
   echo "Booting control agent"

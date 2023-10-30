@@ -3,13 +3,16 @@
 source "http://rubygems.org"
 ruby File.read(".ruby-version").chomp
 
-gem "aws-sdk-cloudwatch", "~>1.64"
-gem "sequel", "~> 5.55"
-gem "mysql2", "~> 0.5.3"
-gem "sentry-ruby"
+gem "aws-sdk-cloudwatch", "~>1.76"
+gem "sequel", "~> 5.70"
+gem "mysql2", "~> 0.5.5"
 
 group :test do
   gem "rspec"
   gem "timecop"
   gem "webmock"
+end
+
+group :production do
+  gem "sentry-ruby"
 end
