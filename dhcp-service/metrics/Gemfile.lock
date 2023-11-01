@@ -40,7 +40,7 @@ GEM
     rspec-support (3.12.0)
     sentry-ruby (5.12.0)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-    sequel (5.73.0)
+    sequel (5.74.0)
       bigdecimal
     timecop (0.9.8)
     webmock (3.19.1)
@@ -56,7 +56,7 @@ DEPENDENCIES
   mysql2 (~> 0.5.5)
   rspec
   sentry-ruby
-  sequel (~> 5.73)
+  sequel (~> 5.74)
   timecop
   webmock
 
