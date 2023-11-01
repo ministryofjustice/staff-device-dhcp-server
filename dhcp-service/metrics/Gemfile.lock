@@ -1,7 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    addressable (2.8.1)
+    addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
     aws-eventstream (1.2.0)
     aws-partitions (1.782.0)
@@ -22,8 +22,8 @@ GEM
     hashdiff (1.0.1)
     jmespath (1.6.2)
     mysql2 (0.5.5)
-    public_suffix (5.0.0)
-    rexml (3.2.5)
+    public_suffix (5.0.3)
+    rexml (3.2.6)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
@@ -41,7 +41,7 @@ GEM
       concurrent-ruby (~> 1.0, >= 1.0.2)
     sequel (5.70.0)
     timecop (0.9.8)
-    webmock (3.18.1)
+    webmock (3.19.1)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
