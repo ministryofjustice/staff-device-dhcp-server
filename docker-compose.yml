@@ -1,6 +1,7 @@
 version: "3"
 services:
   dhcp-primary:
+    platform: linux/amd64
     build:
       context: ./dhcp-service
     depends_on:
@@ -29,6 +30,7 @@ services:
         ipv4_address: 172.1.0.10
 
   dhcp-standby:
+    platform: linux/amd64
     build:
       context: ./dhcp-service
     environment:
@@ -50,6 +52,7 @@ services:
         ipv4_address: 172.1.0.11
 
   dhcp-api:
+    platform: linux/amd64
     build:
       context: ./dhcp-service
     environment:
@@ -68,6 +71,7 @@ services:
       - ./dhcp-service/metrics/:/metrics
 
   dhcp-test:
+    platform: linux/amd64
     build:
       context: ./dhcp-service
       dockerfile: Dockerfile.test
@@ -91,6 +95,7 @@ services:
 
   db:
     image: "mysql:5.7"
+    platform: linux/amd64
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: password
