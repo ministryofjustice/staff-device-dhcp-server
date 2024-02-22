@@ -9,8 +9,8 @@ services:
     environment:
       INTERFACE: eth0
       DB_NAME: kea
-      DB_USER: kea
-      DB_PASS: kea
+      DB_USER: root
+      DB_PASS: password
       DB_HOST: db
       DB_PORT: 3306
       LOCAL_DEVELOPMENT: "true"
@@ -94,7 +94,7 @@ services:
       - ./dhcp-service/spec/:/test/spec
 
   db:
-    image: "mysql:5.7"
+    image: "mysql:8.0.27"
     platform: linux/amd64
     restart: always
     environment:
