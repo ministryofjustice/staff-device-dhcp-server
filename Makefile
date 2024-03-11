@@ -1,62 +1,91 @@
 -include .env
 export
 
+.DEFAULT_GOAL := help
+
 DOCKER_COMPOSE = docker-compose -f docker-compose.yml
 
-authenticate-docker:
+.PHONY: authenticate-docker
+authenticate-docker: ## Authenticate docker using ssm paramstore
 	./scripts/authenticate_docker.sh
 
-build:
+.PHONY: build
+build: ## Docker build dhcp service
 	docker build --platform=linux/amd64 -t dhcp ./dhcp-service
 
-build-nginx:
+.PHONY: build-nginx
+build-nginx: ## Docker build nginx
 	docker build --platform=linux/amd64 -t nginx ./nginx
 
-push-nginx:
+.PHONY: push-nginx
+push-nginx: ## Docker tag nginx with latest and push to ECR
 	aws ecr get-login-password | docker login --username AWS --password-stdin ${REGISTRY_URL}
 	docker tag nginx:latest ${REGISTRY_URL}/staff-device-${ENV}-dhcp-nginx:latest
 	docker push ${REGISTRY_URL}/staff-device-${ENV}-dhcp-nginx:latest
 
-push:
+.PHONY: push
+push: ## Docker tag dhcp image with latest and push to ECR
 	aws ecr get-login-password | docker login --username AWS --password-stdin ${REGISTRY_URL}
 	docker tag dhcp:latest ${REGISTRY_URL}/staff-device-${ENV}-dhcp:latest
 	docker push ${REGISTRY_URL}/staff-device-${ENV}-dhcp:latest
 
-publish: build push build-nginx push-nginx
+.PHONY: publish
+publish: ## Build docker image, tag and push  dhcp:latest, build nginx image, tag with latest and push
+	$(MAKE) build
+	$(MAKE) push
+	$(MAKE) build-nginx
+	$(MAKE) push-nginx
 
-deploy:
+.PHONY: deploy
+deploy: ## Run deploy script
 	./scripts/deploy.sh
 
-build-dev:
+.PHONY: build-dev
+build-dev: ## Build dev image
 	$(DOCKER_COMPOSE) build
 
-start-db: check-container-registry-account-id
+.PHONY: start-db
+start-db: ## start database
+	$(MAKE) check-container-registry-account-id
 	$(DOCKER_COMPOSE) up -d db
 	./scripts/wait_for_db.sh
 
-stop:
+.PHONY: stop
+stop: ## Stop and remove containers
 	$(DOCKER_COMPOSE) down -v
 
-run: start-db
+.PHONY: run
+run: ## Build dev image and start dhcp container
+	$(MAKE) start-db
 	$(DOCKER_COMPOSE) up -d dhcp-primary
 	./scripts/wait_for_dhcp_server.sh
 	$(DOCKER_COMPOSE) up -d dhcp-standby
 	$(DOCKER_COMPOSE) up -d dhcp-api
 
-test: run build-dev
+.PHONY: test
+test: ## Build dev container, start dhcp container, run tests
+	$(MAKE) run
+	$(MAKE) build-dev
 	./scripts/wait_for_dhcp_server.sh
 	$(DOCKER_COMPOSE) run --rm dhcp-test rspec -f d ./spec
 
-shell: start-db
+.PHONY: shell
+shell: ## Build dev image and start dhcp in shell
+	$(MAKE) start-db
 	$(DOCKER_COMPOSE) run --rm dhcp-primary sh
 
-shell-test: start-db
+.PHONY: shell-test
+shell-test: ## Build dev container and tests in shell
+	$(MAKE) start-db
 	$(DOCKER_COMPOSE) run --rm dhcp-test sh
 
-logs:
+.PHONY: logs
+logs: ## Command will continue streaming the new output from the container's stdout and stderr
 	$(DOCKER_COMPOSE) logs --follow
 
-implode:
+.PHONY: implode
+implode: ## remove docker container
 	$(DOCKER_COMPOSE) rm
 
-.PHONY: build push publish deploy build-dev start-db stop run test shell shell-test logs implode authenticate-docker check-container-registry-account-id build-nginx push-nginx
+help:
+	@grep -h -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
