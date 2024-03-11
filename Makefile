@@ -46,7 +46,6 @@ build-dev: ## Build dev image
 
 .PHONY: start-db
 start-db: ## start database
-	$(MAKE) check-container-registry-account-id
 	$(DOCKER_COMPOSE) up -d db
 	./scripts/wait_for_db.sh
 
