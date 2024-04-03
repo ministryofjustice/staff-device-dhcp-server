@@ -44,18 +44,12 @@ deploy: ## Run deploy script
 build-dev: ## Build dev image
 	$(DOCKER_COMPOSE) build
 
-.PHONY: start-db
-start-db: ## start database
-	$(DOCKER_COMPOSE) up -d db
-	./scripts/wait_for_db.sh
-
 .PHONY: stop
 stop: ## Stop and remove containers
 	$(DOCKER_COMPOSE) down -v
 
 .PHONY: run
 run: ## Build dev image and start dhcp container
-	$(MAKE) start-db
 	$(DOCKER_COMPOSE) up -d dhcp-primary
 	./scripts/wait_for_dhcp_server.sh
 	$(DOCKER_COMPOSE) up -d dhcp-standby
@@ -70,12 +64,10 @@ test: ## Build dev container, start dhcp container, run tests
 
 .PHONY: shell
 shell: ## Build dev image and start dhcp in shell
-	$(MAKE) start-db
 	$(DOCKER_COMPOSE) run --rm dhcp-primary sh
 
 .PHONY: shell-test
 shell-test: ## Build dev container and tests in shell
-	$(MAKE) start-db
 	$(DOCKER_COMPOSE) run --rm dhcp-test sh
 
 .PHONY: logs
