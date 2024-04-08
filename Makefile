@@ -57,9 +57,6 @@ run: ## Build dev image and start dhcp container
 
 .PHONY: test
 test: ## Build dev container, start dhcp container, run tests
-	$(MAKE) run
-	$(MAKE) build-dev
-	./scripts/wait_for_dhcp_server.sh
 	$(DOCKER_COMPOSE) run --rm dhcp-test rspec -f d ./spec
 
 .PHONY: shell
