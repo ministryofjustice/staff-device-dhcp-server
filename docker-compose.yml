@@ -23,10 +23,6 @@ services:
     ports:
       - 67:67/udp
       - 8000:8000
-    healthcheck:
-      test: bash -c "[ -f /tmp/kea_started ]"
-      timeout: 20s
-      retries: 10
     volumes:
       - $HOME/.aws/credentials:/root/.aws/credentials:ro
       - ./dhcp-service/metrics/:/metrics
@@ -93,7 +89,7 @@ services:
       db:
         condition: service_healthy
       dhcp-primary:
-        condition: service_healthy
+        condition: service_started
     ports:
       - 68:68/udp
     volumes:
