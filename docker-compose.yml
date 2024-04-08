@@ -86,8 +86,10 @@ services:
       DB_PORT: 3306
       METRICS_NAMESPACE: "Kea-DHCP"
     depends_on:
-      - db
-      - dhcp-primary
+      db:
+        condition: service_healthy
+      dhcp-primary:
+        condition: service_started
     ports:
       - 68:68/udp
     volumes:
