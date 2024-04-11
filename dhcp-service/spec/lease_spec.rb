@@ -25,7 +25,7 @@ describe "Kea server" do
         -W 20000000 \
         172.1.0.10`
 
-      file = File.open("./spec/fixtures/expected_lease_options_ordinary.txt")
+      file = File.open("./dhcp_offer_packet.pcap")
       file_data = file.read
       puts ".................................printing file data.................................".inspect
       puts file_data
@@ -50,7 +50,7 @@ describe "Kea server" do
         -W 20000000 \
         172.1.0.10`
 
-      file = File.open("./spec/fixtures/expected_lease_options_client_class.txt")
+      file = File.open("./dhcp_offer_packet.pcap")
       file_data = file.read
       puts ".................................printing file data.................................".inspect
       puts file_data
@@ -73,7 +73,7 @@ describe "Kea server" do
         -W 20000000 \
         172.1.0.10`
 
-      file = File.open("./spec/fixtures/expected_lease_options_delivery_optimised.txt")
+      file = File.open("./dhcp_offer_packet.pcap")
       file_data = file.read
       puts ".................................printing file data.................................".inspect
       puts file_data
