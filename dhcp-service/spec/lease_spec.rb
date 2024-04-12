@@ -20,6 +20,12 @@ describe "Kea server" do
       output = `perfdhcp -r 2 -n 10 -R 10 -d 2 -4 -W 20000000 172.1.0.10`
       puts output
 
+      route = `route`
+      puts route
+      ip_link_show = `ip link show`
+      puts ip_link_show
+
+
 
       file = File.open("./dhcp_offer_packet.pcap")
       file_data = file.read
