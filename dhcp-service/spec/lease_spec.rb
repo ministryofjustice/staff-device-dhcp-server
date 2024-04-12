@@ -31,9 +31,13 @@ describe "Kea server" do
       puts file_data
       file.close
 
-      db_output = db_client[:lease4]
-      rows = db_output.all
-      puts rows
+      begin
+        db_output = db_client[:lease4]
+        rows = db_output.all
+        puts rows
+      rescue Sequel::DatabaseError => e
+        puts "Error accessing the database: #{e.message}"
+      end
 
 
       expect(db_client[:lease4].count).to eq(10)
