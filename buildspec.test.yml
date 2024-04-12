@@ -20,3 +20,4 @@ phases:
     commands:
       - make authenticate-docker
       - make test
+      - docker inspect staff-device-dhcp-server-dhcp-primary-1
