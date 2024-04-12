@@ -17,30 +17,15 @@ describe "Kea server" do
   # Fail
   context "when ordinary dhcp clients send DHCP requests" do
     it "provides 10 leases to 10 clients, leases persist in the DB and provides DHCP options from global options" do
-      `perfdhcp -r 2 \
-        -n 10 \
-        -R 10 \
-        -d 2 \
-        -4 \
-        -W 20000000 \
-        172.1.0.10`
+      output = `perfdhcp -r 2 -n 10 -R 10 -d 2 -4 -W 20000000 172.1.0.10`
+      puts output
+
 
       file = File.open("./dhcp_offer_packet.pcap")
       file_data = file.read
       puts ".................................printing file data.................................".inspect
       puts file_data
       file.close
-
-      begin
-        tables = db_client.tables
-        puts "List of tables:"
-        tables.each do |table|
-          puts table
-        end
-      rescue Sequel::DatabaseError => e
-        puts "Error accessing the database: #{e.message}"
-      end
-
 
       expect(db_client[:lease4].count).to eq(10)
       expect(dhcp_offer_packet_content).to include(File.read("./spec/fixtures/expected_lease_options_ordinary.txt"))
