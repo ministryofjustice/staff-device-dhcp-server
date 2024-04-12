@@ -31,6 +31,11 @@ describe "Kea server" do
       puts file_data
       file.close
 
+      db_output = db_client[:lease4]
+      rows = db_output.all
+      puts rows
+
+
       expect(db_client[:lease4].count).to eq(10)
       expect(dhcp_offer_packet_content).to include(File.read("./spec/fixtures/expected_lease_options_ordinary.txt"))
       expect(dhcp_offer_packet_content).not_to include("Option: (234) Private")
