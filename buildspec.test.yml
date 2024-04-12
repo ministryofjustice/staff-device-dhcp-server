@@ -21,4 +21,4 @@ phases:
       - make authenticate-docker
       - make test
       - docker ps
-      - docker inspect staff-device-dhcp-server-dhcp-primary-1
+      - docker inspect src-dhcp-primary-1
