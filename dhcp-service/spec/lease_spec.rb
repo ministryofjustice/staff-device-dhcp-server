@@ -32,9 +32,11 @@ describe "Kea server" do
       file.close
 
       begin
-        db_output = db_client[:lease4]
-        rows = db_output.all
-        puts rows
+        tables = db_client.tables
+        puts "List of tables:"
+        tables.each do |table|
+          puts table
+        end
       rescue Sequel::DatabaseError => e
         puts "Error accessing the database: #{e.message}"
       end
