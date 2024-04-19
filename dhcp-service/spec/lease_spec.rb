@@ -21,21 +21,13 @@ describe "Kea server" do
       ping_ouput = `ping 172.1.0.10 -c 3`
       puts ping_ouput
 
-      perfdhcp_output = `perfdhcp -r 2 -n 10 -R 10 -d 2 -4 -W 20000000 172.1.0.10`
+      perfdhcp_output = `perfdhcp -x ls -r 2 -n 10 -R 10 -d 2 -4 -W 20000000 172.1.0.10`
       puts perfdhcp_output
 
       route = `route`
       puts route
       ip_link_show = `ip link show`
       puts ip_link_show
-
-
-
-      file = File.open("./dhcp_offer_packet.pcap")
-      file_data = file.read
-      puts ".................................printing file data.................................".inspect
-      puts file_data
-      file.close
 
       expect(db_client[:lease4].count).to eq(10)
       expect(dhcp_offer_packet_content).to include(File.read("./spec/fixtures/expected_lease_options_ordinary.txt"))
