@@ -19,7 +19,7 @@ describe "Kea server" do
     it "provides 10 leases to 10 clients, leases persist in the DB and provides DHCP options from global options" do
 
       ping_ouput = `ping 172.1.0.10 -c 3`
-      puts ping_oupu
+      puts ping_ouput
 
       perfdhcp_output = `perfdhcp -x ls -r 2 -n 10 -R 10 -d 2 -4 -W 20000000 172.1.0.10`
       puts perfdhcp_output
