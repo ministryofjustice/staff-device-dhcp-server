@@ -3,8 +3,6 @@ FROM ruby:3.1.3-alpine3.15
 ENV GLIBC_VER=2.34-r0
 ARG EXTRA_BUNDLE_CONFIG="without 'test'"
 
-RUN apk add iptables && apk add sudo
-
 RUN apk add bash curl mysql mysql-client && \
   curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-2-2/setup.alpine.sh' |  bash && \
   apk upgrade && \

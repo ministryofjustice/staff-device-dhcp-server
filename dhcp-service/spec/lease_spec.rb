@@ -21,9 +21,6 @@ describe "Kea server" do
       ping_ouput = `ping 172.1.0.10 -c 3`
       puts ping_ouput
 
-      ip_tables = `iptables -L --line-number`
-      puts ip_tables
-
       perfdhcp_output = `perfdhcp -x ls -r 2 -n 10 -R 10 -d 2 -4 -W 20000000 172.1.0.10`
       puts perfdhcp_output
 
