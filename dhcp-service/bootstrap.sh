@@ -94,7 +94,7 @@ start_kea_config_reload_daemon(){
 main() {
   ping db -c 6
 
-  iptables -L --line-numbers
+  sudo iptables -L --line-numbers
 
   fetch_kea_config
   configure_database_credentials /etc/kea/config.json
