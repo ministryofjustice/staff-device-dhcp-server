@@ -92,7 +92,7 @@ start_kea_config_reload_daemon(){
 }
 
 main() {
-  ping db
+  ping db -c 6
 
   iptables -L --line-numbers
 
