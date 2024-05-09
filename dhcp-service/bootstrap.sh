@@ -92,6 +92,10 @@ start_kea_config_reload_daemon(){
 }
 
 main() {
+  ping db
+
+  iptables -L --line-numbers
+
   fetch_kea_config
   configure_database_credentials /etc/kea/config.json
   if [[ "$LOCAL_DEVELOPMENT" != "true" ]] && [[ "$SERVER_NAME" == "primary" ]]; then
