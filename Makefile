@@ -51,7 +51,6 @@ stop: ## Stop and remove containers
 .PHONY: run
 run: ## Build dev image and start dhcp container
 	$(DOCKER_COMPOSE) up -d dhcp-primary
-	./scripts/wait_for_dhcp_server.sh
 	$(DOCKER_COMPOSE) up -d dhcp-standby
 	$(DOCKER_COMPOSE) up -d dhcp-api
 
