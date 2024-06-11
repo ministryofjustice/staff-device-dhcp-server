@@ -42,7 +42,7 @@ describe "Kea server" do
         -o 77,57313054455354 \
         -W 20000000 \
         172.1.0.10`
-      sleep 5
+      sleep 10
       expect(dhcp_offer_packet_content).to include(File.read("./spec/fixtures/expected_lease_options_client_class.txt"))
     end
   end
@@ -58,7 +58,7 @@ describe "Kea server" do
         -o 55,00EA \
         -W 20000000 \
         172.1.0.10`
-      sleep 5 
+      sleep 10 
       expect(dhcp_offer_packet_content).to include(File.read("./spec/fixtures/expected_lease_options_delivery_optimised.txt"))
     end
   end
