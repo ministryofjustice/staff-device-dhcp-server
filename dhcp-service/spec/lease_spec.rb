@@ -10,6 +10,7 @@ describe "Kea server" do
     db_client[:lease4].truncate
     db_client.disconnect
     Process.fork { `tshark -iany -f 'ip src 172.1.0.10 and udp port 67' -w ./dhcp_offer_packet.pcap -q -a packets:1` }
+    sleep 5 # Adding a delay to ensure the process is ready
   end
 
   after { db_client.disconnect }
@@ -23,7 +24,8 @@ describe "Kea server" do
         -4 \
         -W 20000000 \
         172.1.0.10`
-
+      sleep 10
+      # tshark -r dhcp_offer_packet.pcap  -V
       expect(db_client[:lease4].count).to eq(10)
       expect(dhcp_offer_packet_content).to include(File.read("./spec/fixtures/expected_lease_options_ordinary.txt"))
       expect(dhcp_offer_packet_content).not_to include("Option: (234) Private")
@@ -41,7 +43,7 @@ describe "Kea server" do
         -o 77,57313054455354 \
         -W 20000000 \
         172.1.0.10`
-
+      sleep 5
       expect(dhcp_offer_packet_content).to include(File.read("./spec/fixtures/expected_lease_options_client_class.txt"))
     end
   end
@@ -57,7 +59,7 @@ describe "Kea server" do
         -o 55,00EA \
         -W 20000000 \
         172.1.0.10`
-
+      sleep 5 
       expect(dhcp_offer_packet_content).to include(File.read("./spec/fixtures/expected_lease_options_delivery_optimised.txt"))
     end
   end
