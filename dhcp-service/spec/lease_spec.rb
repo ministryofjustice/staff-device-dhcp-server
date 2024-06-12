@@ -14,8 +14,9 @@ describe "Kea server" do
     #raise "Expected #{expected_count} leases, got #{db_client[:lease4].count}"
   end
 
-  def wait_for_packet_capture(delay = 5)
-    sleep delay # Wait for the specified delay to ensure packet capture completes
+  def wait_for_packet_capture(process, packets, delay = 5)
+    sleep delay 
+    sleep(packets * 0.1) 
   end
 
   before do
