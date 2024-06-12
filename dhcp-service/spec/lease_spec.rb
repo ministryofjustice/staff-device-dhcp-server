@@ -35,6 +35,7 @@ describe "Kea server" do
         -4 \
         -W 20000000 \
         172.1.0.10`
+
       wait_for_leases(10)
       wait_for_packet_capture() 
       expect(db_client[:lease4].count).to eq(10)
@@ -54,6 +55,7 @@ describe "Kea server" do
         -o 77,57313054455354 \
         -W 20000000 \
         172.1.0.10`
+      
       wait_for_leases(3)
       wait_for_packet_capture()
       expect(dhcp_offer_packet_content).to include(File.read("./spec/fixtures/expected_lease_options_client_class.txt"))
@@ -71,6 +73,7 @@ describe "Kea server" do
         -o 55,00EA \
         -W 20000000 \
         172.1.0.10`
+
       wait_for_leases(3)
       wait_for_packet_capture()
       expect(dhcp_offer_packet_content).to include(File.read("./spec/fixtures/expected_lease_options_delivery_optimised.txt"))
