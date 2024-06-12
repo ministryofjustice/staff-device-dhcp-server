@@ -6,10 +6,21 @@ describe "Kea server" do
   let(:db_client) { DbClient.new.db }
   let(:dhcp_offer_packet_content) { `tshark -r ./dhcp_offer_packet.pcap -V -T text` }
 
+  def wait_for_leases(expected_count, retries = 5, delay = 2)
+    retries.times do
+      return if db_client[:lease4].count == expected_count
+      sleep delay
+    end
+  end
+
+  def wait_for_packet_capture(delay = 5)
+    sleep delay # Wait for the specified delay to ensure packet capture completes
+  end
+
   before do
     db_client[:lease4].truncate
     db_client.disconnect
-    Process.fork { `tshark -iany -f 'ip src 172.1.0.10 and udp port 67' -w ./dhcp_offer_packet.pcap -q -a packets:1` }
+    Process.fork { `tshark -iany -f 'ip src 172.1.0.10 and udp port 67' -w ./dhcp_offer_packet.pcap -q -a packets:10` }
     sleep 10 # Adding a delay to ensure the process is ready
   end
 
@@ -24,7 +35,9 @@ describe "Kea server" do
         -4 \
         -W 20000000 \
         172.1.0.10`
-      sleep 10
+
+      wait_for_leases(10)
+      wait_for_packet_capture() 
       expect(db_client[:lease4].count).to eq(10)
       expect(dhcp_offer_packet_content).to include(File.read("./spec/fixtures/expected_lease_options_ordinary.txt"))
       expect(dhcp_offer_packet_content).not_to include("Option: (234) Private")
@@ -42,7 +55,9 @@ describe "Kea server" do
         -o 77,57313054455354 \
         -W 20000000 \
         172.1.0.10`
-      sleep 10
+      
+      wait_for_leases(3)
+      wait_for_packet_capture()
       expect(dhcp_offer_packet_content).to include(File.read("./spec/fixtures/expected_lease_options_client_class.txt"))
     end
   end
@@ -58,7 +73,9 @@ describe "Kea server" do
         -o 55,00EA \
         -W 20000000 \
         172.1.0.10`
-      sleep 10 
+
+      wait_for_leases(3)
+      wait_for_packet_capture()
       expect(dhcp_offer_packet_content).to include(File.read("./spec/fixtures/expected_lease_options_delivery_optimised.txt"))
     end
   end
