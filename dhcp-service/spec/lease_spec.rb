@@ -6,7 +6,7 @@ describe "Kea server" do
   let(:db_client) { DbClient.new.db }
   let(:dhcp_offer_packet_content) { `tshark -r ./dhcp_offer_packet.pcap -V -T text` }
 
-  def wait_for_leases(expected_count, retries = 5, delay = 5)
+  def wait_for_leases(expected_count, retries = 3, delay = 3)
     retries.times do
       return if db_client[:lease4].count == expected_count
       sleep delay
