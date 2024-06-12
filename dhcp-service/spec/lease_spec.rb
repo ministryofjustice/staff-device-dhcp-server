@@ -11,7 +11,6 @@ describe "Kea server" do
       return if db_client[:lease4].count == expected_count
       sleep delay
     end
-    #raise "Expected #{expected_count} leases, got #{db_client[:lease4].count}"
   end
 
   def wait_for_packet_capture(delay = 5)
