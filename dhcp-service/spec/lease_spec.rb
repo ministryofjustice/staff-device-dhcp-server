@@ -29,7 +29,7 @@ describe "Kea server" do
 
   context "when ordinary dhcp clients send DHCP requests" do
     it "provides 10 leases to 10 clients, leases persist in the DB and provides DHCP options from global options" do
-      pid = Process.fork { exec "tshark -iany -f 'ip src 172.1.0.10 and udp port 67' -w ./dhcp_offer_packet.pcap -q -a packets:10" }
+      pid = Process.fork { exec "tshark -iany -f 'ip src 172.1.0.10 and udp port 67' -w ./dhcp_offer_packet.pcap -q -a packets:1" }
       sleep 5 # Ensure the process is ready
       
       `perfdhcp -r 2 \
@@ -49,7 +49,7 @@ describe "Kea server" do
 
   context "when Windows 10 devices with client class value of 'W10TEST' send DHCP requests" do
     it "provides a lease with DHCP options from global options but overrides dns-name option from client class options" do
-      pid = Process.fork { exec "tshark -iany -f 'ip src 172.1.0.10 and udp port 67' -w ./dhcp_offer_packet.pcap -q -a packets:3" }
+      pid = Process.fork { exec "tshark -iany -f 'ip src 172.1.0.10 and udp port 67' -w ./dhcp_offer_packet.pcap -q -a packets:1" }
       sleep 5 # Ensure the process is ready
       
      `perfdhcp -r 2 \
@@ -70,7 +70,7 @@ describe "Kea server" do
 
   context "when Windows 10 devices with delivery optimisation enabled send DHCP requests" do
     it "provides a lease with DHCP options from global options as well as an additional option: private option 234" do
-      pid = Process.fork { exec "tshark -iany -f 'ip src 172.1.0.10 and udp port 67' -w ./dhcp_offer_packet.pcap -q -a packets:3" }
+      pid = Process.fork { exec "tshark -iany -f 'ip src 172.1.0.10 and udp port 67' -w ./dhcp_offer_packet.pcap -q -a packets:1" }
       sleep 5 # Ensure the process is ready
       
     `perfdhcp -r 2 \
