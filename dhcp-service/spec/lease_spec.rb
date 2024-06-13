@@ -29,7 +29,7 @@ describe "Kea server" do
 
   context "when ordinary dhcp clients send DHCP requests" do
     it "provides 10 leases to 10 clients, leases persist in the DB and provides DHCP options from global options" do
-      pid = Process.fork { exec "tshark -iany -f 'ip src 172.1.0.10 and udp port 67' -w ./dhcp_offer_packet.pcap -q -a packets:1" }
+      pid = Process.fork { exec "tshark -iany -f 'ip src 172.1.0.10 and udp port 67' -w ./dhcp_offer_packet.pcap -q -a packets:10" }
       sleep 5 # Ensure the process is ready
       
       `perfdhcp -r 2 \
@@ -41,7 +41,7 @@ describe "Kea server" do
         172.1.0.10`
       
       wait_for_leases(10)
-      wait_for_packet_capture(pid, 10)
+      wait_for_packet_capture(pid, 1)
       expect(dhcp_offer_packet_content).to include(File.read("./spec/fixtures/expected_lease_options_ordinary.txt"))
       expect(dhcp_offer_packet_content).not_to include("Option: (234) Private")
     end
@@ -49,7 +49,7 @@ describe "Kea server" do
 
   context "when Windows 10 devices with client class value of 'W10TEST' send DHCP requests" do
     it "provides a lease with DHCP options from global options but overrides dns-name option from client class options" do
-      pid = Process.fork { exec "tshark -iany -f 'ip src 172.1.0.10 and udp port 67' -w ./dhcp_offer_packet.pcap -q -a packets:1" }
+      pid = Process.fork { exec "tshark -iany -f 'ip src 172.1.0.10 and udp port 67' -w ./dhcp_offer_packet.pcap -q -a packets:3" }
       sleep 5 # Ensure the process is ready
       
      `perfdhcp -r 2 \
@@ -63,14 +63,14 @@ describe "Kea server" do
         172.1.0.10`
       
       wait_for_leases(3)
-      wait_for_packet_capture(pid, 3)
+      wait_for_packet_capture(pid, 1)
       expect(dhcp_offer_packet_content).to include(File.read("./spec/fixtures/expected_lease_options_client_class.txt"))
     end
   end
 
   context "when Windows 10 devices with delivery optimisation enabled send DHCP requests" do
     it "provides a lease with DHCP options from global options as well as an additional option: private option 234" do
-      pid = Process.fork { exec "tshark -iany -f 'ip src 172.1.0.10 and udp port 67' -w ./dhcp_offer_packet.pcap -q -a packets:1" }
+      pid = Process.fork { exec "tshark -iany -f 'ip src 172.1.0.10 and udp port 67' -w ./dhcp_offer_packet.pcap -q -a packets:3" }
       sleep 5 # Ensure the process is ready
       
     `perfdhcp -r 2 \
@@ -84,7 +84,7 @@ describe "Kea server" do
         172.1.0.10`
       
       wait_for_leases(3)
-      wait_for_packet_capture(pid, 3)
+      wait_for_packet_capture(pid, 1)
       expect(dhcp_offer_packet_content).to include(File.read("./spec/fixtures/expected_lease_options_delivery_optimised.txt"))
     end
   end
