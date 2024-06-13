@@ -1,12 +1,15 @@
 require_relative "spec_helper"
 require_relative "../metrics/db_client"
 require 'sequel'
-
+require_relative "spec_helper"
+require_relative "../metrics/db_client"
+require 'sequel'
+ 
 describe "Kea server" do
   let(:db_client) { DbClient.new.db }
   let(:dhcp_offer_packet_content) { `tshark -r ./dhcp_offer_packet.pcap -V -T text` }
 
-  def wait_for_leases(expected_count, retries = 5, delay = 2)
+  def wait_for_leases(expected_count, retries = 3, delay = 5)
     retries.times do
       return if db_client[:lease4].count == expected_count
       sleep delay
@@ -21,7 +24,7 @@ describe "Kea server" do
   before do
     db_client[:lease4].truncate
     db_client.disconnect
-    Process.fork { `tshark -iany -f 'ip src 172.1.0.10 and udp port 67' -w ./dhcp_offer_packet.pcap -q -a packets:10` }
+    Process.fork { `tshark -iany -f 'ip src 172.1.0.10 and udp port 67' -w ./dhcp_offer_packet.pcap -q -a packets:1` }
     sleep 10 # Adding a delay to ensure the process is ready
   end
 
