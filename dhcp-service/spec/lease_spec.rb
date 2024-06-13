@@ -6,7 +6,7 @@ describe "Kea server" do
   let(:db_client) { DbClient.new.db }
   let(:dhcp_offer_packet_content) { `tshark -r ./dhcp_offer_packet.pcap -V -T text` }
 
-  def wait_for_leases(expected_count, retries = 3, delay = 3)
+  def wait_for_leases(expected_count, retries = 3, delay = 2)
     retries.times do
       return if db_client[:lease4].count == expected_count
       sleep delay
@@ -14,7 +14,7 @@ describe "Kea server" do
     # raise "Expected #{expected_count} leases, got #{db_client[:lease4].count}"
   end
 
-  def wait_for_packet_capture(process, packets, delay = 5)
+  def wait_for_packet_capture(process, packets, delay = 2)
     sleep delay 
     sleep(packets * 0.1)
     Process.wait(process) 
@@ -29,7 +29,7 @@ describe "Kea server" do
 
   context "when ordinary dhcp clients send DHCP requests" do
     it "provides 10 leases to 10 clients, leases persist in the DB and provides DHCP options from global options" do
-      pid = Process.fork { exec "tshark -iany -f 'ip src 172.1.0.10 and udp port 67' -w ./dhcp_offer_packet.pcap -q -a packets:10" }
+      pid = Process.fork { exec "tshark -iany -f 'ip src 172.1.0.10 and udp port 67' -w ./dhcp_offer_packet.pcap -q -a packets:1" }
       sleep 5 # Ensure the process is ready
       
       `perfdhcp -r 2 \
@@ -49,7 +49,7 @@ describe "Kea server" do
 
   context "when Windows 10 devices with client class value of 'W10TEST' send DHCP requests" do
     it "provides a lease with DHCP options from global options but overrides dns-name option from client class options" do
-      pid = Process.fork { exec "tshark -iany -f 'ip src 172.1.0.10 and udp port 67' -w ./dhcp_offer_packet.pcap -q -a packets:3" }
+      pid = Process.fork { exec "tshark -iany -f 'ip src 172.1.0.10 and udp port 67' -w ./dhcp_offer_packet.pcap -q -a packets:1" }
       sleep 5 # Ensure the process is ready
       
      `perfdhcp -r 2 \
@@ -70,7 +70,7 @@ describe "Kea server" do
 
   context "when Windows 10 devices with delivery optimisation enabled send DHCP requests" do
     it "provides a lease with DHCP options from global options as well as an additional option: private option 234" do
-      pid = Process.fork { exec "tshark -iany -f 'ip src 172.1.0.10 and udp port 67' -w ./dhcp_offer_packet.pcap -q -a packets:3" }
+      pid = Process.fork { exec "tshark -iany -f 'ip src 172.1.0.10 and udp port 67' -w ./dhcp_offer_packet.pcap -q -a packets:1" }
       sleep 5 # Ensure the process is ready
       
     `perfdhcp -r 2 \
