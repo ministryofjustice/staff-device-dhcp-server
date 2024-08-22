@@ -24,7 +24,8 @@ GEM
     jmespath (1.6.2)
     mysql2 (0.5.5)
     public_suffix (5.0.3)
-    rexml (3.2.6)
+    rexml (3.3.6)
+      strscan
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
@@ -42,6 +43,7 @@ GEM
       concurrent-ruby (~> 1.0, >= 1.0.2)
     sequel (5.73.0)
       bigdecimal
+    strscan (3.1.0)
     timecop (0.9.8)
     webmock (3.19.1)
       addressable (>= 2.8.0)
