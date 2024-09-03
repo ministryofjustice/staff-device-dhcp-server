@@ -36,3 +36,6 @@ The version of ISC Kea is built from the dockerfile [here](dhcp-service/Dockerfi
 ## Notes
 
 Kea currently does not support connecting to the database over SSL. See [kea#15](https://github.com/isc-projects/kea/pull/15)
+
+
+Testing pipeline trigger
