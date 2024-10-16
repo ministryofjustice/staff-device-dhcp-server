@@ -38,7 +38,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
     rspec-support (3.12.0)
-    sentry-ruby (5.19.0)
+    sentry-ruby (5.21.0)
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
     sequel (5.83.1)
