@@ -1,6 +1,6 @@
 FROM ruby:3.3.6-alpine3.20
 
-ENV GLIBC_VER=2.34-r0
+ENV GLIBC_VER=2.35-r1
 ARG EXTRA_BUNDLE_CONFIG="without 'test'"
 
 RUN apk add bash curl mysql mysql-client && \
