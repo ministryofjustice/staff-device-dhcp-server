@@ -54,7 +54,6 @@ deploy() {
 main() {
   assume_deploy_role
   deploy
-  wait_for_services
 }
 
 main
