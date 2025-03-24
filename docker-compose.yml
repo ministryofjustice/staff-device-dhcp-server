@@ -1,4 +1,3 @@
-version: "3"
 services:
   dhcp-primary:
     platform: linux/amd64

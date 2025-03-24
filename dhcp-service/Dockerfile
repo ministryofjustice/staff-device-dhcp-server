@@ -1,6 +1,5 @@
-FROM ruby:3.1.6-alpine3.19
+FROM ruby:3.3.6-alpine3.20
 
-# ENV GLIBC_VER=2.34-r0
 ARG EXTRA_BUNDLE_CONFIG="without 'test'"
 
 RUN apk add bash curl mysql mysql-client && \
@@ -9,16 +8,10 @@ RUN apk add bash curl mysql mysql-client && \
   apk add build-base mysql-dev isc-kea-admin isc-kea-perfdhcp isc-kea-dhcp4 isc-kea-ctrl-agent isc-kea-hook-lease-cmds isc-kea-hook-stat-cmds isc-kea-hook-ha
 
 RUN curl -sL https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o /etc/apk/keys/sgerrand.rsa.pub && \
-  # curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-${GLIBC_VER}.apk && \
-  # curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-bin-${GLIBC_VER}.apk && \
-  # apk add --no-cache glibc-${GLIBC_VER}.apk glibc-bin-${GLIBC_VER}.apk && \
   curl -sL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip && \
   unzip awscliv2.zip && \
-  aws/install
-
-RUN rm -rf awscliv2.zip aws /usr/local/aws-cli/v2/*/dist/aws_completer /usr/local/aws-cli/v2/*/dist/awscli/data/ac.index /usr/local/aws-cli/v2/*/dist/awscli/examples && \
-  # rm glibc-${GLIBC_VER}.apk && \
-  # rm glibc-bin-${GLIBC_VER}.apk && \
+  aws/install && \
+  rm -rf awscliv2.zip aws /usr/local/aws-cli/v2/*/dist/aws_completer /usr/local/aws-cli/v2/*/dist/awscli/data/ac.index /usr/local/aws-cli/v2/*/dist/awscli/examples && \
   rm -rf /var/cache/apk/*
 
 COPY ./bootstrap.sh ./bootstrap.sh

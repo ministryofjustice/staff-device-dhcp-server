@@ -1,4 +1,4 @@
-FROM ruby:3.1.6-alpine3.19
+FROM ruby:3.3.6-alpine3.20
 
 RUN apk add bash build-base curl mysql mysql-client mysql-dev && \
   curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-2-6/setup.alpine.sh' | bash && \
