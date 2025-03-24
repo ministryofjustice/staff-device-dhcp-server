@@ -3,7 +3,7 @@ export
 
 .DEFAULT_GOAL := help
 
-DOCKER_COMPOSE = docker compose -f docker-compose.yml
+DOCKER_COMPOSE = docker-compose -f docker-compose.yml
 
 .PHONY: authenticate-docker
 authenticate-docker: ## Authenticate docker using ssm paramstore
