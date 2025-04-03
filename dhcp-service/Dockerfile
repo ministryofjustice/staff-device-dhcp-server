@@ -25,5 +25,6 @@ RUN cd metrics && \
 EXPOSE 67/udp
 EXPOSE 68/udp
 EXPOSE 8000
+Expose 8001
 
 CMD ["./bootstrap.sh"]

@@ -141,7 +141,7 @@
                 },
                 {
                   "name": "standby",
-                  "url": "http://<STANDBY_IP>:8000",
+                  "url": "http://<STANDBY_IP>:8002",
                   "role": "standby",
                   "auto-failover": true
                 }
