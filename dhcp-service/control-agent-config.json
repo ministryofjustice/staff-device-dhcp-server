@@ -1,7 +1,7 @@
 {
   "Control-agent": {
     "http-host": "0.0.0.0",
-    "http-port": 8002,
+
     "control-sockets": {
         "dhcp4": {
             "comment": "main server",

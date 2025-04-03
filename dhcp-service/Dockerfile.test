@@ -1,7 +1,8 @@
-FROM ruby:3.3.6-alpine3.20
+FROM ruby:3.2.2-alpine3.17
+
 
 RUN apk add bash build-base curl mysql mysql-client mysql-dev && \
-  curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-2-6/setup.alpine.sh' | bash && \
+  curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-2-4/setup.alpine.sh' | bash && \
   apk update &&  \
   apk upgrade && \
   apk add build-base mysql-dev isc-kea-admin isc-kea-perfdhcp isc-kea-dhcp4 isc-kea-ctrl-agent isc-kea-hook-lease-cmds isc-kea-hook-stat-cmds isc-kea-hook-ha && \
