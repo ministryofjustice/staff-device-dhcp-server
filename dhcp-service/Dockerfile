@@ -5,7 +5,7 @@ ARG EXTRA_BUNDLE_CONFIG="without 'test'"
 RUN apk add bash curl mysql mysql-client && \
   curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-2-6/setup.alpine.sh' |  bash && \
   apk upgrade && \
-  apk add build-base mysql-dev isc-kea-admin isc-kea-perfdhcp isc-kea-dhcp4 isc-kea-ctrl-agent isc-kea-hook-lease-cmds isc-kea-hook-stat-cmds isc-kea-hook-ha
+  apk add build-base mysql-dev isc-kea
 
 RUN curl -sL https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o /etc/apk/keys/sgerrand.rsa.pub && \
   apk add aws-cli && \
@@ -26,7 +26,5 @@ EXPOSE 67/udp
 EXPOSE 68/udp
 EXPOSE 8000
 EXPOSE 8001
-EXPOSE 8002
-EXPOSE 8003
 
 CMD ["./bootstrap.sh"]
