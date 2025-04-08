@@ -135,13 +135,13 @@
               "peers": [
                 {
                   "name": "primary",
-                  "url": "http://<PRIMARY_IP>:8001",
+                  "url": "http://<PRIMARY_IP>:8000",
                   "role": "primary",
                   "auto-failover": true
                 },
                 {
                   "name": "standby",
-                  "url": "http://<STANDBY_IP>:8001",
+                  "url": "http://<STANDBY_IP>:8000",
                   "role": "standby",
                   "auto-failover": true
                 }
