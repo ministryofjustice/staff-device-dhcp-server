@@ -40,8 +40,8 @@ services:
     environment:
       INTERFACE: eth0
       DB_NAME: kea
-      DB_USER: kea
-      DB_PASS: kea
+      DB_USER: root
+      DB_PASS: password
       DB_HOST: db
       DB_PORT: 3306
       LOCAL_DEVELOPMENT: "true"
@@ -62,8 +62,8 @@ services:
     environment:
       INTERFACE: eth0
       DB_NAME: kea
-      DB_USER: kea
-      DB_PASS: kea
+      DB_USER: root
+      DB_PASS: password
       DB_HOST: db
       DB_PORT: 3306
       LOCAL_DEVELOPMENT: "true"

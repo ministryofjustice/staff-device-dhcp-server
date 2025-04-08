@@ -26,5 +26,6 @@ EXPOSE 67/udp
 EXPOSE 68/udp
 EXPOSE 8000
 EXPOSE 8001
+EXPOSE 8002
 
 CMD ["./bootstrap.sh"]
