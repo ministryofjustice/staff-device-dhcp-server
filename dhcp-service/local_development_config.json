@@ -40,7 +40,7 @@
     },
     "control-socket": {
       "socket-type": "unix",
-      "socket-name": "/tmp/dhcp4-socket"
+      "socket-name": "/tmp/dhcp4-ctrl-socket"
     },
     "shared-networks": [
       {
@@ -132,16 +132,22 @@
               "max-response-delay": 60000,
               "max-ack-delay": 10000,
               "max-unacked-clients": 0,
+              "multi-threading": {
+                        "enable-multi-threading": true,
+                        "http-dedicated-listener": true,
+                        "http-listener-threads": 0,
+                        "http-client-threads": 0
+              },
               "peers": [
                 {
                   "name": "primary",
-                  "url": "http://<PRIMARY_IP>:8000",
+                  "url": "http://<PRIMARY_IP>:8000/",
                   "role": "primary",
                   "auto-failover": true
                 },
                 {
                   "name": "standby",
-                  "url": "http://<STANDBY_IP>:8000",
+                  "url": "http://<STANDBY_IP>:8000/",
                   "role": "standby",
                   "auto-failover": true
                 }
