@@ -1,13 +1,13 @@
 {
   "Control-agent": {
-    "http-host": "0.0.0.0",
+    "http-host": "127.0.0.1",
     "http-port": 8001,
     "cert-required": false,
     "control-sockets": {
         "dhcp4": {
-            "comment": "socket to DHCPv4 server",
+            "comment": "main server",
             "socket-type": "unix",
-            "socket-name": "/tmp/dhcp4-ctrl-socket"
+            "socket-name": "/tmp/dhcp4-socket"
         }
     },
 
