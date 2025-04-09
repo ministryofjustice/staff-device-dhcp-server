@@ -16,7 +16,6 @@ COPY ./bootstrap.sh ./bootstrap.sh
 COPY ./config_api.json ./config_api.json
 COPY ./local_development_config.json ./test_config.json
 COPY ./metrics ./metrics
-COPY ./control-agent-config.json /etc/kea/control-agent-config.json
 
 RUN cd metrics && \
   bundle config set no-cache 'true' ${EXTRA_BUNDLE_CONFIG} && \

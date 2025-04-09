@@ -51,12 +51,6 @@ ensure_database_permissions() {
   mysql -u ${DB_USER} -p${DB_PASS} -n ${DB_NAME} -h ${DB_HOST} -e "GRANT ALL ON ${DB_NAME}.* TO '${DB_USER}'@'${DB_HOST}';" #https://kea.readthedocs.io/en/kea-1.6.3/arm/admin.html
 }
 
-
-boot_control_agent() {
-  echo "Booting control agent"
-  kea-ctrl-agent -c /etc/kea/control-agent-config.json &
-}
-
 boot_server() {
   echo "Booting dhcpv4 server"
   kea-dhcp4 -c /etc/kea/config.json &
@@ -99,7 +93,6 @@ main() {
   fi
   init_schema_if_not_loaded
   upgrade_db_if_required
-  boot_control_agent
   boot_server
   touch /tmp/kea_started
   if [[ "$PUBLISH_METRICS" == "true" ]]; then
@@ -108,7 +101,7 @@ main() {
   if [[ "$LOCAL_DEVELOPMENT" != "true" ]] && [[ "$SERVER_NAME" != "api" ]]; then
     start_kea_config_reload_daemon
   fi
-  fg %2 #KEA is running as a daemon, bring it back as the essential task of the container now that testing is finished
+  fg %1 #KEA is running as a daemon, bring it back as the essential task of the container now that testing is finished
 }
 
 main
