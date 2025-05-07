@@ -1,4 +1,3 @@
-version: "3"
 services:
   dhcp-primary:
     platform: linux/amd64
@@ -28,7 +27,7 @@ services:
       timeout: 20s
       retries: 10
     volumes:
-      - $HOME/.aws/credentials:/root/.aws/credentials:ro
+      - $HOME/.aws/credentials/config:/root/.aws/credentials:ro
       - ./dhcp-service/metrics/:/metrics
     networks:
       default:
@@ -41,8 +40,8 @@ services:
     environment:
       INTERFACE: eth0
       DB_NAME: kea
-      DB_USER: kea
-      DB_PASS: kea
+      DB_USER: root
+      DB_PASS: password
       DB_HOST: db
       DB_PORT: 3306
       LOCAL_DEVELOPMENT: "true"
@@ -63,8 +62,8 @@ services:
     environment:
       INTERFACE: eth0
       DB_NAME: kea
-      DB_USER: kea
-      DB_PASS: kea
+      DB_USER: root
+      DB_PASS: password
       DB_HOST: db
       DB_PORT: 3306
       LOCAL_DEVELOPMENT: "true"
