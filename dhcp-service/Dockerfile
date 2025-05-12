@@ -1,11 +1,17 @@
 FROM ruby:3.2.2-alpine3.17
 
 ARG EXTRA_BUNDLE_CONFIG="without 'test'"
+ENV GLIBC_VER=2.34-r0
 
 RUN apk add bash curl mysql mysql-client && \
   curl -1sLf 'https://dl.cloudsmith.io/public/isc/kea-2-4/setup.alpine.sh' |  bash && \
   apk upgrade && \
   apk add --no-cache build-base mysql-dev isc-kea
+
+RUN curl -sL https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o /etc/apk/keys/sgerrand.rsa.pub && \
+  curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-${GLIBC_VER}.apk && \
+  curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-bin-${GLIBC_VER}.apk && \
+  apk add --no-cache --force-overwrite glibc-${GLIBC_VER}.apk glibc-bin-${GLIBC_VER}.apk
   
 RUN curl -sL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip && \
   unzip awscliv2.zip && \
